@@ -2,7 +2,8 @@
 use HTML::Menu::TreeView qw(css setDocumentRoot jscript setStyle getStyle setDocumentRoot getDocumentRoot);
 my @tree =(
 	{
-	text => '<a href="TreeView.pl" class="link">News</a>',
+	text => 'News',
+	href => 'TreeView.pl',
 	dir => [
 		{
 			text => 'TreeView',
@@ -19,7 +20,8 @@ my @tree =(
 );
 my @tree2 =(
 	{
-	text => '<a href="TreeView.pl" class="link">News</a>',
+	text => 'News',
+	href => 'TreeView.pl',
 	dir => [
 		{
 			text => 'TreeView',
@@ -39,8 +41,8 @@ my $style =  getStyle();
 my $TreeView2 = new HTML::Menu::TreeView(\@tree2);
 my $style2 = $TreeView2->getStyle();
 ok(length($style) eq length($style2));
-setStyle("system");
-ok($TreeView2->getStyle() eq "system");
+setStyle("Crystal");
+ok($TreeView2->getStyle() eq "Crystal");
 $TreeView2->setDocumentRoot("$ENV{PWD}/htdocs");
 ok(getDocumentRoot() eq "$ENV{PWD}/htdocs");
 ok(length(css()) > 0);

@@ -1,41 +1,40 @@
-function ocFolder(id){
-    var  folder = document.getElementById(id).className;
-    if(folder == 'folderOpen'){
-        document.getElementById(id).className = 'folderClosed';
-    }else if(folder == 'folderClosed'){
-        document.getElementById(id).className = 'folderOpen';
-    }else{
-        var mclass = /(folder.*)Closed/;
-        var isclosed = mclass.test(folder);
-        if (isclosed == true){
-            document.getElementById(id).className = mclass.replace(/(folder.*)Closed/, '$1');
-        }else{
-            document.getElementById(id).className = mclass.replace(/(folder.*)/, '$1Closed')
-        }
-    }
-	
-}
-function ocNode(id){
-var folder = document.getElementById(id).className;if(folder == "minusNode"){
-document.getElementById(id).className = 'plusNode';
-}else if(folder == "plusNode"){
-document.getElementById(id).className = 'minusNode';
-}
-}
-function ocpNode(id){
-var folder = document.getElementById(id).className;
-if(folder == "lastMinusNode"){
-document.getElementById(id).className = 'lastPlusNode';
-}else if(folder == "lastPlusNode"){
-document.getElementById(id).className = 'lastMinusNode';
-}
-}
-function displayTree(id){
-var e = document.getElementById(id);
-var display = e.style.display;
-if(display == "none"){
-e.style.display = "";
-}else if(display == ""){
-e.style.display = "none";
-}
-}
+functionocFolder(id){
+varfolder=document.getElementById(id).className;
+if(folder=='folderOpen'){
+document.getElementById(id).className='folderClosed';
+}elseif(folder=='folderClosed'){
+document.getElementById(id).className='folderOpen';
+}else{
+varmclass=/(folder.*)Closed/;
+varisclosed=mclass.test(folder);
+if(isclosed==true){
+document.getElementById(id).className=folder.replace(/(folder.*)Closed/,'\$1');
+}else{
+document.getElementById(id).className=folder.replace(/(folder.*)/,'\$1Closed')
+}}}
+functionocNode(id){
+varfolder=document.getElementById(id).className;if(folder=="minusNode"){
+document.getElementById(id).className='plusNode';
+}elseif(folder=="plusNode"){
+document.getElementById(id).className='minusNode';
+}elseif(folder=="clasicPlusNode"){
+document.getElementById(id).className='clasicMinusNode';
+}elseif(folder=="clasicMinusNode"){
+document.getElementById(id).className='clasicPlusNode';}}
+functionocpNode(id){
+varfolder=document.getElementById(id).className;
+if(folder=="lastMinusNode"){
+document.getElementById(id).className='lastPlusNode';
+}elseif(folder=="lastPlusNode"){
+document.getElementById(id).className='lastMinusNode';
+}elseif(folder=="clasicLastPlusNode"){
+document.getElementById(id).className='clasicLastMinusNode';
+}elseif(folder=="clasicLastMinusNode"){
+document.getElementById(id).className='clasicLastPlusNode';}}
+functiondisplayTree(id){
+vare=document.getElementById(id);
+vardisplay=e.style.display;
+if(display=="none"){
+e.style.display="";
+}elseif(display==""){
+e.style.display="none";}}

@@ -1,7 +1,16 @@
 Revision history for Perl extension treeview.
-treeview.pm version 0.3
+treeview.pm version 0.5.2
+0.5.2
+	- setClasic, setModern clasic ( alternate node decoration ).
+	- setSize ( new Style Cyrstal 32 ) 16 or 32 are possible.
+	- make installdocs (install html documentation vor HTML::Menu::TreeView like http://treeview.lindnerei.de )
+	- include some styles into Cyrstal.
+	- preload images for ie etc.
+	- delete unessesary files.
+	- new path for images..
+	- make uninstalldocs.
+	- Overwrought css.
 0.5.1
-
 	-new Namespace HTML::Menu::TreeView
 	-new styles red green orange.
 	-alternate folder symbols for Crystalm style.
@@ -11,7 +20,6 @@ treeview.pm version 0.3
 	-Overwrought code, test, Documentation, styles, exaples.
 	-shebang within pod crashes some older Perl verions
 	-if you want use treevie.pm with perl > 5.008006 you should remove use 5.008006;.
-
 0.41
 	-export_ok use treeview qw(Tree css jscript setStyle setDocumentRoot);
 	-onclick default attribute wird nur gesetzt wenn kein href uebergeben wurde,
@@ -28,4 +36,3 @@ treeview.pm version 0.3
 0.01  Sun Jan 22 01:37:35 2006
 	- original version; created by h2xs 1.23 with options
 	-XAn treeview
-

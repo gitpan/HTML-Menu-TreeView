@@ -21,8 +21,6 @@ chomp($stdin);
 $cgi =  -e $stdin ? $stdin :$cgi;
 warn "$!: $stdin\n" unless -e $cgi;
 
-
-
 print "Document root: $htdocs \n cgi-bin directory: $cgi \n  You have set up the follow Options, Continue ?\n (Yes/No/exit) default:yes\n";
 
 my $k = <STDIN>;
@@ -32,7 +30,7 @@ use lib("./lib");
 
 my $makefile = "
 NAME         = HTML-Menu-TreeView
-VERSION      = 0.5.1
+VERSION      = 0.6
 PREFIX       = $prefix
 INST_CGI     = blib$cgi
 INSTALLCGI   = \$(PREFIX)$cgi
@@ -48,7 +46,7 @@ UNINST   = 0
 VERBINST = 0
 #Tools
 PERL = /usr/bin/perl
-DOINSTALL = \$(PERL) release.pl
+DOINSTALL = \$(PERL) extra/release.pl
 RM_D = rm  -R
 
 #dist
@@ -79,10 +77,17 @@ distclean :
 install ::
 	@\$(DOINSTALL) -release \$(PREFIX) -readdir blib/
 
+installdocs ::
+	\$(PERL) extra/Treenavi.pl -htdocs \$(INSTALLHTDOCS) 
+
 uninstall ::
 	@\$(RM_D) \$(INSTALLLIB)/HTML/Menu/TreeView.pm
 	@\$(RM_D) \$(INSTALLHTDOCS)/style
 
+uninstalldocs ::
+	rm \$(INSTALLHTDOCS)/TreeView.html
+	rm \$(INSTALLHTDOCS)/Treenavi.html
+	rm \$(INSTALLHTDOCS)/html-menu-treeview.html
 
 TEST_VERBOSE=0
 TEST_FILES = t/*.t
