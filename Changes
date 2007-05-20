@@ -1,15 +1,30 @@
 Revision history for Perl extension treeview.
-treeview.pm version 0.5.2
-0.5.2
+treeview.pm version 0.6.2
+0.6.3	
+	-new Styles Cyrstal 64, 128 ( In the future no more styles will be added to this Modul, if there a different ones they will be avaible as a standalone package).
+	-preload.js files for preloading images.
+	- 0.7 will be the next major release, this it is without testing and fixup.
+0.6.2	
+	-size lastNode 16 & 32 px
+
+0.6.1
+	- new Styles Cyrstal 22, 48
+	- new function preload();
+	- Overwrought Dokumentation.
+	- Some fixes in installdocs and width ocpNode
+	- remove some unnecessary files.
+0.6
 	- setClasic, setModern clasic ( alternate node decoration ).
 	- setSize ( new Style Cyrstal 32 ) 16 or 32 are possible.
-	- make installdocs (install html documentation vor HTML::Menu::TreeView like http://treeview.lindnerei.de )
+	- make installdocs 
+	  (install html documentation vor HTML::Menu::TreeView like http://treeview.lindnerei.de.
+	   Open /TreeView.html on your host into your browser after installation.)
 	- include some styles into Cyrstal.
 	- preload images for ie etc.
 	- delete unessesary files.
-	- new path for images..
-	- make uninstalldocs.
-	- Overwrought css.
+	- new path for images
+	- make uninstalldocs
+	- Overwrought css
 0.5.1
 	-new Namespace HTML::Menu::TreeView
 	-new styles red green orange.

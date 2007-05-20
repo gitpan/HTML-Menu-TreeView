@@ -31,6 +31,11 @@ my @t             = (
 	target => '_parent',
 	image => 'deb.png'
 	},
+{
+	text   => 'Treeview Homepage',
+	href   => 'http://treeview.lindnerei.de/',
+	target => '_parent',
+},
 );
 setDocumentRoot($htdocs);
 setStyle($style);
@@ -41,7 +46,7 @@ print OUT "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"ht
 <html>
 <head>
 <title>Navigation</title>
-<link rel=\"stylesheet\" type=\"text/css\" href=\"/style/$style/16/html-menu-treeview/$style.css\">
+<link rel=\"stylesheet\" type=\"text/css\" href=\"/style/$style/$size/html-menu-treeview/$style.css\">
 <script language=\"JavaScript\" type=\"text/javascript\">
 //<!--
 " . jscript() . '
@@ -49,19 +54,18 @@ print OUT "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"ht
 </script>
 </head>
 <body>
-<table align=\"center\" class=\"mainborder\" cellpadding=\"0\"  cellspacing=\"0\" summary=\"mainLayout\" width=\"100%\" ><tr><td align=\"center" >' . Tree(\@t).'</select><br><p></td></tr></table></body></html>';
+<table align="center" class="mainborder" cellpadding="0"  cellspacing="0" summary="mainLayout" width="100%" ><tr><td align="center" >' . Tree(\@t).'</select><br><p></td></tr></table></body></html>';
 close(OUT);
 open FRAME , ">$htdocs/TreeView.html" or die "$!";
 print FRAME  '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
 <html>
 <head>
-<title>Treeview.pm</title>
-<meta name="AUTHOR" content="Dirk Lindner">
+<title>Html::Menu::TreeView</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <meta name="robots" content="index">
-<meta name="keywords" lang="de" content="Treeview Treeview.pm Treeview.html">
+<meta name="keywords" lang="de" content="Html::Menu::TreeView Treeview Treeview.pm Treeview.html">
 </head>
-<frameset cols="260,*">
+<frameset cols="300,*">
 <frame src="/Treenavi.html" name="navi">
 <frame src="/html-menu-treeview.html" name="rightFrame">
 </frameset>

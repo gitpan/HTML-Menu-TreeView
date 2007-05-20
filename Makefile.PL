@@ -30,7 +30,7 @@ use lib("./lib");
 
 my $makefile = "
 NAME         = HTML-Menu-TreeView
-VERSION      = 0.6
+VERSION      = 0.6.3
 PREFIX       = $prefix
 INST_CGI     = blib$cgi
 INSTALLCGI   = \$(PREFIX)$cgi

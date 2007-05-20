@@ -5,8 +5,8 @@ use warnings;
 require Exporter;
 use vars qw($DefaultClass @EXPORT @ISA);
 @ISA                             = qw(Exporter);
-@HTML::Menu::TreeView::EXPORT_OK = qw(Tree css jscript setStyle getStyle setDocumentRoot getDocumentRoot setSize setClasic clasic);
-$HTML::Menu::TreeView::VERSION   = '0.6';
+@HTML::Menu::TreeView::EXPORT_OK = qw(Tree css jscript setStyle getStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload);
+$HTML::Menu::TreeView::VERSION   = '0.6.3';
 $DefaultClass                    = 'HTML::Menu::TreeView' unless defined $HTML::Menu::TreeView::DefaultClass;
 our $id     = "a";
 our $style  = "Crystal";
@@ -48,7 +48,7 @@ Possible values for folderclass :
 
 folderMan, folderVideo,folderCrystal, folderLocked , folderText, folderFavorite, folderPrint,folderHtml,folderSentMail,folderImage,folderSound,folderImportant,folderTar,folderYellow ,folderGray folderGreen
 
-folderSentMail and folderText are only in 16 px avaible.
+folderSentMail is only in 16 px avaible.
 
 =head2 OO Syntax
 
@@ -126,6 +126,28 @@ HTML::Menu::TreeView is a Modul to build an Html tree of an AoH.
 
 =head1 Changes
 
+0.6.3	
+
+-new Styles Cyrstal 64, 128 ( In the future no more styles will be added to this Modul, if there a different ones they will be avaible as a standalone package).
+
+-preload.js files for preloading images.
+
+0.6.2
+
+-size lastNode 16 & 32 px
+
+0.6.1
+
+- new Styles Cyrstal 22, 48
+
+- new function preload();
+
+- Overwrought Dokumentation.
+
+- Some fixes in installdocs and width ocpNode
+
+- remove some unnecessary files.
+
 0.6
 
 - setClasic, setModern clasic ( alternate node decoration ).
@@ -134,7 +156,7 @@ HTML::Menu::TreeView is a Modul to build an Html tree of an AoH.
 
 - make installdocs 
   (install html documentation vor HTML::Menu::TreeView like http://treeview.lindnerei.de.
-  Open /TreeView.html on your host into your browser after anstallation.)
+  Open /TreeView.html on your host into your browser after installation.)
 
 - include some styles into Cyrstal.
 
@@ -338,7 +360,8 @@ document.getElementById(id).className = folder.replace(/(folder.*)/, '\$1Closed'
 }
 }
 function ocNode(id){
-var folder = document.getElementById(id).className;if(folder == \"minusNode\"){
+var folder = document.getElementById(id).className;
+if(folder == \"minusNode\"){
 document.getElementById(id).className = 'plusNode';
 }else if(folder == \"plusNode\"){
 document.getElementById(id).className = 'minusNode';
@@ -372,25 +395,17 @@ e.style.display = \"none\";
 ";
 }
 
-=head2 Tree()
+=head2 preload()
 
-Tree(\@tree,optional $style);
-
-Returns the Html part of the TreeView without javasript and css.
 
 =cut
 
-sub Tree{
-    my ($self, @p) = getSelf(@_);
-    $style = $p[1] if(defined $p[1]);
-    $self->initTree(@p) if(@p);
-    my $preload = "
+sub preload{
+ my $preload = "
 <script language=\"JavaScript\" type=\"text/javascript\">
 //<!--
 folderClosed = new Image($size,$size);
 folderClosed.src='/style/$style/$size/html-menu-treeview/folderClosed.gif';
-folderManClosed = new Image($size,$size);
-folderManClosed.src='/style/$style/$size/html-menu-treeview/folderManClosed.gif';
 plusNodeClosed = new Image($size,$size);
 plusNodeClosed.src='/style/$style/$size/html-menu-treeview/plusNodeClosed.gif';
 lastPlusNodeClosed = new Image($size,$size);
@@ -402,6 +417,8 @@ clasicLastPlusNodeClosed.src='/style/$style/$size/html-menu-treeview/clasicLastP
 ";
 if ($style eq "Crystal"){
 $preload .= "
+folderManClosed = new Image($size,$size);
+folderManClosed.src='/style/$style/$size/html-menu-treeview/folderManClosed.gif';
 folderGray = new Image($size,$size);
 folderGray.src='/style/$style/$size/html-menu-treeview/folderGray.gif';
 folderGreen = new Image($size,$size);
@@ -441,7 +458,22 @@ folderTarClosed.src='/style/$style/$size/html-menu-treeview/folderTarClosed.gif'
 $preload .= "//-->
 </script>
 ";
-return $preload.'<table align="left" class="TreeView" border="0" cellpadding="0" cellspacing="0" summary="treeTable"  ><colgroup><col width="' . $size . '"></colgroup>' . $self->{tree} . '</table>';
+return $preload;
+}
+
+=head2 Tree()
+
+Tree(\@tree,optional $style);
+
+Returns the Html part of the TreeView without javasript and css.
+
+=cut
+
+sub Tree{
+    my ($self, @p) = getSelf(@_);
+    $style = $p[1] if(defined $p[1]);
+    $self->initTree(@p) if(@p);
+    return '<table align="left" class="TreeView" border="0" cellpadding="0" cellspacing="0" summary="treeTable"  ><colgroup><col width="' . $size . '"></colgroup>' . $self->{tree} . '</table>';
 }
 
 sub initTree{
@@ -485,7 +517,7 @@ sub appendFolder{
     }
     my $minusnode = $clasic ? "clasicMinusNode" : "minusNode";
     $self->{tree} .=
-      "<tr class=\"trSubtreeCaption\"><td  id=\"$id.node\" class=\"$minusnode\" onclick=\"displayTree('$id'); ocFolder('$id.folder');ocpNode('$id.node');\"><img src=\"/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" width=\"$size\" height=\"$size\" alt=\"spacer\"/></td><td align=\"left\" class=\"$FolderClass\" id=\"$id.folder\"><a $tt>$node->{text}</a></td></tr><tr id=\"$id\" class=\"trSubtree\"><td class=\"submenuDeco\"><img src=\"/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" alt=\"spacer\"/></td><td class=\"submenu\"><table align=\"left\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\"  class=\"subtreeTable\" summary=\"appendFolder\" width=\"100%\"><colgroup><col width=\"$size\"></colgroup>";
+      "<tr class=\"trSubtreeCaption\"><td  id=\"$id.node\" class=\"$minusnode\" onclick=\"displayTree('$id'); ocFolder('$id.folder');ocNode('$id.node');\"><img src=\"/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" width=\"$size\" height=\"$size\" alt=\"spacer\"/></td><td align=\"left\" class=\"$FolderClass\" id=\"$id.folder\"><a $tt>$node->{text}</a></td></tr><tr id=\"$id\" class=\"trSubtree\"><td class=\"submenuDeco\"><img src=\"/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" alt=\"spacer\"/></td><td class=\"submenu\"><table align=\"left\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\"  class=\"subtreeTable\" summary=\"appendFolder\" width=\"100%\"><colgroup><col width=\"$size\"></colgroup>";
     $self->initTree(\@$subtree);
     $self->{tree} .= "</table></td></tr>";
 }
@@ -523,7 +555,7 @@ sub appendNode {
       "<tr class=\"TreeViewItem\"><td  class=\"node\"><img src=\"/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" width=\"$size\" height=\"$size\" alt=\"spacer\" align=\"middle\"/></td><td align=\"left\"  style=\"background-image:url('/style/$style/$size/mimetypes/$node->{image}');background-repeat:no-repeat;cursor:pointer;padding-left:$paddingLeft\"><a $tt>$node->{text}</a></td></tr>";
 }
 
-sub appendLastNode {
+sub appendLastNode{
     my $self = shift;
     my $node = shift;
     $node->{image} = defined $node->{image} ? $node->{image} : "link.gif";

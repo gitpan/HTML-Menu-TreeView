@@ -1,0 +1,10 @@
+folderClosed = new Image(16,16);
+folderClosed.src='/style/bw/16/html-menu-treeview/folderClosed.gif';
+plusNodeClosed = new Image(16,16);
+plusNodeClosed.src='/style/bw/16/html-menu-treeview/plusNodeClosed.gif';
+lastPlusNodeClosed = new Image(16,16);
+lastPlusNodeClosed.src='/style/bw/16/html-menu-treeview/lastPlusNodeClosed.gif';
+clasicPlusNodeClosed = new Image(16,16);
+clasicPlusNodeClosed.src='/style/bw/16/html-menu-treeview/clasicPlusNodeClosed.gif';
+clasicLastPlusNodeClosed = new Image(16,16);
+clasicLastPlusNodeClosed.src='/style/bw/16/html-menu-treeview/clasicLastPlusNodeClosed.gif';
