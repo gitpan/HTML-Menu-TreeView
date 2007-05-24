@@ -3,7 +3,7 @@ use lib qw(./lib);
 use CGI;
 use CGI::Carp qw(fatalsToBrowser);
 use HTML::Menu::TreeView qw(Tree jscript setStyle setDocumentRoot setSize setClasic);
-use 5.008006;
+# use 5.008006;
 use Getopt::Long;
 my $htdocs = "/srv/www/htdocs";
 my $cgi           = new CGI;

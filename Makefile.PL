@@ -1,4 +1,4 @@
-use 5.008006;
+# use 5.008006;
 use Getopt::Long;
 my $cgi    = "/srv/www/cgi-bin";
 my $htdocs = "/srv/www/htdocs";
@@ -30,7 +30,7 @@ use lib("./lib");
 
 my $makefile = "
 NAME         = HTML-Menu-TreeView
-VERSION      = 0.6.3
+VERSION      = 0.6.4
 PREFIX       = $prefix
 INST_CGI     = blib$cgi
 INSTALLCGI   = \$(PREFIX)$cgi

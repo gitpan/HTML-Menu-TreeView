@@ -1,12 +1,12 @@
 package HTML::Menu::TreeView;
-use 5.008006;
+# use 5.008006;
 use strict;
 use warnings;
 require Exporter;
 use vars qw($DefaultClass @EXPORT @ISA);
 @ISA                             = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK = qw(Tree css jscript setStyle getStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload);
-$HTML::Menu::TreeView::VERSION   = '0.6.3';
+$HTML::Menu::TreeView::VERSION   = '0.6.4';
 $DefaultClass                    = 'HTML::Menu::TreeView' unless defined $HTML::Menu::TreeView::DefaultClass;
 our $id     = "a";
 our $style  = "Crystal";
@@ -26,8 +26,6 @@ HTML::Menu::TreeView
 	
 	text => 'Folder',
 	
-	folderclass => 'folderMan',
-
 	subtree => [
 
 		{
@@ -44,9 +42,6 @@ HTML::Menu::TreeView
 
 	Tree(\tree);
 
-Possible values for folderclass :
-
-folderMan, folderVideo,folderCrystal, folderLocked , folderText, folderFavorite, folderPrint,folderHtml,folderSentMail,folderImage,folderSound,folderImportant,folderTar,folderYellow ,folderGray folderGreen
 
 folderSentMail is only in 16 px avaible.
 
@@ -107,6 +102,10 @@ folderSentMail is only in 16 px avaible.
 	print TreeView->jscript();
 
 	print $TreeView->Tree(\@tree);
+	
+Possible values for folderclass :
+
+folderMan, folderVideo,folderCrystal, folderLocked , folderText, folderFavorite, folderPrint,folderHtml,folderSentMail,folderImage,folderSound,folderImportant,folderTar,folderYellow ,folderGray folderGreen
 
 =head2 FO Syntax
 
@@ -125,6 +124,17 @@ folderSentMail is only in 16 px avaible.
 HTML::Menu::TreeView is a Modul to build an Html tree of an AoH.
 
 =head1 Changes
+
+0.6.4
+
+- fix Crystal folderRed 16 px
+
+- fix bw style
+
+- i use perl 5.008006 but i think it is not strongly necessary. So i removed use 5.008006 for use with older Perl versions.
+
+- preload plusNode fixed.
+
 
 0.6.3	
 
@@ -406,14 +416,14 @@ sub preload{
 //<!--
 folderClosed = new Image($size,$size);
 folderClosed.src='/style/$style/$size/html-menu-treeview/folderClosed.gif';
-plusNodeClosed = new Image($size,$size);
-plusNodeClosed.src='/style/$style/$size/html-menu-treeview/plusNodeClosed.gif';
-lastPlusNodeClosed = new Image($size,$size);
-lastPlusNodeClosed.src='/style/$style/$size/html-menu-treeview/lastPlusNodeClosed.gif';
-clasicPlusNodeClosed = new Image($size,$size);
-clasicPlusNodeClosed.src='/style/$style/$size/html-menu-treeview/clasicPlusNodeClosed.gif';
-clasicLastPlusNodeClosed = new Image($size,$size);
-clasicLastPlusNodeClosed.src='/style/$style/$size/html-menu-treeview/clasicLastPlusNodeClosed.gif';
+plusNode = new Image($size,$size);
+plusNode.src='/style/$style/$size/html-menu-treeview/plusNode.gif';
+lastplusNode = new Image($size,$size);
+lastplusNode.src='/style/$style/$size/html-menu-treeview/lastplusNode.gif';
+clasicplusNode = new Image($size,$size);
+clasicplusNode.src='/style/$style/$size/html-menu-treeview/clasicplusNode.gif';
+clasicLastplusNode = new Image($size,$size);
+clasicLastplusNode.src='/style/$style/$size/html-menu-treeview/clasicLastplusNode.gif';
 ";
 if ($style eq "Crystal"){
 $preload .= "

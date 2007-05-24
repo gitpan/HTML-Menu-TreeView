@@ -704,9 +704,6 @@ htdocs/style/Crystal/64/html-menu-treeview/clasicLastPlusNode.gif
 htdocs/style/Crystal/64/html-menu-treeview/clasicMinusNode.gif
 htdocs/style/Crystal/64/html-menu-treeview/clasicPlusNode.gif
 htdocs/style/Crystal/64/html-menu-treeview/Crystal.css
-htdocs/style/Crystal/64/html-menu-treeview/folder.png
-htdocs/style/Crystal/64/html-menu-treeview/folder_grey_open.png
-htdocs/style/Crystal/64/html-menu-treeview/folder_open.png
 htdocs/style/Crystal/64/html-menu-treeview/folderClosed.gif
 htdocs/style/Crystal/64/html-menu-treeview/folderCrystal.gif
 htdocs/style/Crystal/64/html-menu-treeview/folderCrystalClosed.gif
@@ -854,6 +851,7 @@ htdocs/style/Crystal/64/mimetypes/www.png
 htdocs/style/Crystal/64/mimetypes/zip.png
 htdocs/style/Crystal/64/mimetypes/zip_overlay.png
 htdocs/style/Crystal/preload.js
+htdocs/style/simple/16/html-menu-treeview/bw.css
 htdocs/style/simple/16/html-menu-treeview/clasicLastMinusNode.gif
 htdocs/style/simple/16/html-menu-treeview/clasicLastPlusNode.gif
 htdocs/style/simple/16/html-menu-treeview/clasicMinusNode.gif

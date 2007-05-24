@@ -1,9 +1,13 @@
 Revision history for Perl extension treeview.
-treeview.pm version 0.6.2
+treeview.pm version 0.6.4
+0.6.4
+	- fix Crystal folderRed 16 px
+	- fix bw style
+	- i use perl 5.008006 but i think it is not strongly necessary. So i removed use 5.008006 for use with older Perl versions.
+	- preload plusNode fixed.
 0.6.3	
-	-new Styles Cyrstal 64, 128 ( In the future no more styles will be added to this Modul, if there a different ones they will be avaible as a standalone package).
+	-new Styles Crystal 64, 128 ( In the future no more styles will be added to this Modul, if there a different ones they will be avaible as a standalone package).
 	-preload.js files for preloading images.
-	- 0.7 will be the next major release, this it is without testing and fixup.
 0.6.2	
 	-size lastNode 16 & 32 px
 

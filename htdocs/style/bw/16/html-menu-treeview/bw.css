@@ -1,10 +1,53 @@
-folderClosed = new Image(16,16);
-folderClosed.src='/style/simple/16/html-menu-treeview/folderClosed.gif';
-plusNodeClosed = new Image(16,16);
-plusNodeClosed.src='/style/simple/16/html-menu-treeview/plusNodeClosed.gif';
-lastPlusNodeClosed = new Image(16,16);
-lastPlusNodeClosed.src='/style/simple/16/html-menu-treeview/lastPlusNodeClosed.gif';
-clasicPlusNodeClosed = new Image(16,16);
-clasicPlusNodeClosed.src='/style/simple/16/html-menu-treeview/clasicPlusNodeClosed.gif';
-clasicLastPlusNodeClosed = new Image(16,16);
-clasicLastPlusNodeClosed.src='/style/simple/16/html-menu-treeview/clasicLastPlusNodeClosed.gif';
+body{
+background-color:black;
+color:white;
+}
+td.folderOpen{
+background-image:url('/style/bw/folderOpen.gif');
+background-repeat:no-repeat;
+cursor:pointer;
+padding-left:20px;
+font-size:12px;
+}
+td.folderClosed{
+background-image:url('/style/bw/folderClosed.gif');
+background-repeat:no-repeat;
+cursor:pointer;
+padding-left:20px;
+font-size:12px;
+}
+td.minusNode{
+background-image:url('/style/bw/minusNode.gif');
+cursor:pointer;    
+}
+td.lastMinusNode{
+background-image:url('/style/bw/lastMinusNode.gif');
+cursor:pointer;    
+}
+td.plusNode{
+background-image:url('/style/bw/plusNode.gif');
+cursor:pointer;    
+}
+td.lastPlusNode{
+background-image:url('/style/bw/lastPlusNode.gif');
+cursor:pointer;    
+}
+td.node{
+background-image:url('/style/bw/node.gif');
+cursor:pointer;
+font-size:12px;
+}
+td.submenuDeco{
+background-image:url('/style/bw/vertLine.gif');
+background-repeat:repeat-y;
+}
+td.lastNode{
+background-image:url('/style/bw/lastNode.gif');
+background-repeat:no-repeat;
+cursor:pointer;
+font-size:12px;
+}
+a.treeviewLink{
+font-size:12px;
+color:white;
+}

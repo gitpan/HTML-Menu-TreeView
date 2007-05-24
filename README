@@ -6,6 +6,7 @@ To install this module type the following:
    make
    make test
    make install
+   make installdocs ( optional, open /TreeView.html on your host into your browser after installation.).
    make clean
 
 UNINSTALLATION
@@ -13,6 +14,7 @@ UNINSTALLATION
    To uninstall this module type the following:
 
    make uninstall
+   make uninstalldocs ( if you have type make installdocs).
 
 DEPENDENCIES
 
