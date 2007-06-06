@@ -1,5 +1,9 @@
 Revision history for Perl extension treeview.
-treeview.pm version 0.6.4
+treeview.pm version 0.6.5
+0.6.5
+	- fix preload folder red, green and gray.
+	- Overwrought Dokumentation.
+	- fix wrong License. GNU Lesser General Public License instead GNU General Public License.
 0.6.4
 	- fix Crystal folderRed 16 px
 	- fix bw style

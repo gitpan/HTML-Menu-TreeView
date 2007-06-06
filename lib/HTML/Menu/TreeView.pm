@@ -6,7 +6,7 @@ require Exporter;
 use vars qw($DefaultClass @EXPORT @ISA);
 @ISA                             = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK = qw(Tree css jscript setStyle getStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload);
-$HTML::Menu::TreeView::VERSION   = '0.6.4';
+$HTML::Menu::TreeView::VERSION   = '0.6.5';
 $DefaultClass                    = 'HTML::Menu::TreeView' unless defined $HTML::Menu::TreeView::DefaultClass;
 our $id     = "a";
 our $style  = "Crystal";
@@ -41,9 +41,6 @@ HTML::Menu::TreeView
 	},);
 
 	Tree(\tree);
-
-
-folderSentMail is only in 16 px avaible.
 
 =head2 OO Syntax
 
@@ -105,7 +102,9 @@ folderSentMail is only in 16 px avaible.
 	
 Possible values for folderclass :
 
-folderMan, folderVideo,folderCrystal, folderLocked , folderText, folderFavorite, folderPrint,folderHtml,folderSentMail,folderImage,folderSound,folderImportant,folderTar,folderYellow ,folderGray folderGreen
+folderMan, folderVideo,folderCrystal, folderLocked , folderText, folderFavorite, folderPrint,folderHtml,folderSentMail,folderImage,folderSound,folderImportant,folderTar,folderYellow ,folderGray folderGreen, folderRed
+
+show http://treeview.lindnerei.de/cgi-bin/crystal.pl for a complete list od possible values for folderclass 
 
 =head2 FO Syntax
 
@@ -125,60 +124,13 @@ HTML::Menu::TreeView is a Modul to build an Html tree of an AoH.
 
 =head1 Changes
 
-0.6.4
+0.6.5
 
-- fix Crystal folderRed 16 px
-
-- fix bw style
-
-- i use perl 5.008006 but i think it is not strongly necessary. So i removed use 5.008006 for use with older Perl versions.
-
-- preload plusNode fixed.
-
-
-0.6.3	
-
--new Styles Cyrstal 64, 128 ( In the future no more styles will be added to this Modul, if there a different ones they will be avaible as a standalone package).
-
--preload.js files for preloading images.
-
-0.6.2
-
--size lastNode 16 & 32 px
-
-0.6.1
-
-- new Styles Cyrstal 22, 48
-
-- new function preload();
+- fix preload folder red, green, gray
 
 - Overwrought Dokumentation.
 
-- Some fixes in installdocs and width ocpNode
-
-- remove some unnecessary files.
-
-0.6
-
-- setClasic, setModern clasic ( alternate node decoration ).
-
-- setSize ( new Style Cyrstal 32 ) 16 or 32 are possible.
-
-- make installdocs 
-  (install html documentation vor HTML::Menu::TreeView like http://treeview.lindnerei.de.
-  Open /TreeView.html on your host into your browser after installation.)
-
-- include some styles into Cyrstal.
-
-- preload images for ie etc.
-
-- delete unessesary files.
-
-- new path for images
-
-- make uninstalldocs
-
-- Overwrought css
+- fix wrong License. GNU Lesser General Public License instead GNU General Public License.
 
 
 =head2  new()
@@ -200,7 +152,7 @@ sub new {
 
 =head2 setStyle()
 
-setStyle("style");
+setStyle('style');
 
 bw = Black & White Style
 
@@ -217,11 +169,9 @@ sub setStyle {
 
 =head2 setSize()
 
-setSize(16);
-
-currently 16 an 32 are possible values.
-
 only for Crystal styles
+
+16,32,48,64 and 128  are possible values.
 
 =cut
 
@@ -234,7 +184,7 @@ sub setSize {
 
 use a classic node decoration 
 
-(not for bw avaible).
+(not for black and white style avaible).
 
 =cut
 
@@ -347,7 +297,7 @@ return the necessary  javascript  without <script> tag.
 
 You can also include it with
 
-<script language="JavaScript1.5" type="text/javascript" src="/style/treeview.js"></script>
+<script language="JavaScript" type="text/javascript" src="/style/treeview.js"></script>
 
 =cut
 
@@ -407,6 +357,17 @@ e.style.display = \"none\";
 
 =head2 preload()
 
+return a javascript for preloading images.
+
+for example you can also include it with
+
+<script language="JavaScript" type="text/javascript" src="/style/Crystal/16/html-menu-treeview/preload.js"></script>
+
+or
+
+<script language="JavaScript" type="text/javascript" src="/style/Crystal/preload.js"></script>
+
+if you use different images sizes.
 
 =cut
 
@@ -429,10 +390,12 @@ if ($style eq "Crystal"){
 $preload .= "
 folderManClosed = new Image($size,$size);
 folderManClosed.src='/style/$style/$size/html-menu-treeview/folderManClosed.gif';
-folderGray = new Image($size,$size);
-folderGray.src='/style/$style/$size/html-menu-treeview/folderGray.gif';
-folderGreen = new Image($size,$size);
-folderGreen.src='/style/$style/$size/html-menu-treeview/folderGreen.gif';
+folderGrayClosed = new Image($size,$size);
+folderGrayClosed.src='/style/$style/$size/html-menu-treeview/folderGrayClosed.gif';
+folderGreenClosed = new Image($size,$size);
+folderGreenClosed.src='/style/$style/$size/html-menu-treeview/folderGreenClosed.gif';
+folderRedClosed = new Image($size,$size);
+folderRedClosed.src='/style/$style/$size/html-menu-treeview/folderRedClosed.gif';
 folderViolet = new Image($size,$size);
 folderViolet.src='/style/$style/$size/html-menu-treeview/folderViolet.gif';
 folderYellowClosed = new Image($size,$size);
@@ -588,19 +551,12 @@ Dirk Lindner <lindnerei@o2online.de>
 Copyright (C) 2006 by Hr. Dirk Lindner
 
 This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
+modify it under the terms of the GNU Lesser General Public License
+as published by the Free Software Foundation; 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330,
-Boston, MA  02111-1307, USA.
+GNU Lesser General Public License for more details.
 
 =cut
 

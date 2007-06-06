@@ -30,7 +30,7 @@ use lib("./lib");
 
 my $makefile = "
 NAME         = HTML-Menu-TreeView
-VERSION      = 0.6.4
+VERSION      = 0.6.5
 PREFIX       = $prefix
 INST_CGI     = blib$cgi
 INSTALLCGI   = \$(PREFIX)$cgi
@@ -79,6 +79,9 @@ install ::
 
 installdocs ::
 	\$(PERL) extra/Treenavi.pl -htdocs \$(INSTALLHTDOCS) 
+	rm pod2htmd.tmp
+	rm pod2htmi.tmp
+
 
 uninstall ::
 	@\$(RM_D) \$(INSTALLLIB)/HTML/Menu/TreeView.pm
