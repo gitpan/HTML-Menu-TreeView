@@ -1,4 +1,3 @@
-#!/usr/bin/perl -W
 use lib qw(./lib);
 use CGI;
 use CGI::Carp qw(fatalsToBrowser);

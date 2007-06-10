@@ -3,16 +3,18 @@ package HTML::Menu::TreeView;
 use strict;
 use warnings;
 require Exporter;
-use vars qw($DefaultClass @EXPORT @ISA);
-@ISA                             = qw(Exporter);
-@HTML::Menu::TreeView::EXPORT_OK = qw(Tree css jscript setStyle getStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload);
-$HTML::Menu::TreeView::VERSION   = '0.6.5';
-$DefaultClass                    = 'HTML::Menu::TreeView' unless defined $HTML::Menu::TreeView::DefaultClass;
+use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker);
+$HTML::Menu::TreeView::VERSION     = '0.6.6';
+@ISA                               = qw(Exporter);
+@HTML::Menu::TreeView::EXPORT_OK   = qw(all Tree css jscript setStyle getStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload);
+%HTML::Menu::TreeView::EXPORT_TAGS = ('all' => [qw(Tree css jscript setStyle getStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload )]);
+$DefaultClass                      = 'HTML::Menu::TreeView' unless defined $HTML::Menu::TreeView::DefaultClass;
 our $id     = "a";
 our $style  = "Crystal";
 our $size   = "16";
 our $path   = '.';
 our $clasic = 0;
+%anker = (href=>'',accesskey=>'',charset=>'',class=>'',coords=>'',mdir=>'',hreflang=>'',mid=>'',lang=>'',onblur=>'',ondblclick=>'',onclick=>'',onfocus=>'',onkeydown=>'',onkeypress=>'',onkeyup=>'',onmousedown=>'',onmousemove=>'',onmouseout=>'',onmouseover=>'',onmouseup=>'',rel=>'',shape=>'',mstyle=>'',tabindex=>'',target=>'',title=>'',type=>'');
 
 =head1 NAME
 
@@ -30,9 +32,9 @@ HTML::Menu::TreeView
 
 		{
 
-                text => 'TreeView.tigris.org',
+                text => 'treeview Homepage',
 
-                href => 'http://TreeView.tigris.org',
+                href => 'http://treeview.lindnerei.de',
 
 		}
 
@@ -62,9 +64,9 @@ HTML::Menu::TreeView
 
 		{
 
-			href => "http://www.google.de",
+			href => "http://www.lindnerei.de",
 
-			text => 'Node',
+			text => 'Lindnerei.de',
 
 		},
 
@@ -78,7 +80,7 @@ HTML::Menu::TreeView
 
 				{
 
-					text => 'TreeView.tigris.org',
+					text => 'subversion',
 
 					href => 'http://TreeView.tigris.org',
 
@@ -99,7 +101,12 @@ HTML::Menu::TreeView
 	print TreeView->jscript();
 
 	print $TreeView->Tree(\@tree);
-	
+
+
+allowed attributes:
+
+ href, accesskey,charset,class,coords, mdir, hreflang,mid,lang,onblur,ondblclick,onclick,onfocus,onkeydown,onkeypress,onkeyup,onmousedown,onmousemove,onmouseout,onmouseover,onmouseup,rel,shape,mstyle,tabindex,target,title,type,image and text.
+
 Possible values for folderclass :
 
 folderMan, folderVideo,folderCrystal, folderLocked , folderText, folderFavorite, folderPrint,folderHtml,folderSentMail,folderImage,folderSound,folderImportant,folderTar,folderYellow ,folderGray folderGreen, folderRed
@@ -108,7 +115,7 @@ show http://treeview.lindnerei.de/cgi-bin/crystal.pl for a complete list od poss
 
 =head2 FO Syntax
 
-	use HTML::Menu::TreeView qw(Tree css jscript setStyle setDocumentRoot);
+	use HTML::Menu::TreeView qw(:all);
 
 	setDocumentRoot("/srv/www/httpdocs");
 
@@ -124,14 +131,19 @@ HTML::Menu::TreeView is a Modul to build an Html tree of an AoH.
 
 =head1 Changes
 
-0.6.5
+0.6.6
 
-- fix preload folder red, green, gray
+- export tag all.
 
-- Overwrought Dokumentation.
+- remove shebang line.
 
-- fix wrong License. GNU Lesser General Public License instead GNU General Public License.
+- check anchor attributes.
 
+- default values title anchors is now the text.
+
+- Overwrought Tests.
+
+- skip questions if command line options ( perl Makefile.PL -cgidir=/cgiDir -htdocs=/htdocs ) are passed to Makefile.PL
 
 =head2  new()
 
@@ -241,7 +253,7 @@ default: /srv/www/htdocs
 
 =cut
 
-sub setDocumentRoot{
+sub setDocumentRoot {
     my ($self, @p) = getSelf(@_);
     $path = $p[0];
 }
@@ -277,7 +289,7 @@ sub css {
     my ($self, @p) = getSelf(@_);
     use Fcntl qw(:flock);
     use Symbol;
-    $path =  $p[0] if(defined $p[0]);
+    $path = $p[0] if(defined $p[0]);
     my $fh   = gensym;
     my $file = "$path/style/$style/$size/html-menu-treeview/$style.css";
     open $fh, "$file" or warn "no style '$style.css' $style.css found \n  in  $path/style/html-menu-treeview/$style/ \n $!";
@@ -285,7 +297,8 @@ sub css {
     my @lines = <$fh>;
     close $fh;
     my $css;
-    for(@lines){
+
+    for(@lines) {
         $css .= $_;
     }
     return $css;
@@ -302,7 +315,7 @@ You can also include it with
 =cut
 
 sub jscript {
-return "
+    return "
 function ocFolder(id){
 var  folder = document.getElementById(id).className;
 if(folder == 'folderOpen'){
@@ -371,8 +384,8 @@ if you use different images sizes.
 
 =cut
 
-sub preload{
- my $preload = "
+sub preload {
+    my $preload = "
 <script language=\"JavaScript\" type=\"text/javascript\">
 //<!--
 folderClosed = new Image($size,$size);
@@ -386,8 +399,8 @@ clasicplusNode.src='/style/$style/$size/html-menu-treeview/clasicplusNode.gif';
 clasicLastplusNode = new Image($size,$size);
 clasicLastplusNode.src='/style/$style/$size/html-menu-treeview/clasicLastplusNode.gif';
 ";
-if ($style eq "Crystal"){
-$preload .= "
+    if($style eq "Crystal") {
+        $preload .= "
 folderManClosed = new Image($size,$size);
 folderManClosed.src='/style/$style/$size/html-menu-treeview/folderManClosed.gif';
 folderGrayClosed = new Image($size,$size);
@@ -427,11 +440,11 @@ folderImportantClosed.src='/style/$style/$size/html-menu-treeview/folderImportan
 folderTarClosed = new Image($size,$size);
 folderTarClosed.src='/style/$style/$size/html-menu-treeview/folderTarClosed.gif';
 ";
-}
-$preload .= "//-->
+    }
+    $preload .= "//-->
 </script>
 ";
-return $preload;
+    return $preload;
 }
 
 =head2 Tree()
@@ -442,29 +455,29 @@ Returns the Html part of the TreeView without javasript and css.
 
 =cut
 
-sub Tree{
+sub Tree {
     my ($self, @p) = getSelf(@_);
     $style = $p[1] if(defined $p[1]);
     $self->initTree(@p) if(@p);
     return '<table align="left" class="TreeView" border="0" cellpadding="0" cellspacing="0" summary="treeTable"  ><colgroup><col width="' . $size . '"></colgroup>' . $self->{tree} . '</table>';
 }
 
-sub initTree{
+sub initTree {
     my ($self, @p) = getSelf(@_);
     my $tree   = $p[0];
     my $length = @$tree;
-    for(my $i = 0 ; $i < @$tree ; $i++){
+    for(my $i = 0 ; $i < @$tree ; $i++) {
         $length--;
         if(defined @{@$tree[$i]->{subtree}}) {
-            if($length > 0){
+            if($length > 0) {
                 $self->appendFolder(@$tree[$i], \@{@$tree[$i]->{subtree}});
-            }elsif($length eq 0){
+            } elsif ($length eq 0) {
                 $self->appendLastFolder(@$tree[$i], \@{@$tree[$i]->{subtree}});
             }
-        }else{
-            if($length > 0){
+        } else {
+            if($length > 0) {
                 $self->appendNode(@$tree[$i]);
-            } elsif ($length eq 0){
+            } elsif ($length eq 0) {
                 $self->appendLastNode(@$tree[$i]);
             }
         }
@@ -476,7 +489,7 @@ sub getSelf {
     return (defined($_[0]) && (ref($_[0]) eq 'HTML::Menu::TreeView' || UNIVERSAL::isa($_[0], 'HTML::Menu::TreeView'))) ? @_ : ($HTML::Menu::TreeView::DefaultClass->new, @_);
 }
 
-sub appendFolder{
+sub appendFolder {
     my $self    = shift;
     my $node    = shift;
     my $subtree = shift;
@@ -484,9 +497,15 @@ sub appendFolder{
     $node->{onclick} = defined $node->{onclick} ? $node->{onclick} : defined $node->{href} ? "" : "displayTree('$id'); ocFolder('$id.folder');ocNode('$id.node');";
     $node->{class} = defined $node->{class} ? $node->{class} : 'treeviewLink';
     my $FolderClass = defined $node->{folderclass} ? $node->{folderclass} : 'folderOpen';
+    $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
     my $tt;
+
     foreach my $key (keys %{$node}) {
-        $tt .= $key . '="' . $node->{$key} . '" ' unless ($key =~ /image|text|subtree|folderclass/);
+        if(exists $anker{$key}) {
+            $tt .= $key . '="' . $node->{$key} . '" ';
+        } else {
+            warn "unknown attribute $key \n" unless ($key =~ /image|text|subtree|folderclass/);
+        }
     }
     my $minusnode = $clasic ? "clasicMinusNode" : "minusNode";
     $self->{tree} .=
@@ -503,9 +522,15 @@ sub appendLastFolder {
     $node->{onclick} = defined $node->{onclick} ? $node->{onclick} : defined $node->{href} ? "" : "displayTree('$id'); ocFolder('$id.folder');ocpNode('$id.node');";
     $node->{class} = defined $node->{class} ? $node->{class} : 'treeviewLink';
     my $FolderClass = defined $node->{FolderClass} ? $node->{FolderClass} : 'folderOpen';
+    $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
     my $tt;
+
     foreach my $key (keys %{$node}) {
-        $tt .= $key . '="' . $node->{$key} . '" ' unless ($key =~ /image|text|subtree|folderclass/);
+        if(exists $anker{$key}) {
+            $tt .= $key . '="' . $node->{$key} . '" ';
+        } else {
+            warn "unknown attribute $key \n" unless ($key =~ /image|text|subtree|folderclass/);
+        }
     }
     my $lastminusnode = $clasic ? "clasicLastMinusNode" : "lastMinusNode";
     $self->{tree} .=
@@ -519,23 +544,33 @@ sub appendNode {
     my $node = shift;
     $node->{image} = defined $node->{image} ? $node->{image} : "link.gif";
     $node->{class} = defined $node->{class} ? $node->{class} : 'treeviewLink';
+    $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
     my $tt;
     foreach my $key (keys %{$node}) {
-        $tt .= $key . '="' . $node->{$key} . '" ' unless ($key =~ /image|text|subtree|folderclass/);
+        if(exists $anker{$key}) {
+            $tt .= $key . '="' . $node->{$key} . '" ';
+        } else {
+            warn "unknown attribute $key \n" unless ($key =~ /image|text|subtree|folderclass/);
+        }
     }
     my $paddingLeft = $size+ 2 . "px";
     $self->{tree} .=
       "<tr class=\"TreeViewItem\"><td  class=\"node\"><img src=\"/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" width=\"$size\" height=\"$size\" alt=\"spacer\" align=\"middle\"/></td><td align=\"left\"  style=\"background-image:url('/style/$style/$size/mimetypes/$node->{image}');background-repeat:no-repeat;cursor:pointer;padding-left:$paddingLeft\"><a $tt>$node->{text}</a></td></tr>";
 }
 
-sub appendLastNode{
+sub appendLastNode {
     my $self = shift;
     my $node = shift;
     $node->{image} = defined $node->{image} ? $node->{image} : "link.gif";
     $node->{class} = defined $node->{class} ? $node->{class} : 'treeviewLink';
+    $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
     my $tt;
     foreach my $key (keys %{$node}) {
-        $tt .= $key . '="' . $node->{$key} . '" ' unless ($key =~ /image|text|subtree|folderclass/);
+        if(exists $anker{$key}) {
+            $tt .= $key . '="' . $node->{$key} . '" ';
+        } else {
+            warn "unknown attribute $key \n" unless ($key =~ /image|text|subtree|folderclass/);
+        }
     }
     my $paddingLeft = $size+ 2 . "px";
     $self->{tree} .=

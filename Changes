@@ -1,5 +1,13 @@
 Revision history for Perl extension treeview.
-treeview.pm version 0.6.5
+treeview.pm version 0.6.6
+0.6.6
+	- export tag all.
+	- remove shebang line.
+	- check anchor attributes.
+	- default values title anchors is now the text.
+	- Overwrought Tests.
+	- skip questions if command line options ( perl Makefile.PL -cgidir=/cgiDir -htdocs=/htdocs ) are passed to Makefile.PL
+
 0.6.5
 	- fix preload folder red, green and gray.
 	- Overwrought Dokumentation.
