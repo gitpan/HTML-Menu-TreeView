@@ -1,7 +1,7 @@
 use strict;
 use Getopt::Long;
 my $release = 'blib/';
-my $dir ='lib/';
+my $dir ='htdocs/';
 my $result = GetOptions("release=s"   => \$release,"readdir=s"   => \$dir,);
 system("mkdir -p $release") unless -e $release;
 &change($dir);

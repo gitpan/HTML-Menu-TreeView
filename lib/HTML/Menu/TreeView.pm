@@ -4,7 +4,7 @@ use strict;
 use warnings;
 require Exporter;
 use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker);
-$HTML::Menu::TreeView::VERSION     = '0.6.6';
+$HTML::Menu::TreeView::VERSION     = '0.6.7';
 @ISA                               = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK   = qw(all Tree css jscript setStyle getStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload);
 %HTML::Menu::TreeView::EXPORT_TAGS = ('all' => [qw(Tree css jscript setStyle getStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload )]);
@@ -94,7 +94,7 @@ HTML::Menu::TreeView
 
 	my $TreeView = new HTML::Menu::TreeView();
 
-	$TreeView->setStyle("bw");
+	$TreeView->setStyle("simple");
 
 	print $TreeView->css("/srv/www/httpdocs");
 
@@ -105,13 +105,33 @@ HTML::Menu::TreeView
 
 allowed attributes:
 
- href, accesskey,charset,class,coords, mdir, hreflang,mid,lang,onblur,ondblclick,onclick,onfocus,onkeydown,onkeypress,onkeyup,onmousedown,onmousemove,onmouseout,onmouseover,onmouseup,rel,shape,mstyle,tabindex,target,title,type,image and text.
+ href, accesskey,charset,class,coords,
+
+mdir, hreflang,mid,lang,onblur,ondblclick,
+
+onclick,onfocus,onkeydown,onkeypress,
+
+onkeyup,onmousedown,onmousemove,onmouseout,
+
+onmouseover,onmouseup,rel,shape,mstyle,
+
+tabindex,target,title,type,image and text.
 
 Possible values for folderclass :
 
-folderMan, folderVideo,folderCrystal, folderLocked , folderText, folderFavorite, folderPrint,folderHtml,folderSentMail,folderImage,folderSound,folderImportant,folderTar,folderYellow ,folderGray folderGreen, folderRed
+folderMan, folderVideo,folderCrystal, 
 
-show http://treeview.lindnerei.de/cgi-bin/crystal.pl for a complete list od possible values for folderclass 
+folderLocked , folderText, folderFavorite,
+ 
+folderPrint,folderHtml,folderSentMail,
+
+folderImage,folderSound,folderImportant,
+
+folderTar,folderYellow ,folderGray,
+
+folderGreen and  folderRed
+
+show http://treeview.lindnerei.de/cgi-bin/crystal.pl for a complete list of possible values for folderclass.
 
 =head2 FO Syntax
 
@@ -131,23 +151,27 @@ HTML::Menu::TreeView is a Modul to build an Html tree of an AoH.
 
 =head1 Changes
 
-0.6.6
+0.6.7
 
-- export tag all.
+some bugs with preloading 
 
-- remove shebang line.
+make use of  ExtUtils::MakeMaker.
 
-- check anchor attributes.
+more tests.
 
-- default values title anchors is now the text.
+Overwrought Documentation.
 
-- Overwrought Tests.
+remove bw style from package, you can download it from treeview.lindnerei.de.
 
-- skip questions if command line options ( perl Makefile.PL -cgidir=/cgiDir -htdocs=/htdocs ) are passed to Makefile.PL
+remove installdocs.
 
 =head2  new()
 
-my $TreeView = new HTML::Menu::TreeView(optional \@tree);
+if you use the oo interface you can say:
+
+my $TreeView = new HTML::Menu::TreeView(\@tree);
+
+and then call Tree without arguments.
 
 print $TreeView->Tree();
 
@@ -165,8 +189,6 @@ sub new {
 =head2 setStyle()
 
 setStyle('style');
-
-bw = Black & White Style
 
 simple = redmond like style
 
@@ -196,8 +218,6 @@ sub setSize {
 
 use a classic node decoration 
 
-(not for black and white style avaible).
-
 =cut
 
 sub setClasic {
@@ -208,8 +228,6 @@ sub setClasic {
 =head2 setModern()
 
 use a classic node decoration 
-
-(not for bw avaible).
 
 is the dafault decoration.
 
@@ -392,12 +410,12 @@ folderClosed = new Image($size,$size);
 folderClosed.src='/style/$style/$size/html-menu-treeview/folderClosed.gif';
 plusNode = new Image($size,$size);
 plusNode.src='/style/$style/$size/html-menu-treeview/plusNode.gif';
-lastplusNode = new Image($size,$size);
-lastplusNode.src='/style/$style/$size/html-menu-treeview/lastplusNode.gif';
+lastPlusNode = new Image($size,$size);
+lastPlusNode.src='/style/$style/$size/html-menu-treeview/lastPlusNode.gif';
 clasicplusNode = new Image($size,$size);
-clasicplusNode.src='/style/$style/$size/html-menu-treeview/clasicplusNode.gif';
+clasicplusNode.src='/style/$style/$size/html-menu-treeview/clasicPlusNode.gif';
 clasicLastplusNode = new Image($size,$size);
-clasicLastplusNode.src='/style/$style/$size/html-menu-treeview/clasicLastplusNode.gif';
+clasicLastplusNode.src='/style/$style/$size/html-menu-treeview/clasicLastPlusNode.gif';
 ";
     if($style eq "Crystal") {
         $preload .= "
@@ -524,7 +542,6 @@ sub appendLastFolder {
     my $FolderClass = defined $node->{FolderClass} ? $node->{FolderClass} : 'folderOpen';
     $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
     my $tt;
-
     foreach my $key (keys %{$node}) {
         if(exists $anker{$key}) {
             $tt .= $key . '="' . $node->{$key} . '" ';
