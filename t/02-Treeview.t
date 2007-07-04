@@ -31,7 +31,8 @@ my @tree2 =(
 	],
 	},
 );
-
+use Cwd;
+my $path = getcwd;
 use Test::More tests =>5;
 my $TreeView = new HTML::Menu::TreeView();
 my $js =  $TreeView->jscript();
@@ -43,7 +44,7 @@ my $style2 = $TreeView2->getStyle();
 ok(length($style) eq length($style2));
 setStyle("Crystal");
 ok($TreeView2->getStyle() eq "Crystal");
-$TreeView2->setDocumentRoot("$ENV{PWD}/htdocs");
-ok(getDocumentRoot() eq "$ENV{PWD}/htdocs");
+$TreeView2->setDocumentRoot("$path/htdocs");
+ok(getDocumentRoot() eq "$path/htdocs");
 ok(length(css()) > 0);
 1;

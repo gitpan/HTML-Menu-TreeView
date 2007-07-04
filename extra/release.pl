@@ -19,7 +19,7 @@ sub change{
 			$e=~s/^$dir(.*)/$1/;
 				unless(-d $d.$files[$i]){
 #system("perltidy $c") if (-e $d.".perltidyrc" && $files[$i]=~/.*(\.pl|\.pm)$/);
-					system(" cp ".$c." $release/$e") unless( $files[$i]=~/\~$/ );
+					system(" cp ".$c." $release/$e") unless( -e $release."/".$e && $files[$i]=~/\~$/ );
                         	}else{
 					unless($files[$i]=~/CVS/ ){
 					system("mkdir -p $release/$e") unless(-e $release."/".$e );

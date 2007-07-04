@@ -1,4 +1,8 @@
 Changes
+examples/crystal.pl
+examples/fo.pl
+examples/module2treeview
+examples/oo.pl
 extra/release.pl
 htdocs/style/Crystal/128/html-menu-treeview/clasicLastMinusNode.gif
 htdocs/style/Crystal/128/html-menu-treeview/clasicLastPlusNode.gif
@@ -863,4 +867,7 @@ README
 t/01-Treeview.t
 t/02-Treeview.t
 t/03-Treeview.t
+t/04-Treeview.t
 todo
+META.yml                                 Module meta-data (added by MakeMaker)
+SIGNATURE                                Public-key signature (added by MakeMaker)

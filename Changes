@@ -1,5 +1,13 @@
 Revision history for Perl extension treeview.
-treeview.pm version 0.6.7
+treeview.pm version 0.6.8
+
+0.6.8 Wen Jul 04 17:00:37 2007
+	- Meta.yml and Signature
+	- include a few example scripts: oo,fo syntax,crystal and module2treeview.
+	- new function help
+	- more tests.
+	- Overwrought Documentation.
+
 0.6.7
 	- some bugs with preloading etc
 	- make use of  ExtUtils::MakeMaker.

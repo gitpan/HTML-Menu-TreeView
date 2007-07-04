@@ -4,17 +4,47 @@ use strict;
 use warnings;
 require Exporter;
 use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker);
-$HTML::Menu::TreeView::VERSION     = '0.6.7';
+$HTML::Menu::TreeView::VERSION     = '0.6.8';
 @ISA                               = qw(Exporter);
-@HTML::Menu::TreeView::EXPORT_OK   = qw(all Tree css jscript setStyle getStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload);
-%HTML::Menu::TreeView::EXPORT_TAGS = ('all' => [qw(Tree css jscript setStyle getStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload )]);
+@HTML::Menu::TreeView::EXPORT_OK   = qw(all Tree css jscript setStyle getStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help );
+%HTML::Menu::TreeView::EXPORT_TAGS = ('all' => [qw(Tree css jscript setStyle getStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help)]);
 $DefaultClass                      = 'HTML::Menu::TreeView' unless defined $HTML::Menu::TreeView::DefaultClass;
 our $id     = "a";
 our $style  = "Crystal";
 our $size   = "16";
 our $path   = '.';
 our $clasic = 0;
-%anker = (href=>'',accesskey=>'',charset=>'',class=>'',coords=>'',mdir=>'',hreflang=>'',mid=>'',lang=>'',onblur=>'',ondblclick=>'',onclick=>'',onfocus=>'',onkeydown=>'',onkeypress=>'',onkeyup=>'',onmousedown=>'',onmousemove=>'',onmouseout=>'',onmouseover=>'',onmouseup=>'',rel=>'',shape=>'',mstyle=>'',tabindex=>'',target=>'',title=>'',type=>'');
+%anker = (
+	href=>'URI for linked resource',
+	accesskey=>'accessibility key character',
+	charset=>'char encoding of linked resource',
+	class=>'class name or set of class names to an element.',
+	coords=>'for use with client-side image maps',
+	dir => 'the base direction of directionally neutral text',
+	hreflang=>'language code',
+	lang=>'the base language of an elements attribute values and text content.',
+	onblur=>'the element lost the focus',
+	ondblclick=>'event occurs when the pointing device button is double clicked ',
+	onclick =>'event occurs when the pointing device button is clicked over an element',
+	onfocus =>'the element got the focus',
+	onkeydown=>'event occurs when a key is pressed down over an element.',
+	onkeypress=>'event occurs when a key is pressed and released over an element.',
+	onkeyup=>'event occurs when a key is released over an element.',
+	onmousedown=>'event occurs when the pointing device button is pressed over an element.',
+	onmousemove=>'event occurs when the pointing device is moved while it is over an element.',
+	onmouseout=>'event occurs when the pointing device is moved away from an element.',
+	onmouseover=>'event occurs when the pointing device is moved onto an element.',
+	onmouseup=>'event occurs when the pointing device button is released over an element.',
+	rel=>'forward link types',
+	rev => 'reverse link types',
+	shape=>'for use with client-side image maps',
+	style=>'specifies style information for the current element.',
+	tabindex=>'position in tabbing order',
+	target=>'target frame information)',
+	type=>'advisory content type ',
+	title => 'element title',
+	id => 'This attribute assigns a name to an element. This name must be unique in a document.',
+);
 
 =head1 NAME
 
@@ -25,9 +55,9 @@ HTML::Menu::TreeView
 	use HTML::Menu::TreeView qw(Tree);
 
 	my @tree =( {
-	
+
 	text => 'Folder',
-	
+
 	subtree => [
 
 		{
@@ -75,7 +105,7 @@ HTML::Menu::TreeView
 			text => 'Folder',
 
 			folderclass => 'folderMan', # only for Crystal styles
-	
+
 			subtree => [
 
 				{
@@ -105,24 +135,70 @@ HTML::Menu::TreeView
 
 allowed attributes:
 
- href, accesskey,charset,class,coords,
+href  URI for linked resource.
 
-mdir, hreflang,mid,lang,onblur,ondblclick,
+accesskey  accessibility key character.
 
-onclick,onfocus,onkeydown,onkeypress,
+charset  char encoding of linked resource.
 
-onkeyup,onmousedown,onmousemove,onmouseout,
+class  class name or set of class names to an element.
 
-onmouseover,onmouseup,rel,shape,mstyle,
+coords  for use with client-side image maps.
 
-tabindex,target,title,type,image and text.
+dir    the base direction of directionally neutral text.
+
+hreflang  language code.
+
+lang  the base language of an elements attribute values and text content.
+
+onblur  the element lost the focus.
+
+ondblclick  event occurs when the pointing device button is double clicked 
+
+onclick   event occurs when the pointing device button is clicked over an element.
+
+onfocus   the element got the focus.
+
+onkeydown  event occurs when a key is pressed down over an element.
+
+onkeypress  event occurs when a key is pressed and released over an element.
+
+onkeyup  event occurs when a key is released over an element.
+
+onmousedown  event occurs when the pointing device button is pressed over an element.
+
+onmousemove  event occurs when the pointing device is moved while it is over an element.
+
+onmouseout  event occurs when the pointing device is moved away from an element.
+
+onmouseover  event occurs when the pointing device is moved onto an element.
+
+onmouseup  event occurs when the pointing device button is released over an element.
+
+rel  forward link types.
+
+rev    reverse link types.
+
+shape  for use with client-side image maps.
+
+style  specifies style information for the current element.
+
+tabindex  position in tabbing order.
+
+target  target frame information.
+
+type  advisory content type.
+
+title    element title.
+
+id    This attribute assigns a name to an element. This name must be unique in a document.
 
 Possible values for folderclass :
 
-folderMan, folderVideo,folderCrystal, 
+folderMan, folderVideo,folderCrystal,
 
 folderLocked , folderText, folderFavorite,
- 
+
 folderPrint,folderHtml,folderSentMail,
 
 folderImage,folderSound,folderImportant,
@@ -131,7 +207,7 @@ folderTar,folderYellow ,folderGray,
 
 folderGreen and  folderRed
 
-show http://treeview.lindnerei.de/cgi-bin/crystal.pl for a complete list of possible values for folderclass.
+see http://treeview.lindnerei.de/cgi-bin/crystal.pl for a complete list of possible values for folderclass.
 
 =head2 FO Syntax
 
@@ -151,19 +227,18 @@ HTML::Menu::TreeView is a Modul to build an Html tree of an AoH.
 
 =head1 Changes
 
-0.6.7
+0.6.8
 
-some bugs with preloading 
+Meta.yml and Signature
 
-make use of  ExtUtils::MakeMaker.
+include a few example scripts: oo,fo syntax,crystal and module2treeview.
+
+new function help
 
 more tests.
 
 Overwrought Documentation.
 
-remove bw style from package, you can download it from treeview.lindnerei.de.
-
-remove installdocs.
 
 =head2  new()
 
@@ -216,7 +291,7 @@ sub setSize {
 
 =head2 setClasic()
 
-use a classic node decoration 
+use a classic node decoration
 
 =cut
 
@@ -227,7 +302,7 @@ sub setClasic {
 
 =head2 setModern()
 
-use a classic node decoration 
+use a classic node decoration
 
 is the dafault decoration.
 
@@ -236,6 +311,36 @@ is the dafault decoration.
 sub setModern {
     my ($self, @p) = getSelf(@_);
     $clasic = 0;
+}
+
+
+=head2 help()
+
+help for link attributes.
+
+return a hashref in void context,
+
+	my $hashref =  help();
+
+	foreach my $key (sort(keys %{$hashref})){
+
+		print "$key : ", $hashref->{$key} ,$/;
+
+	}
+
+or a help Message.
+
+	print help('href'),$/;
+
+=cut
+
+sub help{
+    my ($self, @p) = getSelf(@_);
+    	if(defined $p[0]){
+		return (defined $anker{$p[0]} ) ? $anker{$p[0]}: "Unknown attribute !$/";
+	}else{
+		return \%anker;
+	}
 }
 
 =head2 clasic()
@@ -594,6 +699,10 @@ sub appendLastNode {
       "<tr class=\"TreeViewItem\"><td  class=\"lastNode\"><img src=\"/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" width=\"$size\" height=\"$size\" alt=\"spacer\"/></td><td align=\"left\"  style=\"background-image:url('/style/$style/$size/mimetypes/$node->{image}');background-repeat:no-repeat;cursor:pointer;padding-left:$paddingLeft;\"><a $tt>$node->{text}</a></td></tr>";
 }
 
+=head1 SEE ALSO
+
+http://www.lindnerei.de, http://treeview.lindnerei.de
+
 =head1 AUTHOR
 
 Dirk Lindner <lindnerei@o2online.de>
@@ -604,7 +713,7 @@ Copyright (C) 2006 by Hr. Dirk Lindner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public License
-as published by the Free Software Foundation; 
+as published by the Free Software Foundation;
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
