@@ -1,49 +1,53 @@
 package HTML::Menu::TreeView;
-# use 5.008006;
 use strict;
 use warnings;
 require Exporter;
-use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker);
-$HTML::Menu::TreeView::VERSION     = '0.6.8';
+use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView);
+$HTML::Menu::TreeView::VERSION     = '0.6.9';
 @ISA                               = qw(Exporter);
-@HTML::Menu::TreeView::EXPORT_OK   = qw(all Tree css jscript setStyle getStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help );
-%HTML::Menu::TreeView::EXPORT_TAGS = ('all' => [qw(Tree css jscript setStyle getStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help)]);
+@HTML::Menu::TreeView::EXPORT_OK   = qw(all Tree css jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style documentRoot loadTree saveTree  %anker sortTree orderBy);
+%HTML::Menu::TreeView::EXPORT_TAGS = ('all' => [qw(Tree css jscript setStyle  setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst  size style documentRoot  loadTree saveTree  %anker sortTree orderBy)]);
 $DefaultClass                      = 'HTML::Menu::TreeView' unless defined $HTML::Menu::TreeView::DefaultClass;
-our $id     = "a";
-our $style  = "Crystal";
-our $size   = "16";
-our $path   = '.';
-our $clasic = 0;
+our $id       = "a";
+our $style    = "Crystal";
+our $size     = "16";
+our $path     = '.';
+our $clasic   = 0;
+our $ffirst   = 0;
+our $sort     = 0;
+our $saveFile = "./TreeViewDump.pl";
+our $orderby  = 'text';
+
 %anker = (
-	href=>'URI for linked resource',
-	accesskey=>'accessibility key character',
-	charset=>'char encoding of linked resource',
-	class=>'class name or set of class names to an element.',
-	coords=>'for use with client-side image maps',
-	dir => 'the base direction of directionally neutral text',
-	hreflang=>'language code',
-	lang=>'the base language of an elements attribute values and text content.',
-	onblur=>'the element lost the focus',
-	ondblclick=>'event occurs when the pointing device button is double clicked ',
-	onclick =>'event occurs when the pointing device button is clicked over an element',
-	onfocus =>'the element got the focus',
-	onkeydown=>'event occurs when a key is pressed down over an element.',
-	onkeypress=>'event occurs when a key is pressed and released over an element.',
-	onkeyup=>'event occurs when a key is released over an element.',
-	onmousedown=>'event occurs when the pointing device button is pressed over an element.',
-	onmousemove=>'event occurs when the pointing device is moved while it is over an element.',
-	onmouseout=>'event occurs when the pointing device is moved away from an element.',
-	onmouseover=>'event occurs when the pointing device is moved onto an element.',
-	onmouseup=>'event occurs when the pointing device button is released over an element.',
-	rel=>'forward link types',
-	rev => 'reverse link types',
-	shape=>'for use with client-side image maps',
-	style=>'specifies style information for the current element.',
-	tabindex=>'position in tabbing order',
-	target=>'target frame information)',
-	type=>'advisory content type ',
-	title => 'element title',
-	id => 'This attribute assigns a name to an element. This name must be unique in a document.',
+          href        => 'URI for linked resource',
+          accesskey   => 'accessibility key character',
+          charset     => 'char encoding of linked resource',
+          class       => 'class name or set of class names to an element.',
+          coords      => 'for use with client-side image maps',
+          dir         => 'the base direction of directionally neutral text',
+          hreflang    => 'language code',
+          lang        => 'the base language of an elements attribute values and text content.',
+          onblur      => 'the element lost the focus',
+          ondblclick  => 'event occurs when the pointing device button is double clicked ',
+          onclick     => 'event occurs when the pointing device button is clicked over an element',
+          onfocus     => 'the element got the focus',
+          onkeydown   => 'event occurs when a key is pressed down over an element.',
+          onkeypress  => 'event occurs when a key is pressed and released over an element.',
+          onkeyup     => 'event occurs when a key is released over an element.',
+          onmousedown => 'event occurs when the pointing device button is pressed over an element.',
+          onmousemove => 'event occurs when the pointing device is moved while it is over an element.',
+          onmouseout  => 'event occurs when the pointing device is moved away from an element.',
+          onmouseover => 'event occurs when the pointing device is moved onto an element.',
+          onmouseup   => 'event occurs when the pointing device button is released over an element.',
+          rel         => 'forward link types',
+          rev         => 'reverse link types',
+          shape       => 'for use with client-side image maps',
+          style       => 'specifies style information for the current element.',
+          tabindex    => 'position in tabbing order',
+          target      => 'target frame information)',
+          type        => 'advisory content type ',
+          title       => 'element title',
+          id          => 'This attribute assigns a name to an element. This name must be unique in a document.',
 );
 
 =head1 NAME
@@ -72,7 +76,7 @@ HTML::Menu::TreeView
 
 	},);
 
-	Tree(\tree);
+	Tree(\@tree);
 
 =head2 OO Syntax
 
@@ -112,7 +116,7 @@ HTML::Menu::TreeView
 
 					text => 'subversion',
 
-					href => 'http://TreeView.tigris.org',
+					href => 'http://treeview.tigris.org',
 
 				},
 
@@ -122,18 +126,18 @@ HTML::Menu::TreeView
 
 	);
 
-	my $TreeView = new HTML::Menu::TreeView();
+	my $Treeview = new HTML::Menu::TreeView();
 
-	$TreeView->setStyle("simple");
+	print $Treeview->css("/srv/www/httpdocs");
 
-	print $TreeView->css("/srv/www/httpdocs");
+	print $Treeview->jscript();
+	
+	print $Treeview->preload();
 
-	print TreeView->jscript();
-
-	print $TreeView->Tree(\@tree);
+	print $Treeview->Tree(\@tree);
 
 
-allowed attributes:
+reserved attributes:
 
 href  URI for linked resource.
 
@@ -193,6 +197,8 @@ title    element title.
 
 id    This attribute assigns a name to an element. This name must be unique in a document.
 
+and subtree and image.
+
 Possible values for folderclass :
 
 folderMan, folderVideo,folderCrystal,
@@ -213,7 +219,7 @@ see http://treeview.lindnerei.de/cgi-bin/crystal.pl for a complete list of possi
 
 	use HTML::Menu::TreeView qw(:all);
 
-	setDocumentRoot("/srv/www/httpdocs");
+	documentRoot("/srv/www/httpdocs");
 
 	print css();
 
@@ -227,92 +233,143 @@ HTML::Menu::TreeView is a Modul to build an Html tree of an AoH.
 
 =head1 Changes
 
-0.6.8
+0.6.9
 
-Meta.yml and Signature
+preload returns the treeview without <script> tag.
 
-include a few example scripts: oo,fo syntax,crystal and module2treeview.
+new function folderFirst, documentRoot, size, style,loadTree,saveTree,sortTree,orderBy
 
-new function help
+new usage for clasic().
 
-more tests.
+new example folderFirst.pl (sort the TreeView)
 
-Overwrought Documentation.
+Overwrought Code,Examples, tests and Documentation.
 
+more tests. (test pod and new functions).
 
-=head2  new()
+=head1 Public
 
-if you use the oo interface you can say:
+=head2 clasic()
 
-my $TreeView = new HTML::Menu::TreeView(\@tree);
+enable clasic  node decoration:
 
-and then call Tree without arguments.
+clasic(1);
 
-print $TreeView->Tree();
+disable clasic  node decoration:
 
-=cut
+clasic(0);
 
-sub new {
-    my ($class, @initializer) = @_;
-    my $self = {tree => undef,};
-    bless $self, ref $class || $class || $DefaultClass;
-    $style = $initializer[1] if(defined $initializer[1]);
-    $self->initTree(@initializer) if(@initializer);
-    return $self;
-}
+return the status in void context.
 
-=head2 setStyle()
-
-setStyle('style');
-
-simple = redmond like style
-
-Crystal = Crystal style
+$status = clasic();
 
 =cut
 
-sub setStyle {
-    my ($self, @p) = getSelf(@_);
-    $style = $p[0];
+sub clasic {
+        my ($self, @p) = getSelf(@_);
+        if(defined $p[0] && $p[0] =~ /(01)/) {
+                $clasic = $1;
+        } else {
+                return $clasic;
+        }
 }
 
-=head2 setSize()
+=head2 css()
 
-only for Crystal styles
+return the  necessary css part without <style></style> tag.
 
-16,32,48,64 and 128  are possible values.
+you can set the DocumentRoot if you pass a parameter
+
+css('/srv/www/htdocs');
+
+You can also include it with
+
+<link href="/style/Crystal/16/html-menu-treeview/Crystal.css" rel="stylesheet" type="text/css">
+
+for example.
 
 =cut
 
-sub setSize {
-    my ($self, @p) = getSelf(@_);
-    $size = $p[0];
+sub css {
+        my ($self, @p) = getSelf(@_);
+        use Fcntl qw(:flock);
+        use Symbol;
+        $self->documentRoot($p[0]) if(defined $p[0]);
+        my $fh   = gensym;
+        my $file = "$path/style/$style/$size/html-menu-treeview/$style.css";
+        open $fh, "$file" or warn "no style '$style.css' $style.css found $/  in  $path/style/html-menu-treeview/$style/ $/ $! $/";
+        seek $fh, 0, 0;
+        my @lines = <$fh>;
+        close $fh;
+        my $css;
+
+        for(@lines) {
+                $css .= $_;
+        }
+        return $css;
 }
 
-=head2 setClasic()
+=head2 documentRoot()
 
-use a classic node decoration
+set the Document Root in scalar context, or get it in void context.
+
+default: .
 
 =cut
 
-sub setClasic {
-    my ($self, @p) = getSelf(@_);
-    $clasic = 1;
+sub documentRoot {
+        my ($self, @p) = getSelf(@_);
+        if(defined $p[0]) {
+                if(-e $p[0]) {
+                        $path = $p[0];
+                } else {
+                        warn "Document Root don't exits: $/ $! $/";
+                }
+        } else {
+                return $path;
+        }
 }
 
-=head2 setModern()
+=head2 folderFirst()
 
-use a classic node decoration
+set or unset show folders first ?
 
-is the dafault decoration.
+default is false.
+
+enable show folders first:
+
+folderFirst(1);
+
+disable show folders first:
+
+folderFirst(0);
+
+return the status of this property in void context.
+
+$status = folderFirst();
 
 =cut
 
-sub setModern {
-    my ($self, @p) = getSelf(@_);
-    $clasic = 0;
+sub folderFirst {
+        my ($self, @p) = getSelf(@_);
+        if(defined $p[0] && $p[0] =~ /(0|1)/) {
+                $ffirst = $1;
+        } else {
+                return $ffirst;
+        }
 }
 
+=head2 getDocumentRoot()
+
+for backward compatibility.
+
+use documentRoot instead.
+
+=cut
+
+sub getDocumentRoot {
+        return $path;
+}
 
 =head2 help()
 
@@ -334,97 +391,13 @@ or a help Message.
 
 =cut
 
-sub help{
-    my ($self, @p) = getSelf(@_);
-    	if(defined $p[0]){
-		return (defined $anker{$p[0]} ) ? $anker{$p[0]}: "Unknown attribute !$/";
-	}else{
-		return \%anker;
-	}
-}
-
-=head2 clasic()
-
-bool clasic() ( node decoration)
-
-=cut
-
-sub clasic {
-    return $clasic;
-}
-
-=head2 getStyle()
-
-mainly for testing.
-
-=cut
-
-sub getStyle {
-    my ($self, @p) = getSelf(@_);
-    return $style;
-}
-
-=head2 setDocumentRoot()
-
-set the local path to the style folder.
-
-should be the DocumentRoot of the webserver.
-
-example: setDocumentRoot('/srv/www/htdocs');
-
-default: /srv/www/htdocs
-
-=cut
-
-sub setDocumentRoot {
-    my ($self, @p) = getSelf(@_);
-    $path = $p[0];
-}
-
-=head2 getDocumentRoot()
-
-mainly for testing.
-
-=cut
-
-sub getDocumentRoot {
-    my ($self, @p) = getSelf(@_);
-    return $path;
-}
-
-=head2 css()
-
-return the  necessary css part without <style></style> tag.
-
-you can set the DocumentRoot if you pass a parameter
-
-css('/srv/www/htdocs');
-
-You can also include it with
-
-<link href="/style/Crystal/16/html-menu-treeview/Crystal.css" rel="stylesheet" type="text/css">
-
-for example.
-
-=cut
-
-sub css {
-    my ($self, @p) = getSelf(@_);
-    use Fcntl qw(:flock);
-    use Symbol;
-    $path = $p[0] if(defined $p[0]);
-    my $fh   = gensym;
-    my $file = "$path/style/$style/$size/html-menu-treeview/$style.css";
-    open $fh, "$file" or warn "no style '$style.css' $style.css found \n  in  $path/style/html-menu-treeview/$style/ \n $!";
-    seek $fh, 0, 0;
-    my @lines = <$fh>;
-    close $fh;
-    my $css;
-
-    for(@lines) {
-        $css .= $_;
-    }
-    return $css;
+sub help {
+        my ($self, @p) = getSelf(@_);
+        if(defined $p[0]) {
+                return (defined $anker{$p[0]}) ? $anker{$p[0]} : "Unknown attribute !$/";
+        } else {
+                return \%anker;
+        }
 }
 
 =head2 jscript()
@@ -438,7 +411,7 @@ You can also include it with
 =cut
 
 sub jscript {
-    return "
+        return "
 function ocFolder(id){
 var  folder = document.getElementById(id).className;
 if(folder == 'folderOpen'){
@@ -491,9 +464,55 @@ e.style.display = \"none\";
 ";
 }
 
+=head2 loadTree()
+
+	loadTree('filename') or loadTree()
+
+default: ./TreeViewDump.pl
+
+=cut
+
+sub loadTree {
+        my ($self, @p) = getSelf(@_);
+        my $do = (defined $p[0]) ? $p[0] : $saveFile;
+        do $do if(-e $do);
+}
+
+=head2  new()
+
+if you use the oo interface you can say:
+
+	my @TreeView = new HTML::Menu::TreeView(\@tree, optional style);
+
+and then call Tree without arguments.
+
+	print @TreeView->Tree();
+
+=cut
+
+sub new {
+        my ($class, @initializer) = @_;
+        my $self = {tree => undef,};
+        bless $self, ref $class || $class || $DefaultClass;
+        $style    = $initializer[1] if(defined $initializer[1]);
+        @TreeView = $initializer[0] if(@initializer);
+        return $self;
+}
+
+=head2 orderBy()
+
+set the attribute which is used by sortTree and folderFirst.
+
+=cut
+
+sub orderBy {
+        my ($self, @p) = getSelf(@_);
+        $orderby = $p[0];
+}
+
 =head2 preload()
 
-return a javascript for preloading images.
+return the necessary  javascript for preloading images  without <script> tag.
 
 for example you can also include it with
 
@@ -508,9 +527,7 @@ if you use different images sizes.
 =cut
 
 sub preload {
-    my $preload = "
-<script language=\"JavaScript\" type=\"text/javascript\">
-//<!--
+        my $preload = "
 folderClosed = new Image($size,$size);
 folderClosed.src='/style/$style/$size/html-menu-treeview/folderClosed.gif';
 plusNode = new Image($size,$size);
@@ -522,8 +539,8 @@ clasicplusNode.src='/style/$style/$size/html-menu-treeview/clasicPlusNode.gif';
 clasicLastplusNode = new Image($size,$size);
 clasicLastplusNode.src='/style/$style/$size/html-menu-treeview/clasicLastPlusNode.gif';
 ";
-    if($style eq "Crystal") {
-        $preload .= "
+        if($style eq "Crystal") {
+                $preload .= "
 folderManClosed = new Image($size,$size);
 folderManClosed.src='/style/$style/$size/html-menu-treeview/folderManClosed.gif';
 folderGrayClosed = new Image($size,$size);
@@ -563,145 +580,380 @@ folderImportantClosed.src='/style/$style/$size/html-menu-treeview/folderImportan
 folderTarClosed = new Image($size,$size);
 folderTarClosed.src='/style/$style/$size/html-menu-treeview/folderTarClosed.gif';
 ";
-    }
-    $preload .= "//-->
-</script>
-";
-    return $preload;
+        }
+        return $preload;
+}
+
+=head2 saveTree()
+
+	saveTree('filename') or saveTree()
+
+default: ./TreeViewDump.pl
+
+=cut
+
+sub saveTree {
+        my ($self, @p) = getSelf(@_);
+        use Data::Dumper;
+        my $content = Dumper(@TreeView);
+        $content .= '@TreeView = $VAR1;';
+        my $saveAs = defined $p[0] ? $p[0] : $saveFile;
+        @TreeView = defined $p[1] ? $p[1] : @TreeView;
+        use Fcntl qw(:flock);
+        use Symbol;
+        my $fh = gensym();
+        my $rsas = $saveAs =~ /^(\S+)$/ ? $1 : 0;
+
+        if($rsas) {
+                open $fh, ">$rsas.bak" or warn "HTML::menu::TreeView::saveTree $/ $! $/ $rsas $/";
+                flock $fh, 2;
+                seek $fh, 0, 0;
+                truncate $fh, 0;
+                print $fh $content;
+                close $fh;
+        }
+        if(-e "$rsas.bak") {
+                rename "$rsas.bak", $rsas or warn "HTML::menu::TreeView::saveTree $/ $! $/";
+                do $rsas;
+        }
+}
+
+=head2 setClasic()
+
+use clasic instead.
+
+for backward compatibility.
+
+use a classic node decoration
+
+=cut
+
+sub setClasic {
+        my ($self, @p) = getSelf(@_);
+        $clasic = 1;
+}
+
+=head2 setDocumentRoot()
+
+for backward compatibility.
+
+use documentRoot instead.
+
+set the local path to the style folder.
+
+should be the document root of the webserver.
+
+example: setDocumentRoot('/srv/www/htdocs');
+
+default: /srv/www/htdocs
+
+=cut
+
+sub setDocumentRoot {
+        my ($self, @p) = getSelf(@_);
+        $self->documentRoot($p[0]);
+}
+
+=head2 setModern()
+
+use clasic instead.
+
+for backward compatibility.
+
+use a modern  node decoration
+
+=cut
+
+sub setModern {
+        my ($self, @p) = getSelf(@_);
+        $clasic = 0;
+}
+
+=head2 setSize()
+
+for backward compatibility.
+
+use size instead.
+
+only for Crystal styles
+
+16,32,48,64 and 128  are possible values.
+
+=cut
+
+sub setSize {
+        my ($self, @p) = getSelf(@_);
+        $size = $p[0];
+}
+
+=head2 setStyle()
+
+for backward compatibility.
+
+use style instead.
+
+setStyle('style');
+
+simple = redmond like style
+
+Crystal = Crystal style
+
+=cut
+
+sub setStyle {
+        my ($self, @p) = getSelf(@_);
+
+        $style = $p[0];
+}
+
+=head2 size()
+
+only for Crystal styles
+
+set the size in scalar context, or get in void context.
+
+16,32,48,64 and 128  are possible values.
+
+=cut
+
+sub size {
+        my ($self, @p) = getSelf(@_);
+        if(defined $p[0] && $p[0] =~ /(16|32|48|64|128)/) {
+                $size = $1;
+        } else {
+                return $size;
+        }
+}
+
+=head2 sortTree()
+
+set or unset sorting treeview Items.
+
+default is false.
+
+enable sorting:
+
+	sortTree(1);
+
+disable sorting:
+
+	sortTree(0);
+
+return the status in void context.
+
+$status = sortTree();
+
+=cut
+
+sub sortTree {
+        my ($self, @p) = getSelf(@_);
+        if(defined $p[0] && $p[0] =~ /(0|1)/) {
+                $sort = $1;
+        } else {
+                return $sort;
+        }
+}
+
+=head2 style()
+
+set the style in scalar context, or get in void context.
+
+	setStyle('simple');
+
+simple = redmond like style.
+
+Crystal = Crystal style (default).
+
+=cut
+
+sub style {
+        my ($self, @p) = getSelf(@_);
+        if(defined $p[0]) {
+                if(-e $path . '/style/' . $p[0]) {
+                        $style = $p[0];
+                } else {
+                        warn "$path . '/style/' . $p[0] not found";
+                }
+        } else {
+                return $style;
+        }
 }
 
 =head2 Tree()
 
-Tree(\@tree,optional $style);
+	Tree(\@tree,optional $style);
 
-Returns the Html part of the TreeView without javasript and css.
+Returns the html part of the Treeview without javasript and css.
 
 =cut
 
 sub Tree {
-    my ($self, @p) = getSelf(@_);
-    $style = $p[1] if(defined $p[1]);
-    $self->initTree(@p) if(@p);
-    return '<table align="left" class="TreeView" border="0" cellpadding="0" cellspacing="0" summary="treeTable"  ><colgroup><col width="' . $size . '"></colgroup>' . $self->{tree} . '</table>';
+        my ($self, @p) = getSelf(@_);
+        $style = $p[1] if(defined $p[1]);
+        @TreeView = @p ? @p : @TreeView;
+        $self->initTree(@TreeView) if(@TreeView);
+        return '<table align="left" class="TreeView" border="0" cellpadding="0" cellspacing="0" summary="treeTable"  ><colgroup><col width="' . $size . '"></colgroup>' . $self->{tree} . '</table>';
 }
+
+=head1 Private
+
+=head2 initTree()
+
+=cut
 
 sub initTree {
-    my ($self, @p) = getSelf(@_);
-    my $tree   = $p[0];
-    my $length = @$tree;
-    for(my $i = 0 ; $i < @$tree ; $i++) {
-        $length--;
-        if(defined @{@$tree[$i]->{subtree}}) {
-            if($length > 0) {
-                $self->appendFolder(@$tree[$i], \@{@$tree[$i]->{subtree}});
-            } elsif ($length eq 0) {
-                $self->appendLastFolder(@$tree[$i], \@{@$tree[$i]->{subtree}});
-            }
-        } else {
-            if($length > 0) {
-                $self->appendNode(@$tree[$i]);
-            } elsif ($length eq 0) {
-                $self->appendLastNode(@$tree[$i]);
-            }
+        my ($self, @p) = getSelf(@_);
+        my $tree = $p[0];
+
+        if($ffirst) {
+                my @tr = sort {&ffolderFirst} @$tree;
+                $tree = \@tr;
+        } elsif ($sort) {
+                my @tr = sort {lc($a->{$orderby}) cmp lc($b->{$orderby})} @$tree;
+                $tree = \@tr;
         }
-    }
+        my $length = @$tree;
+        for(my $i = 0 ; $i < @$tree ; $i++) {
+                $length--;
+                if(defined @{@$tree[$i]->{subtree}}) {
+                        if($length > 0) {
+                                $self->appendFolder(@$tree[$i], \@{@$tree[$i]->{subtree}});
+                        } elsif ($length eq 0) {
+                                $self->appendLastFolder(@$tree[$i], \@{@$tree[$i]->{subtree}});
+                        }
+                } else {
+                        if($length > 0) {
+                                $self->appendNode(@$tree[$i]);
+                        } elsif ($length eq 0) {
+                                $self->appendLastNode(@$tree[$i]);
+                        }
+                }
+        }
+
+=head2 ffolderFirst()
+
+=cut
+
+        # wegen use strict innerhalb von initTree
+        sub ffolderFirst {
+                no warnings;
+              SWITCH: {
+                        if(defined @{$a->{subtree}} and defined @{$b->{subtree}}) {
+                                return lc($a->{$orderby}) cmp lc($b->{$orderby});
+                                last SWITCH;
+                        } elsif (defined @{$a->{subtree}}) {
+                                return -1;
+                                last SWITCH;
+                        } elsif (defined @{$b->{subtree}}) {
+                                return +1;
+                                last SWITCH;
+                        } else {
+                                return $sort ? (lc($a->{$orderby}) cmp lc($b->{$orderby})) : -1;
+                        }
+                }
+        }
 }
+
+=head2 getSelf()
+
+=cut
 
 sub getSelf {
-    return @_ if defined($_[0]) && (!ref($_[0])) && ($_[0] eq 'HTML::Menu::TreeView');
-    return (defined($_[0]) && (ref($_[0]) eq 'HTML::Menu::TreeView' || UNIVERSAL::isa($_[0], 'HTML::Menu::TreeView'))) ? @_ : ($HTML::Menu::TreeView::DefaultClass->new, @_);
+        return @_ if defined($_[0]) && (!ref($_[0])) && ($_[0] eq 'HTML::Menu::TreeView');
+        return (defined($_[0]) && (ref($_[0]) eq 'HTML::Menu::TreeView' || UNIVERSAL::isa($_[0], 'HTML::Menu::TreeView'))) ? @_ : ($HTML::Menu::TreeView::DefaultClass->new, @_);
 }
+
+=head2 appendFolder()
+
+=cut
 
 sub appendFolder {
-    my $self    = shift;
-    my $node    = shift;
-    my $subtree = shift;
-    ++$id;
-    $node->{onclick} = defined $node->{onclick} ? $node->{onclick} : defined $node->{href} ? "" : "displayTree('$id'); ocFolder('$id.folder');ocNode('$id.node');";
-    $node->{class} = defined $node->{class} ? $node->{class} : 'treeviewLink';
-    my $FolderClass = defined $node->{folderclass} ? $node->{folderclass} : 'folderOpen';
-    $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
-    my $tt;
+        my $self    = shift;
+        my $node    = shift;
+        my $subtree = shift;
+        ++$id;
+        $node->{onclick} = defined $node->{onclick} ? $node->{onclick} : defined $node->{href} ? "" : "displayTree('$id'); ocFolder('$id.folder');ocNode('$id.node');";
+        $node->{class} = defined $node->{class} ? $node->{class} : 'treeviewLink';
+        my $FolderClass = defined $node->{folderclass} ? $node->{folderclass} : 'folderOpen';
+        $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
+        my $tt;
 
-    foreach my $key (keys %{$node}) {
-        if(exists $anker{$key}) {
-            $tt .= $key . '="' . $node->{$key} . '" ';
-        } else {
-            warn "unknown attribute $key \n" unless ($key =~ /image|text|subtree|folderclass/);
+        foreach my $key (keys %{$node}) {
+                $tt .= $key . '="' . $node->{$key} . '" ' if(exists $anker{$key});
         }
-    }
-    my $minusnode = $clasic ? "clasicMinusNode" : "minusNode";
-    $self->{tree} .=
-      "<tr class=\"trSubtreeCaption\"><td  id=\"$id.node\" class=\"$minusnode\" onclick=\"displayTree('$id'); ocFolder('$id.folder');ocNode('$id.node');\"><img src=\"/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" width=\"$size\" height=\"$size\" alt=\"spacer\"/></td><td align=\"left\" class=\"$FolderClass\" id=\"$id.folder\"><a $tt>$node->{text}</a></td></tr><tr id=\"$id\" class=\"trSubtree\"><td class=\"submenuDeco\"><img src=\"/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" alt=\"spacer\"/></td><td class=\"submenu\"><table align=\"left\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\"  class=\"subtreeTable\" summary=\"appendFolder\" width=\"100%\"><colgroup><col width=\"$size\"></colgroup>";
-    $self->initTree(\@$subtree);
-    $self->{tree} .= "</table></td></tr>";
+        my $minusnode = $clasic ? "clasicMinusNode" : "minusNode";
+        $self->{tree} .=
+          "<tr class=\"trSubtreeCaption\"><td  id=\"$id.node\" class=\"$minusnode\" onclick=\"displayTree('$id'); ocFolder('$id.folder');ocNode('$id.node');\"><img src=\"/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" width=\"$size\" height=\"$size\" alt=\"spacer\"/></td><td align=\"left\" class=\"$FolderClass\" id=\"$id.folder\"><a $tt>$node->{text}</a></td></tr><tr id=\"$id\" class=\"trSubtree\"><td class=\"submenuDeco\"><img src=\"/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" alt=\"spacer\"/></td><td class=\"submenu\"><table align=\"left\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\"  class=\"subtreeTable\" summary=\"appendFolder\" width=\"100%\"><colgroup><col width=\"$size\"></colgroup>";
+        $self->initTree(\@$subtree);
+        $self->{tree} .= "</table></td></tr>";
 }
+
+=head2 appendLastFolder()
+
+=cut
 
 sub appendLastFolder {
-    my $self    = shift;
-    my $node    = shift;
-    my $subtree = shift;
-    $id++;
-    $node->{onclick} = defined $node->{onclick} ? $node->{onclick} : defined $node->{href} ? "" : "displayTree('$id'); ocFolder('$id.folder');ocpNode('$id.node');";
-    $node->{class} = defined $node->{class} ? $node->{class} : 'treeviewLink';
-    my $FolderClass = defined $node->{FolderClass} ? $node->{FolderClass} : 'folderOpen';
-    $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
-    my $tt;
-    foreach my $key (keys %{$node}) {
-        if(exists $anker{$key}) {
-            $tt .= $key . '="' . $node->{$key} . '" ';
-        } else {
-            warn "unknown attribute $key \n" unless ($key =~ /image|text|subtree|folderclass/);
+        my $self    = shift;
+        my $node    = shift;
+        my $subtree = shift;
+        $id++;
+        $node->{onclick} = defined $node->{onclick} ? $node->{onclick} : defined $node->{href} ? "" : "displayTree('$id'); ocFolder('$id.folder');ocpNode('$id.node');";
+        $node->{class} = defined $node->{class} ? $node->{class} : 'treeviewLink';
+        my $FolderClass = defined $node->{FolderClass} ? $node->{FolderClass} : 'folderOpen';
+        $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
+        my $tt;
+
+        foreach my $key (keys %{$node}) {
+                $tt .= $key . '="' . $node->{$key} . '" ' if(exists $anker{$key});
         }
-    }
-    my $lastminusnode = $clasic ? "clasicLastMinusNode" : "lastMinusNode";
-    $self->{tree} .=
-      "<tr class=\"lastTreeViewItem\"><td id=\"$id.node\" class=\"$lastminusnode\" onclick=\"displayTree('$id');ocFolder('$id.folder');ocpNode('$id.node');\"></td><td align=\"left\" class=\"$FolderClass\" id=\"$id.folder\"><a $tt>$node->{text}</a></td></tr><tr id=\"$id\" class=\"trSubtree\"><td ><img src=\"/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" width=\"$size\" height=\"$size\" alt=\"spacer\"/></td><td class=\"submenu\"><table align=\"left\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"subtreeTable\" summary=\"appendLastFolder\"><colgroup><col width=\"$size\"></colgroup>";
-    $self->initTree(\@$subtree);
-    $self->{tree} .= "</table></td></tr>";
+        my $lastminusnode = $clasic ? "clasicLastMinusNode" : "lastMinusNode";
+        $self->{tree} .=
+          "<tr class=\"lastTreeViewItem\"><td id=\"$id.node\" class=\"$lastminusnode\" onclick=\"displayTree('$id');ocFolder('$id.folder');ocpNode('$id.node');\"></td><td align=\"left\" class=\"$FolderClass\" id=\"$id.folder\"><a $tt>$node->{text}</a></td></tr><tr id=\"$id\" class=\"trSubtree\"><td ><img src=\"/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" width=\"$size\" height=\"$size\" alt=\"spacer\"/></td><td class=\"submenu\"><table align=\"left\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"subtreeTable\" summary=\"appendLastFolder\"><colgroup><col width=\"$size\"></colgroup>";
+        $self->initTree(\@$subtree);
+        $self->{tree} .= "</table></td></tr>";
 }
+
+=head2 appendNode()
+
+=cut
 
 sub appendNode {
-    my $self = shift;
-    my $node = shift;
-    $node->{image} = defined $node->{image} ? $node->{image} : "link.gif";
-    $node->{class} = defined $node->{class} ? $node->{class} : 'treeviewLink';
-    $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
-    my $tt;
-    foreach my $key (keys %{$node}) {
-        if(exists $anker{$key}) {
-            $tt .= $key . '="' . $node->{$key} . '" ';
-        } else {
-            warn "unknown attribute $key \n" unless ($key =~ /image|text|subtree|folderclass/);
+        my $self = shift;
+        my $node = shift;
+        $node->{image} = defined $node->{image} ? $node->{image} : "link.gif";
+        $node->{class} = defined $node->{class} ? $node->{class} : 'treeviewLink';
+        $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
+        my $tt;
+        foreach my $key (keys %{$node}) {
+                $tt .= $key . '="' . $node->{$key} . '" ' if(exists $anker{$key});
         }
-    }
-    my $paddingLeft = $size+ 2 . "px";
-    $self->{tree} .=
-      "<tr class=\"TreeViewItem\"><td  class=\"node\"><img src=\"/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" width=\"$size\" height=\"$size\" alt=\"spacer\" align=\"middle\"/></td><td align=\"left\"  style=\"background-image:url('/style/$style/$size/mimetypes/$node->{image}');background-repeat:no-repeat;cursor:pointer;padding-left:$paddingLeft\"><a $tt>$node->{text}</a></td></tr>";
+        my $paddingLeft = $size+ 2 . "px";
+        $self->{tree} .=
+          "<tr class=\"TreeViewItem\"><td  class=\"node\"><img src=\"/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" width=\"$size\" height=\"$size\" alt=\"spacer\" align=\"middle\"/></td><td align=\"left\"  style=\"background-image:url('/style/$style/$size/mimetypes/$node->{image}');background-repeat:no-repeat;cursor:pointer;padding-left:$paddingLeft\"><a $tt>$node->{text}</a></td></tr>";
 }
 
+=head2 appendLastNode()
+
+=cut
+
 sub appendLastNode {
-    my $self = shift;
-    my $node = shift;
-    $node->{image} = defined $node->{image} ? $node->{image} : "link.gif";
-    $node->{class} = defined $node->{class} ? $node->{class} : 'treeviewLink';
-    $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
-    my $tt;
-    foreach my $key (keys %{$node}) {
-        if(exists $anker{$key}) {
-            $tt .= $key . '="' . $node->{$key} . '" ';
-        } else {
-            warn "unknown attribute $key \n" unless ($key =~ /image|text|subtree|folderclass/);
+        my $self = shift;
+        my $node = shift;
+        $node->{image} = defined $node->{image} ? $node->{image} : "link.gif";
+        $node->{class} = defined $node->{class} ? $node->{class} : 'treeviewLink';
+        $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
+        my $tt;
+        foreach my $key (keys %{$node}) {
+                $tt .= $key . '="' . $node->{$key} . '" ' if(exists $anker{$key});
         }
-    }
-    my $paddingLeft = $size+ 2 . "px";
-    $self->{tree} .=
-      "<tr class=\"TreeViewItem\"><td  class=\"lastNode\"><img src=\"/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" width=\"$size\" height=\"$size\" alt=\"spacer\"/></td><td align=\"left\"  style=\"background-image:url('/style/$style/$size/mimetypes/$node->{image}');background-repeat:no-repeat;cursor:pointer;padding-left:$paddingLeft;\"><a $tt>$node->{text}</a></td></tr>";
+        my $paddingLeft = $size+ 2 . "px";
+        $self->{tree} .=
+          "<tr class=\"TreeViewItem\"><td  class=\"lastNode\"><img src=\"/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" width=\"$size\" height=\"$size\" alt=\"spacer\"/></td><td align=\"left\"  style=\"background-image:url('/style/$style/$size/mimetypes/$node->{image}');background-repeat:no-repeat;cursor:pointer;padding-left:$paddingLeft;\"><a $tt>$node->{text}</a></td></tr>";
 }
 
 =head1 SEE ALSO
 
-http://www.lindnerei.de, http://treeview.lindnerei.de
+http://www.lindnerei.de, http://treeview.lindnerei.de,
 
 =head1 AUTHOR
 

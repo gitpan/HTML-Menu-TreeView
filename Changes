@@ -1,5 +1,12 @@
 Revision history for Perl extension treeview.
-treeview.pm version 0.6.8
+HTML::Menu::TreeView version 0.6.9
+0.6.9
+	- preload returns the treeview without script tag.
+	- new function folderFirst, documentRoot, size, style,loadTree,saveTree,sortTree,orderBy
+	- new usage for clasic().
+	- new example folderFirst.pl (sort the TreeView)
+	- Overwrought Code,Examples, tests and Documentation.
+	- more tests. (test pod and new functions use new syntax);
 
 0.6.8 Wen Jul 04 17:00:37 2007
 	- Meta.yml and Signature
@@ -7,7 +14,6 @@ treeview.pm version 0.6.8
 	- new function help
 	- more tests.
 	- Overwrought Documentation.
-
 0.6.7
 	- some bugs with preloading etc
 	- make use of  ExtUtils::MakeMaker.

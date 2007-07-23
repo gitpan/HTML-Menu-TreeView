@@ -1,50 +1,25 @@
-#use lib("../lib");
-use HTML::Menu::TreeView qw(css setDocumentRoot jscript setStyle getStyle setDocumentRoot getDocumentRoot);
-my @tree =(
-	{
-	text => 'News',
-	href => 'TreeView.pl',
-	subtree => [
-		{
-			text => 'TreeView',
-			href => 'attribute',
-			image => "news.gif"
-		},
-	],
-	},
-	{
-		text => "Help",
-		onclick => 'attribute',
-		image =>"help.gif"
-	},
-);
-my @tree2 =(
-	{
-	text => 'News',
-	href => 'TreeView.pl',
-	subtree => [
-		{
-			text => 'TreeView',
-			href => 'attribute',
-			image => "news.gif",
-		},
-	],
-	},
-);
+# use lib("../lib");
+use HTML::Menu::TreeView qw(css documentRoot jscript style Tree documentRoot );
+my @tree = ({text => 'News', href => 'TreeView.pl', subtree => [{text => 'TreeView', href => 'attribute', image => "news.gif"},],}, {text => "Help", onclick => 'attribute', image => "help.gif"},);
+my @tree2 = ({text => 'News', href => 'TreeView.pl', subtree => [{text => 'TreeView', href => 'attribute', image => "news.gif",},],},);
 use Cwd;
 my $path = getcwd;
-use Test::More tests =>5;
+use Test::More tests => 6;
 my $TreeView = new HTML::Menu::TreeView();
-my $js =  $TreeView->jscript();
-my $js2 =  jscript();
+my $js       = $TreeView->jscript();
+my $js2      = jscript();
 ok(length($js2) eq length($js));
-my $style =  getStyle();
-my $TreeView2 = new HTML::Menu::TreeView(\@tree2);
-my $style2 = $TreeView2->getStyle();
-ok(length($style) eq length($style2));
-setStyle("Crystal");
-ok($TreeView2->getStyle() eq "Crystal");
-$TreeView2->setDocumentRoot("$path/htdocs");
-ok(getDocumentRoot() eq "$path/htdocs");
-ok(length(css()) > 0);
+documentRoot("blib/bin");
+style("Crystal");
+ok($TreeView->style() eq "Crystal");
+$TreeView->documentRoot("$path/httpdocs");
+ok(documentRoot() eq "$path/httpdocs");
+ok(length($TreeView->css()) > 0);
+my $TreeView2 = new HTML::Menu::TreeView(\@tree);
+my $tree      = $TreeView2->Tree();
+my $tree2     = Tree();
+ok(length($tree) eq length($tree2));
+my $tree3 = Tree(\@tree2);
+ok(length($tree3) le length($tree2));
+
 1;

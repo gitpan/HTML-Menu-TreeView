@@ -1,10 +1,19 @@
-# http://module-build.sourceforge.net/META-spec.html
-#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
-name:         HTML-Menu-TreeView
-version:      0.6.8
-version_from: lib/HTML/Menu/TreeView.pm
-installdirs:  perl
-requires:
-
-distribution_type: module
-generated_by: ExtUtils::MakeMaker version 6.30
+--- #YAML:1.0
+name:                HTML-Menu-TreeView
+version:             0.6.9
+abstract:            ~
+license:             ~
+generated_by:        ExtUtils::MakeMaker version 6.36
+distribution_type:   module
+requires:     
+    Data::Dumper:                  2.12108
+    Module::Signature:             0.55
+    Pod::Coverage:                 0.18
+    Pod::Escapes:                  1.04
+    Test::Pod:                     1.26
+    Test::Pod::Coverage:           1.08
+meta-spec:
+    url:     http://module-build.sourceforge.net/META-spec-v1.2.html
+    version: 1.2
+author:
+    - Dirk Lindner <lindnerei@o2online.de>

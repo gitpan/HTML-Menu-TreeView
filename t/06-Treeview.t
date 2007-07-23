@@ -1,0 +1,15 @@
+# use lib("../lib");
+use HTML::Menu::TreeView;
+use vars qw(@TreeView @tree);
+@tree = ({text => 'News', href => "TreeView.pl", subtree => [{text => 'TreeView', href => 'attribute', image => "news.gif"},],}, {text => "Help", onclick => 'attribute', image => "help.gif"},);
+my $Tree = new HTML::Menu::TreeView();
+my $t    = $Tree->Tree(\@tree);
+$Tree->saveTree("./tree.pl");
+$Tree->loadTree("./tree.pl");
+*TreeView = \@HTML::Menu::TreeView::TreeView;
+$tree2    = $Tree->Tree();
+use Test::More tests => 2;
+ok($tree2 ge $t);
+ok($tree[0]->{text} eq $TreeView[0][0]->{text});
+unlink("./tree.pl");
+1;
