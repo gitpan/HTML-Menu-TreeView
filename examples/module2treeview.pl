@@ -4,16 +4,22 @@ use Pod::Usage;
 use HTML::Menu::TreeView qw(:all);
 use Getopt::Long;
 use strict;
-my $htdocs  = "/srv/www/htdocs/";
+my $htdocs  = "/srv/www/httpdocs/";
+my $outpath = undef;
 my $style   = "Crystal";
-my $prefix  = "/";
 my $size    = 16;
-my $mod     = 'HTML::Menu::TreeView';
+my $mod;
 my $reverse = 0;
 my @modules;
-my $help = 0;
-my $result = GetOptions("module=s" => \$mod, "htdocs=s" => \$htdocs, "style=s" => \$style, "size=s" => \$size, "reverse=s" => \$reverse, 'help|?' => \$help,);
-pod2usage(1) if $help;
+my $help   = 0;
+my $sort   = 0;
+my $prefix = undef;
+my $result = GetOptions("module=s" => \$mod, "htdocs=s" => \$htdocs, "style=s" => \$style, "size=s" => \$size, "reverse=s" => \$reverse, 'help|?' => \$help, 'sort' => \$sort, 'prefix=s' => \$prefix, 'store=s' => \$outpath);
+$help = 1 unless (defined $mod && $reverse);
+pod2usage(1)    if $help;
+sortTree(1)     if $sort;
+prefix($prefix) if defined $prefix;
+$outpath = defined $outpath ? $outpath : $htdocs;
 
 if($reverse) {
         foreach my $key (@INC) {
@@ -23,15 +29,15 @@ if($reverse) {
         documentRoot($htdocs);
         style($style);
         size(48);
-        open OUT, ">$htdocs/index.html" or die "$!";
+        open OUT, ">$outpath/index.html" or die "$!";
         print OUT "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
 <html>
 <head>
 <title>Perldoc Navigation</title>
-<link rel=\"stylesheet\" type=\"text/css\" href=\"/style/$style/48/html-menu-treeview/$style.css\">
+<style type=\"text/css\">" . css() . "</style>
 <script language=\"JavaScript\" type=\"text/javascript\">
 //<!--
-" . jscript() . preload() '
+" . jscript() . preload() . '
 //-->
 </script>
 </head>
@@ -68,12 +74,12 @@ sub module2treeview {
         documentRoot($htdocs);
         style($style);
         size($size);
-        open OUT, ">$htdocs/navi$module2html.html" or die "$!";
+        open OUT, ">$outpath/navi$module2html.html" or die "$!";
         print OUT "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
 <html>
 <head>
 <title>Navigation</title>
-<link rel=\"stylesheet\" type=\"text/css\" href=\"/style/$style/$size/html-menu-treeview/$style.css\">
+<style type=\"text/css\">" . css() . "</style>
 <script language=\"JavaScript\" type=\"text/javascript\">
 //<!--
 " . jscript() . preload() . '
@@ -83,7 +89,7 @@ sub module2treeview {
 <body>
 <table align="center" class="mainborder" cellpadding="0"  cellspacing="0" summary="mainLayout" width="100%" ><tr><td align="center" >' . Tree(\@t) . '</select><br><p></td></tr></table></body></html>';
         close(OUT);
-        open FRAME, ">$htdocs/$module.html" or die "$!";
+        open FRAME, ">$outpath/$module.html" or die "$!";
         print FRAME '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
 <html>
 <head>
@@ -128,11 +134,11 @@ sub reverse {
 sub openTree {
         my ($module, $infile, $m2) = @_;
         my @TREEVIEW;
-        system("pod2html --noindex --title=$module --infile=$infile  --outfile=$htdocs" . "$m2" . "frame.html");
+        system("pod2html --noindex --title=$module --infile=$infile  --outfile=$outpath" . "$m2" . "frame.html");
         use Fcntl qw(:flock);
         use Symbol;
         my $fh   = gensym;
-        my $file = "$htdocs" . "$module" . "frame.html";
+        my $file = "$outpath" . "$m2" . "frame.html";
         open $fh, "$file" or die "$!: $file";
         seek $fh, 0, 0;
         my @lines = <$fh>;
@@ -155,7 +161,7 @@ module2treeview.pl
 
 module2treeview.pl --module --htdocs --style --size --reverse --help
 
---module=HTML::Menu::TreeView the name of the modul taht should be converted.
+--module=HTML::Menu::TreeView the name of the modul that should be converted.
 
 --htdocs=/path/to/your/document/root/
 
@@ -163,9 +169,17 @@ module2treeview.pl --module --htdocs --style --size --reverse --help
 
 --style=Crystal|simple
 
+--sort sort the TreeView.
+
 --reverse=1  build documentation for all Perl modules found in your path.
 
 Be carefull with this option it will write a lot of output.
+
+--store /path/to store/Dokumentation 
+
+dafault: htdocs path
+
+--prefix=localpath/
 
 --help print this message
 
@@ -178,6 +192,32 @@ which makes usage of HTML::Menu::TreeView.
 
 =head1 Changes
 
-0.1.2 some fixes
+0.1.3
+
+--sort
+
+--prefix # to create offline websites
+
+--store /path/to store/Dokumentation
+
+default: htpath
+
+some fixes
+
+=head1 AUTHOR
+
+Dirk Lindner <lindnerei@o2online.de>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2007 by Hr. Dirk Lindner
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public License
+as published by the Free Software Foundation;
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
 
 =cut

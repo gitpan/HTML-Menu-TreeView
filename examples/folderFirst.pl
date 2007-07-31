@@ -58,3 +58,5 @@ print "Content-Type: text/html$/$/
 </head>
 <body>
 <table align="center" class="mainborder" cellpadding="0"  cellspacing="0" summary="mainLayout" width="100%"><tr><td align="left">' . $treeview->Tree(\@t) . '</td></tr></table></body></html>';
+
+1;

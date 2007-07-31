@@ -271,15 +271,6 @@ font-size:26px;
 color:black;
 vertical-align:top;
 }
-td.folderSentMail{
-background-image:url('/style/Crystal/32/html-menu-treeview/folderSentMail.gif');
-background-repeat:no-repeat;
-color:black;
-cursor:pointer;
-padding-left:35px;
-font-size:26px;
-vertical-align:top;
-}
 td.folderImage{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderImage.gif');
 background-repeat:no-repeat;

@@ -1,4 +1,1 @@
 testing.
-some fixes for mod_perl:
- -e dont work, so disable check under mod_perl.
-  -T switch is ignored, enable with 'PerlSwitches -T' 

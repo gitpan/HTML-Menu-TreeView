@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                HTML-Menu-TreeView
-version:             0.6.9
+version:             0.7.0
 abstract:            ~
 license:             ~
 generated_by:        ExtUtils::MakeMaker version 6.36
