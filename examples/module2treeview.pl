@@ -4,7 +4,7 @@ use Pod::Usage;
 use HTML::Menu::TreeView qw(:all);
 use Getopt::Long;
 use strict;
-my $htdocs  = "/srv/www/httpdocs/";
+my $htdocs  = '/srv/www/httpdocs';
 my $outpath = undef;
 my $style   = "Crystal";
 my $size    = 16;
@@ -200,7 +200,7 @@ which makes usage of HTML::Menu::TreeView.
 
 --store /path/to store/Dokumentation
 
-default: htpath
+default: /srv/www/httpdocs
 
 some fixes
 

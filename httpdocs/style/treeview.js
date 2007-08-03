@@ -38,3 +38,20 @@ if(display  ==  "none"){
 e.style.display = "";
 }else if(display  ==  ""){
 e.style.display = "none";}}
+function replaceClass(mid){
+    var obj;
+    if(document.all){
+        obj = document.all;
+    }else if(document.getElementsByTagName && !document.all){
+        obj = document.getElementsByTagName('*');
+    }
+    for(i=0; i < obj.length; i++){
+        if(obj[i].className == 'columnsFolderClosed' && obj[i].id.indexOf('td'+mid)!=-1 ){
+            obj[i].className = 'columnsFolder';
+        }else if(obj[i].className == 'columnsFolder' && obj[i].id.indexOf('td'+mid)!=-1 ){
+            obj[i].className = 'columnsFolderClosed';
+        }
+    }
+}
+
+

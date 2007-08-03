@@ -1,4 +1,5 @@
 Changes
+examples/columns.pl
 examples/crystal.pl
 examples/fo.pl
 examples/folderFirst.pl
@@ -870,8 +871,5 @@ t/03-Treeview.t
 t/04-Treeview.t
 t/05-Treeview.t
 t/06-Treeview.t
-t/coverage.t
-t/pod.t
 todo
 META.yml                                 Module meta-data (added by MakeMaker)
-SIGNATURE                                Public-key signature (added by MakeMaker)

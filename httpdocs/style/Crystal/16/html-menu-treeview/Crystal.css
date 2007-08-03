@@ -7,18 +7,18 @@ td.clasicLastMinusNode{
 background-image:url('/style/Crystal/16/html-menu-treeview/clasicLastMinusNode.gif');
 cursor:pointer;
 background-repeat:no-repeat;
-height:20px;
+height:22px;
 }
 td.clasicPlusNode{
 background-image:url('/style/Crystal/16/html-menu-treeview/clasicPlusNode.gif');
 cursor:pointer;
 background-repeat:no-repeat;
-height:20px;
+height:22px;
 }
 td.clasicLastPlusNode{
 background-image:url('/style/Crystal/16/html-menu-treeview/clasicLastPlusNode.gif');
 cursor:pointer;
-height:20px;
+height:22px;
 background-repeat:no-repeat;
 }
 td.folderOpen{
@@ -28,7 +28,7 @@ color:black;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 vertical-align:top;
 }
 td.folderClosed{
@@ -37,7 +37,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -47,7 +47,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -57,7 +57,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -67,7 +67,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -77,7 +77,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -88,7 +88,7 @@ color:black;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 vertical-align:top;
 }
 td.folderOrangeClosed{
@@ -97,7 +97,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -108,7 +108,7 @@ color:black;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 vertical-align:top;
 }
 td.folderRedClosed{
@@ -117,7 +117,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -128,7 +128,7 @@ color:black;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 vertical-align:top;
 }
 td.folderGrayClosed{
@@ -137,7 +137,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -148,7 +148,7 @@ color:black;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 vertical-align:top;
 }
 td.folderGreenClosed{
@@ -157,7 +157,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -168,7 +168,7 @@ color:black;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 vertical-align:top;
 }
 td.folderManClosed{
@@ -177,7 +177,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -188,7 +188,7 @@ color:black;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 vertical-align:top;
 }
 td.folderHtmlClosed{
@@ -197,7 +197,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -208,7 +208,7 @@ color:black;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 vertical-align:top;
 }
 td.folderFavoriteClosed{
@@ -217,7 +217,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -228,7 +228,7 @@ color:black;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 vertical-align:top;
 }
 td.folderTextClosed{
@@ -237,7 +237,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -248,7 +248,7 @@ color:black;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 vertical-align:top;
 }
 td.folderLockedClosed{
@@ -257,7 +257,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -268,7 +268,7 @@ color:black;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 vertical-align:top;
 }
 td.folderCrystalClosed{
@@ -277,7 +277,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -288,7 +288,7 @@ color:black;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 vertical-align:top;
 }
 td.folderVideoClosed{
@@ -297,7 +297,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -308,7 +308,7 @@ color:black;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 vertical-align:top;
 }
 td.folderPrintClosed{
@@ -317,7 +317,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -328,7 +328,7 @@ color:black;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 vertical-align:top;
 }
 td.folderSentMailClosed{
@@ -337,7 +337,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -348,7 +348,7 @@ color:black;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 vertical-align:top;
 }
 td.folderImageClosed{
@@ -357,7 +357,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -368,7 +368,7 @@ color:black;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 vertical-align:top;
 }
 td.folderSoundClosed{
@@ -377,7 +377,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -388,7 +388,7 @@ color:black;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 vertical-align:top;
 }
 td.folderImportantClosed{
@@ -397,7 +397,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -408,7 +408,7 @@ color:black;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 vertical-align:top;
 }
 td.folderTarClosed{
@@ -417,7 +417,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 padding-left:20px;
 font-size:14px;
-height:20px;
+height:22px;
 color:black;
 vertical-align:top;
 }
@@ -430,7 +430,7 @@ td.lastMinusNode{
 background-image:url('/style/Crystal/16/html-menu-treeview/lastMinusNode.gif');
 cursor:pointer;
 background-repeat:no-repeat;
-height:20px;
+height:22px;
 }
 td.plusNode{
 background-image:url('/style/Crystal/16/html-menu-treeview/plusNode.gif');
@@ -440,14 +440,14 @@ background-repeat:no-repeat;
 td.lastPlusNode{
 background-image:url('/style/Crystal/16/html-menu-treeview/lastPlusNode.gif');
 cursor:pointer;
-height:20px;
+height:22px;
 background-repeat:no-repeat;
 }
 td.node{
 background-image:url('/style/Crystal/16/html-menu-treeview/node.gif');
 cursor:pointer;
 font-size:14px;
-height:20px;
+height:22px;
 background-repeat:repeat-y;
 text-align:left;
 }
@@ -466,13 +466,35 @@ a.treeviewLink{
 font-size:14px;
 color:black;
 cursor:pointer;
-height:20px;
+height:22px;
 font-family:verdana,sans-serif;
 }
 a.treeviewLink:hover{
 font-size:14px;
-height:20px;
+height:22px;
 color:blue;
 cursor:pointer;
 font-family:verdana,sans-serif;
+}
+td.columnsFolder{
+font-size:14px;
+height:22px;
+vertical-align:top;
+font-family:verdana, sans-serif;
+}
+td.columnsFolderClosed{
+font-size:14px;
+height:22px;
+vertical-align:top;
+font-family:verdana, sans-serif;
+}
+td.columnsNode{
+font-size:14px;
+height:22px;
+font-family:verdana, sans-serif;
+}
+td.columnsLastNode{
+font-size:14px;
+font-family:verdana, sans-serif;
+height:22px;
 }

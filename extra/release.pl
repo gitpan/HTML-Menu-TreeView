@@ -29,16 +29,21 @@ sub change {
                 }
         }
 }
-chmod 0644, "blib/lib/HTML/Menu/TreeView.pm";
-open(EDIT, '+<blib/lib/HTML/Menu/TreeView.pm') or die "Cant set Document Root $! $/";
-my $file = '';
-while(<EDIT>) {
-        s/%PATH%/$path/;
-        $file .= $_;
-}
-seek(EDIT, 0, 0);
-print EDIT $file;
-truncate(EDIT, tell(EDIT));
-close(EDIT);
+&replacePath('blib/lib/HTML/Menu/TreeView.pm');
+&replacePath('examples/module2treeview.pl');
 
+sub replacePath {
+        my $file = shift;
+        chmod 0644, $file;
+        open(EDIT, "+<$file") or die "$! $/";
+        my $file = '';
+        while(<EDIT>) {
+                s/%PATH%/$path/;
+                $file .= $_;
+        }
+        seek(EDIT, 0, 0);
+        print EDIT $file;
+        truncate(EDIT, tell(EDIT));
+        close(EDIT);
+}
 1;

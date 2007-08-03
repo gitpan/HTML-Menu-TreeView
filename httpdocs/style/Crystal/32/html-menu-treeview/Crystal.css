@@ -107,6 +107,7 @@ td.folderClosed{
  padding-left:35px;
  vertical-align:top;
  font-size:26px;
+ height:36px;
  color:black;
 }
 td.folderOrange{
@@ -156,7 +157,8 @@ font-size:26px;
 vertical-align:top;
 }
 td.folderHtmlClosed{
-background-image:url('/style/Crystal/32/html-menu-treeview/folderHtmlClosed.gif');background-repeat:no-repeat;
+background-image:url('/style/Crystal/32/html-menu-treeview/folderHtmlClosed.gif');
+background-repeat:no-repeat;
 cursor:pointer;
 padding-left:35px;
 font-size:26px;
@@ -384,6 +386,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 font-size:26px;
 height:44px;
+
 }
 td.clasicMinusNode{
 background-image:url('/style/Crystal/32/html-menu-treeview/clasicMinusNode.gif');
@@ -417,4 +420,26 @@ font-size:26px;
 color:blue;
 cursor:pointer;
 font-family:verdana, sans-serif;
+}
+td.columnsFolder{
+font-size:26px;
+height:44px;
+vertical-align:top;
+font-family:verdana, sans-serif;
+}
+td.columnsFolderClosed{
+font-size:26px;
+height:36px;
+vertical-align:top;
+font-family:verdana, sans-serif;
+}
+td.columnsNode{
+font-size:26px;
+height:36px;
+font-family:verdana, sans-serif;
+}
+td.columnsLastNode{
+font-size:26px;
+font-family:verdana, sans-serif;
+height:44px;
 }

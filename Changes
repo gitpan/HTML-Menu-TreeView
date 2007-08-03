@@ -1,5 +1,11 @@
 Revision history for Perl extension treeview.
-HTML::Menu::TreeView version 0.7.0
+HTML::Menu::TreeView version 0.7.1
+0.7.1
+	- some fixes.
+	- new function columns()
+	- new attribute coulmuns => {1,2,3,4,5,6,7,8]
+	- Overwrought Documentation,Code,Examples, tests and Documentation.
+	- new export tag :standart (Tree css jscript preload size style documentRoot).
 0.7.0
 	- new function prefix.
 	- new export tag :recommend (Tree css jscript clasic preload folderFirst size style documentRoot  loadTree saveTree sortTree orderBy prefix )
