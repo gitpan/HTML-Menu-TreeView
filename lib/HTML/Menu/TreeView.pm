@@ -3,7 +3,7 @@ use strict;
 use warnings;
 require Exporter;
 use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView);
-$HTML::Menu::TreeView::VERSION   = '0.7.1';
+$HTML::Menu::TreeView::VERSION   = '0.7.2';
 @ISA                             = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK = qw(all Tree css jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style documentRoot loadTree saveTree  %anker sortTree orderBy prefix);
 %HTML::Menu::TreeView::EXPORT_TAGS = (
@@ -12,14 +12,14 @@ $HTML::Menu::TreeView::VERSION   = '0.7.1';
                                       'standart'  => [qw(Tree css jscript preload size style documentRoot )],
 );
 $DefaultClass = 'HTML::Menu::TreeView' unless defined $HTML::Menu::TreeView::DefaultClass;
-our $id       = "a";
-our $style    = "Crystal";
-our $size     = "16";
+our $id       = 'a';
+our $style    = 'Crystal';
+our $size     = 16;
 our $path     = '%PATH%';
 our $clasic   = 0;
 our $ffirst   = 0;
 our $sort     = 0;
-our $saveFile = "./TreeViewDump.pl";
+our $saveFile = './TreeViewDump.pl';
 our $orderby  = 'text';
 our $pref     = '';
 our $columns  = 0;
@@ -72,9 +72,9 @@ HTML::Menu::TreeView
 
 		{
 
-                text => 'treeview Homepage',
+		text => 'treeview Homepage',
 
-                href => 'http://treeview.lindnerei.de',
+		href => 'http://treeview.lindnerei.de',
 
 		}
 
@@ -153,7 +153,7 @@ HTML::Menu::TreeView
 	print jscript();
 
 	print Tree(\@tree,"Crystal");
-	
+
 
 =head3 function sets 
 
@@ -207,7 +207,7 @@ the base language of an elements attribute values and text content.
 
 =item onblur
 
-=item the element lost the focus.
+the element lost the focus.
 
 =item ondblclick
 
@@ -295,11 +295,17 @@ additional text behind the link
 
 =item subtree
 
+an array of TreeView Items
+
+subtree => {{text => 'Fo'},{text => 'Bar'} ],
+
 =item image.
 
 a image name, must be placed into /style/mimetypes directory.
 
 =item folderclass :
+
+only for Crystal styles
 
 possible values:
 
@@ -317,6 +323,12 @@ folderGreen and  folderRed
 
 see http://treeview.lindnerei.de/cgi-bin/crystal.pl for a complete list of possible values for folderclass.
 
+=item columns
+
+an array of columns
+
+columns => [ 1,2,3,4,5]
+
 =back
 
 =head1 DESCRIPTION
@@ -325,19 +337,13 @@ HTML::Menu::TreeView is a Modul to build an Html tree of an AoH.
 
 =head1 Changes
 
-0.7.1
-
-some fixes.
-
-new function columns()
-
-new attribute coulmuns => {1,2,3,4,5,6,7,8]
+0.7.2
 
 Overwrought Documentation,Code,Examples, tests and Documentation.
 
 =head1 Public
 
-=head2 clasic()
+=head2 clasic
 
 enable clasic  node decoration:
 
@@ -362,7 +368,7 @@ sub clasic {
         }
 }
 
-=head2 columns()
+=head2 columns
 
 set number of columns
 
@@ -383,17 +389,17 @@ sub columns {
         }
 }
 
-=head2 css()
+=head2 css
 
 return the  necessary css part without <style></style> tag.
 
 you can set the DocumentRoot if you pass a parameter
 
-	css('%PATH%');
+css('%PATH%');
 
 You can also include it with
 
-	<link href="/style/Crystal/16/html-menu-treeview/Crystal.css" rel="stylesheet" type="text/css">
+<link href="/style/Crystal/16/html-menu-treeview/Crystal.css" rel="stylesheet" type="text/css">
 
 for example.
 
@@ -419,11 +425,11 @@ sub css {
         return $css;
 }
 
-=head2 documentRoot()
+=head2 documentRoot
 
 set the Document Root in scalar context, or get it in void context.
 
-value: %PATH%
+default: this variable is set during make.
 
 =cut
 
@@ -440,7 +446,7 @@ sub documentRoot {
         }
 }
 
-=head2 folderFirst()
+=head2 folderFirst
 
 set or unset show folders first ?
 
@@ -469,7 +475,7 @@ sub folderFirst {
         }
 }
 
-=head2 getDocumentRoot()
+=head2 getDocumentRoot
 
 for backward compatibility.
 
@@ -481,7 +487,7 @@ sub getDocumentRoot {
         return $path;
 }
 
-=head2 help()
+=head2 help
 
 help for link attributes.
 
@@ -510,13 +516,13 @@ sub help {
         }
 }
 
-=head2 jscript()
+=head2 jscript
 
 return the necessary  javascript  without <script> tag.
 
 You can also include it with:
 
-	<script language="JavaScript" type="text/javascript" src="/style/treeview.js"></script>
+<script language="JavaScript" type="text/javascript" src="/style/treeview.js"></script>
 
 
 =cut
@@ -564,12 +570,14 @@ document.getElementById(id).className = 'clasicLastPlusNode';
 }
 }
 function displayTree(id){
+if(document.getElementById(id)){
 var e = document.getElementById(id);
 var display = e.style.display;
 if(display == \"none\"){
 e.style.display = \"\";
 }else if(display == \"\"){
 e.style.display = \"none\";
+}
 }
 }
 function replaceClass(mid){
@@ -590,9 +598,9 @@ obj[i].className = 'columnsFolderClosed';
 ";
 }
 
-=head2 loadTree()
+=head2 loadTree
 
-	loadTree('filename') or loadTree()
+loadTree('filename') or loadTree()
 
 default: ./TreeViewDump.pl
 
@@ -604,7 +612,7 @@ sub loadTree {
         do $do if(-e $do);
 }
 
-=head2  new()
+=head2  new
 
 if you use the oo interface you can say:
 
@@ -625,7 +633,7 @@ sub new {
         return $self;
 }
 
-=head2 orderBy()
+=head2 orderBy
 
 set the attribute which is used by sortTree and folderFirst.
 
@@ -636,7 +644,7 @@ sub orderBy {
         $orderby = $p[0];
 }
 
-=head2 prefix()
+=head2 prefix
 
 prefix used by css.
 
@@ -644,7 +652,7 @@ set this if you want to build offline websites.
 
 for example:
 
-	prefix('.');
+prefix('.');
 
 return the prefix in void context.
 
@@ -659,7 +667,7 @@ sub prefix {
         }
 }
 
-=head2 preload()
+=head2 preload
 
 return the necessary  javascript for preloading images  without <script> tag.
 
@@ -690,8 +698,6 @@ clasicLastplusNode.src='$pref/style/$style/$size/html-menu-treeview/clasicLastPl
 ";
         if($style eq "Crystal") {
                 $preload .= "
-folderManClosed = new Image($size,$size);
-folderManClosed.src='$pref/style/$style/$size/html-menu-treeview/folderManClosed.gif';
 folderGrayClosed = new Image($size,$size);
 folderGrayClosed.src='$pref/style/$style/$size/html-menu-treeview/folderGrayClosed.gif';
 folderGreenClosed = new Image($size,$size);
@@ -704,6 +710,9 @@ folderYellowClosed = new Image($size,$size);
 folderYellowClosed.src='$pref/style/$style/$size/html-menu-treeview/folderYellowClosed.gif';
 folderOrangeClosed = new Image($size,$size);
 folderOrangeClosed.src='$pref/style/$style/$size/html-menu-treeview/folderOrangeClosed.gif';
+folderPrintClosed = new Image($size,$size);
+folderPrintClosed.src='$pref/style/$style/$size/html-menu-treeview/folderPrintClosed.gif';";
+                $preload .= "
 folderManClosed = new Image($size,$size);
 folderManClosed.src='$pref/style/$style/$size/html-menu-treeview/folderManClosed.gif';
 folderHtmlClosed = new Image($size,$size);
@@ -718,8 +727,8 @@ folderCrystalClosed = new Image($size,$size);
 folderCrystalClosed.src='$pref/style/$style/$size/html-menu-treeview/folderCrystalClosed.gif';
 folderVideoClosed = new Image($size,$size);
 folderVideoClosed.src='$pref/style/$style/$size/html-menu-treeview/folderVideoClosed.gif';
-folderPrintClosed = new Image($size,$size);
-folderPrintClosed.src='$pref/style/$style/$size/html-menu-treeview/folderPrintClosed.gif';
+folderManClosed = new Image($size,$size);
+folderManClosed.src='$pref/style/$style/$size/html-menu-treeview/folderManClosed.gif';
 folderImageClosed = new Image($size,$size);
 folderImageClosed.src='$pref/style/$style/$size/html-menu-treeview/folderImageClosed.gif';
 folderSoundClosed = new Image($size,$size);
@@ -728,18 +737,17 @@ folderImportantClosed = new Image($size,$size);
 folderImportantClosed.src='$pref/style/$style/$size/html-menu-treeview/folderImportantClosed.gif';
 folderTarClosed = new Image($size,$size);
 folderTarClosed.src='$pref/style/$style/$size/html-menu-treeview/folderTarClosed.gif';
-";
+" if($size != 22);
         }
         return $preload;
 }
 
-=head2 saveTree()
+=head2 saveTree
 
-	saveTree('filename',\@ref) or saveTree()
+saveTree('filename',\@ref) or saveTree()
 
-this prperty is set during make
 
-value: %PATH%
+default: this property is set during make
 
 =cut
 
@@ -769,7 +777,7 @@ sub saveTree {
         }
 }
 
-=head2 setClasic()
+=head2 setClasic
 
 use clasic instead.
 
@@ -783,7 +791,7 @@ sub setClasic {
         $clasic = 1;
 }
 
-=head2 setDocumentRoot()
+=head2 setDocumentRoot
 
 for backward compatibility.
 
@@ -795,7 +803,7 @@ should be the Document Root of your webserver.
 
 example: setDocumentRoot('%PATH%');
 
-value: %PATH%
+dafault: this property is set during make
 
 =cut
 
@@ -804,7 +812,7 @@ sub setDocumentRoot {
         $self->documentRoot($p[0]);
 }
 
-=head2 setModern()
+=head2 setModern
 
 use clasic instead.
 
@@ -818,7 +826,7 @@ sub setModern {
         $clasic = 0;
 }
 
-=head2 setSize()
+=head2 setSize
 
 for backward compatibility.
 
@@ -835,7 +843,7 @@ sub setSize {
         $self->size($p[0]);
 }
 
-=head2 setStyle()
+=head2 setStyle
 
 for backward compatibility.
 
@@ -854,7 +862,7 @@ sub setStyle {
         $self->style($p[0]);
 }
 
-=head2 size()
+=head2 size
 
 only for Crystal styles
 
@@ -873,7 +881,7 @@ sub size {
         }
 }
 
-=head2 sortTree()
+=head2 sortTree
 
 set or unset sorting treeview Items.
 
@@ -902,7 +910,7 @@ sub sortTree {
         }
 }
 
-=head2 style()
+=head2 style
 
 set the style in scalar context, or get in void context.
 
@@ -927,7 +935,7 @@ sub style {
         }
 }
 
-=head2 Tree()
+=head2 Tree
 
 Tree(\@tree,optional $style);
 
@@ -940,18 +948,20 @@ sub Tree {
         $style = $p[1] if(defined $p[1]);
         @TreeView = @p ? @p : @TreeView;
         $self->initTree(@TreeView) if(@TreeView);
-        return
+        my $r =
           '<table align="left" class="TreeView" border="0" cellpadding="2" cellspacing="1" summary="treeTable"  ><tr><td><table align="left" class="TreeView" border="0" cellpadding="0" cellspacing="0" summary="treeTable" width="100%" ><colgroup><col width="'
           . $size
           . '"></colgroup>'
           . $self->{tree}
-          . ('</table></td><td><table align="left" class="TreeView" border="0" cellpadding="0" cellspacing="0" summary="treeTable" width="100%" >' . $self->{subtree} . '</table></td></tr></table>')
-          if(defined $self->{subtree});
+          . '</table></td>';
+        $r .= '<td><table align="left" class="TreeView" border="0" cellpadding="0" cellspacing="0" summary="treeTable" width="100%" >' . $self->{subtree} . '</table></td>' if(defined $self->{subtree});
+        $r .= '</tr></table>';
+        return $r;
 }
 
 =head1 Private
 
-=head2 initTree()
+=head2 initTree
 
 =cut
 
@@ -986,7 +996,7 @@ sub initTree {
                 }
         }
 
-=head2 ffolderFirst()
+=head2 ffolderFirst
 
 =cut
 
@@ -1010,7 +1020,7 @@ sub initTree {
         }
 }
 
-=head2 getSelf()
+=head2 getSelf
 
 HTML::Menu::TreeView Module use a Lincoln loader like class system.
 
@@ -1020,7 +1030,7 @@ or the first parameter it is not a object referenz (fo syntax) it create a new H
 
 return it as first value  and  @_  as the second value .
 
-	my ($self, @p) = getSelf(@_);
+my ($self, @p) = getSelf(@_);
 
 =cut
 
@@ -1029,7 +1039,7 @@ sub getSelf {
         return (defined($_[0]) && (ref($_[0]) eq 'HTML::Menu::TreeView' || UNIVERSAL::isa($_[0], 'HTML::Menu::TreeView'))) ? @_ : ($HTML::Menu::TreeView::DefaultClass->new, @_);
 }
 
-=head2 appendFolder()
+=head2 appendFolder
 
 =cut
 
@@ -1053,23 +1063,23 @@ sub appendFolder {
           : "<a $tt>$node->{text}</a>";
         my $minusnode = $clasic ? "clasicMinusNode" : "minusNode";
         $self->{tree} .=
-          "<tr class=\"trSubtreeCaption\"><td  id=\"$id.node\" class=\"$minusnode\" onclick=\"displayTree('$id');displayTree('columns$id'); ocFolder('$id.folder');ocNode('$id.node');replaceClass('$id');\"><img src=\"$pref/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" width=\"$size\" height=\"$size\" alt=\"spacer\"/></td><td align=\"left\" class=\"$FolderClass\" id=\"$id.folder\">$addon</td>";
-        $self->{tree} .=
-          "</tr><tr id=\"$id\" class=\"trSubtree\"><td class=\"submenuDeco\"><img src=\"$pref/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" alt=\"spacer\"/></td><td class=\"submenu\"><table align=\"left\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\"  class=\"subtreeTable\" summary=\"appendFolder\" width=\"100%\"><colgroup><col width=\"$size\"></colgroup>";
-        if(defined $columns) {
+          "<tr class=\"trSubtreeCaption\"><td  id=\"$id.node\" class=\"$minusnode\" onclick=\"displayTree('$id');displayTree('columns$id'); ocFolder('$id.folder');ocNode('$id.node');replaceClass('$id');\"><img src=\"$pref/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" width=\"$size\" height=\"$size\" alt=\"spacer\"/></td><td align=\"left\" class=\"$FolderClass\" id=\"$id.folder\">$addon</td></tr><tr id=\"$id\" class=\"trSubtree\"><td class=\"submenuDeco\"><img src=\"$pref/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" alt=\"spacer\"/></td><td class=\"submenu\"><table align=\"left\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\"  class=\"subtreeTable\" summary=\"appendFolder\" width=\"100%\"><colgroup><col width=\"$size\"></colgroup>";
+        if($columns > 0) {
                 $self->{subtree} .= "<tr>";
                 for(my $i = 0 ; $i < $columns ; $i++) {
-                        $self->{subtree} .= '<td class="columnsFolder" id="td' . $id . 'td' . $i . '">' . $node->{columns}[$i] . '</td>';
+                        my $txt = $node->{columns}[$i];
+                        $txt =~ s/ /&#160;/g;
+                        $self->{subtree} .= '<td class="columnsFolder" id="td' . $id . 'td' . $i . '">' . $txt . '</td>';
                 }
                 $self->{subtree} .= '</tr>';
-                $self->{subtree} .= "<tr id=\"columns$id\" ><td colspan=\"$columns\"><table align=\"\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\"  class=\"subtreeTable\" summary=\"appendFolder\" width=\"100%\">";
+                $self->{subtree} .= "<tr id=\"columns$id\" ><td colspan=\"$columns\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"  class=\"subtreeTable\" summary=\"appendFolder\" width=\"100%\">";
         }
         $self->initTree(\@$subtree);
-        $self->{subtree} .= "</table></td></tr>" if(defined $columns);
+        $self->{subtree} .= "</table></td></tr>" if($columns > 0);
         $self->{tree} .= "</table></td></tr>";
 }
 
-=head2 appendLastFolder()
+=head2 appendLastFolder
 
 =cut
 
@@ -1092,30 +1102,23 @@ sub appendLastFolder {
           ? "<table align=\"left\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\"  class=\"subtreeTable\" summary=\"appendFolder\" width=\"100%\"><td><a $tt>$node->{text}</a></td><td>" . $node->{addition} . '</td></tr></table>'
           : "<a $tt>$node->{text}</a>";
         my $lastminusnode = $clasic ? "clasicLastMinusNode" : "lastMinusNode";
-        $self->{tree} .= "<tr class=\"lastTreeViewItem\">
-		<td id=\"$id.node\" class=\"$lastminusnode\" onclick=\"displayTree('$id');displayTree('columns$id');ocFolder('$id.folder');ocpNode('$id.node');replaceClass('$id');\"></td>
-		<td align=\"left\" class=\"$FolderClass\" id=\"$id.folder\">$addon</td>
-	</tr>
-	<tr id=\"$id\" class=\"trSubtree\">
-		<td ><img src=\"$pref/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" width=\"$size\" height=\"$size\" alt=\"spacer\"/></td>
-		<td class=\"submenu\">
-			<table align=\"left\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"subtreeTable\" summary=\"appendLastFolder\">
-			<colgroup><col width=\"$size\"></colgroup>";
-        if(defined $columns) {
+        $self->{tree} .=
+          "<tr class=\"lastTreeViewItem\"><td id=\"$id.node\" class=\"$lastminusnode\" onclick=\"displayTree('$id');displayTree('columns$id');ocFolder('$id.folder');ocpNode('$id.node');replaceClass('$id');\"></td><td align=\"left\" class=\"$FolderClass\" id=\"$id.folder\">$addon</td></tr><tr id=\"$id\" class=\"trSubtree\"><td ><img src=\"$pref/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" width=\"$size\" height=\"$size\" alt=\"spacer\"/></td><td class=\"submenu\"><table align=\"left\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"subtreeTable\" summary=\"appendLastFolder\"><colgroup><col width=\"$size\"></colgroup>";
+        if($columns > 0) {
                 $self->{subtree} .= "<tr>";
                 for(my $i = 0 ; $i < $columns ; $i++) {
-                        $self->{subtree} .= '<td class="columnsFolder" id="td' . $id . 'td' . $i . '">' . $node->{columns}[$i] . '</td>';
+                        my $txt = $node->{columns}[$i];
+                        $txt =~ s/ /&#160;/g;
+                        $self->{subtree} .= '<td class="columnsFolder" id="td' . $id . 'td' . $i . '">' . $txt . '</td>';
                 }
-                $self->{subtree} .= '</tr>';
-                $self->{subtree} .= "<tr id=\"columns$id\" ><td colspan=\"$columns\"><table align=\"\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\"  class=\"subtreeTable\" summary=\"appendFolder\" width=\"100%\">";
+                $self->{subtree} .= "</tr><tr id=\"columns$id\" ><td colspan=\"$columns\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"  class=\"subtreeTable\" summary=\"appendFolder\" width=\"100%\">";
         }
         $self->initTree(\@$subtree);
-        $self->{subtree} .= "</table></td></tr>" if(defined $columns);
+        $self->{subtree} .= "</table></td></tr>" if($columns > 0);
         $self->{tree} .= "</table></td>";
-
 }
 
-=head2 appendNode()
+=head2 appendNode
 
 =cut
 
@@ -1136,16 +1139,18 @@ sub appendNode {
         my $paddingLeft = $size+ 2 . "px";
         $self->{tree} .=
           "<tr class=\"TreeViewItem\"><td  class=\"node\"><img src=\"$pref/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" width=\"$size\" height=\"$size\" alt=\"spacer\" align=\"middle\"/></td><td align=\"left\"  style=\"background-image:url('$pref/style/$style/$size/mimetypes/$node->{image}');background-repeat:no-repeat;cursor:pointer;padding-left:$paddingLeft\">$addon</td></tr>";
-        if(defined $columns) {
+        if($columns > 0) {
                 $self->{subtree} .= "<tr >";
                 for(my $i = 0 ; $i < $columns ; $i++) {
-                        $self->{subtree} .= '<td class="columnsNode">' . $node->{columns}[$i] . '</td>';
+                        my $txt = $node->{columns}[$i];
+                        $txt =~ s/ /&#160;/g;
+                        $self->{subtree} .= '<td class="columnsNode">' . $txt . '</td>';
                 }
                 $self->{subtree} .= "</tr>";
         }
 }
 
-=head2 appendLastNode()
+=head2 appendLastNode
 
 =cut
 
@@ -1166,10 +1171,12 @@ sub appendLastNode {
         my $paddingLeft = $size+ 2 . "px";
         $self->{tree} .=
           "<tr class=\"TreeViewItem\"><td  class=\"lastNode\"><img src=\"$pref/style/$style/$size/html-menu-treeview/spacer.gif\" border=\"0\" width=\"$size\" height=\"$size\" alt=\"spacer\"/></td><td align=\"left\"  style=\"background-image:url('$pref/style/$style/$size/mimetypes/$node->{image}');background-repeat:no-repeat;cursor:pointer;padding-left:$paddingLeft;\">$addon</td></tr>";
-        if(defined $columns) {
+        if($columns > 0) {
                 $self->{subtree} .= "<tr >";
                 for(my $i = 0 ; $i < $columns ; $i++) {
-                        $self->{subtree} .= '<td class="columnsLastNode">' . $node->{columns}[$i] . '</td>';
+                        my $txt = $node->{columns}[$i];
+                        $txt =~ s/ /&#160;/g;
+                        $self->{subtree} .= '<td class="columnsLastNode">' . $txt . '</td>';
                 }
                 $self->{subtree} .= "</tr>";
         }

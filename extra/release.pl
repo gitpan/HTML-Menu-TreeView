@@ -30,7 +30,6 @@ sub change {
         }
 }
 &replacePath('blib/lib/HTML/Menu/TreeView.pm');
-&replacePath('examples/module2treeview.pl');
 
 sub replacePath {
         my $file = shift;

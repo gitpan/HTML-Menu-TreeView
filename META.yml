@@ -1,17 +1,12 @@
 --- #YAML:1.0
 name:                HTML-Menu-TreeView
-version:             0.7.1
+version:             0.7.2
 abstract:            ~
 license:             ~
 generated_by:        ExtUtils::MakeMaker version 6.36
 distribution_type:   module
 requires:     
-    Data::Dumper:                  2.12108
-    Module::Signature:             0.55
-    Pod::Coverage:                 0.18
-    Pod::Escapes:                  1.04
-    Test::Pod:                     1.26
-    Test::Pod::Coverage:           1.08
+    Test::More:                    0
 meta-spec:
     url:     http://module-build.sourceforge.net/META-spec-v1.2.html
     version: 1.2

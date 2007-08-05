@@ -4,18 +4,16 @@ use Pod::Usage;
 use HTML::Menu::TreeView qw(:all);
 use Getopt::Long;
 use strict;
-my $htdocs  = '/srv/www/httpdocs';
+my $htdocs  = documentRoot();
 my $outpath = undef;
 my $style   = "Crystal";
 my $size    = 16;
-my $mod;
-my $reverse = 0;
-my @modules;
+my ($mod, $reverse, @modules);
 my $help   = 0;
 my $sort   = 0;
 my $prefix = undef;
 my $result = GetOptions("module=s" => \$mod, "htdocs=s" => \$htdocs, "style=s" => \$style, "size=s" => \$size, "reverse=s" => \$reverse, 'help|?' => \$help, 'sort' => \$sort, 'prefix=s' => \$prefix, 'store=s' => \$outpath);
-$help = 1 unless (defined $mod && $reverse);
+$help = 1 if((not defined $mod) && (not defined $reverse));
 pod2usage(1)    if $help;
 sortTree(1)     if $sort;
 prefix($prefix) if defined $prefix;
@@ -117,7 +115,7 @@ sub reverse {
                         if(-d $d . "/" . $files[$i]) {
                                 push @DIR, {text => "$files[$i]", href => "$files[$i].pm.html", subtree => [&reverse($d . "/" . $files[$i])],};
                         } else {
-                                if($files[$i] =~ /^.*\.pm$/) {
+                                if($files[$i] =~ /^.*\.pm$/ && has_pod("$d/$files[$i]")) {
                                         &module2treeview("$d/$files[$i]", $files[$i]);
                                         my $ifex = $files[$i];
                                         $ifex =~ s/\.pm$//g;
@@ -131,14 +129,30 @@ sub reverse {
         return @DIR;
 }
 
+sub has_pod {
+        my $m = shift;
+        use Fcntl qw(:flock);
+        use Symbol;
+        my $fh = gensym;
+        open $fh, $m or die "$!: $m";
+        seek $fh, 0, 0;
+        my @lines = <$fh>;
+        close $fh;
+
+        for(@lines) {
+                return 1 if($_ =~ /^=head1/);
+        }
+        return 0;
+}
+
 sub openTree {
         my ($module, $infile, $m2) = @_;
         my @TREEVIEW;
-        system("pod2html --noindex --title=$module --infile=$infile  --outfile=$outpath" . "$m2" . "frame.html");
+        system("pod2html --noindex --title=$module --infile=$infile  --outfile=$outpath/" . "$m2" . "frame.html");
         use Fcntl qw(:flock);
         use Symbol;
         my $fh   = gensym;
-        my $file = "$outpath" . "$m2" . "frame.html";
+        my $file = "$outpath/" . "$m2" . "frame.html";
         open $fh, "$file" or die "$!: $file";
         seek $fh, 0, 0;
         my @lines = <$fh>;
@@ -192,15 +206,9 @@ which makes usage of HTML::Menu::TreeView.
 
 =head1 Changes
 
-0.1.3
+0.1.4
 
---sort
-
---prefix # to create offline websites
-
---store /path/to store/Dokumentation
-
-default: /srv/www/httpdocs
+--skip emty pods
 
 some fixes
 

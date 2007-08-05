@@ -32,12 +32,16 @@ document.getElementById(id).className = 'clasicLastMinusNode';
 }else if(folder  ==  "clasicLastMinusNode"){
 document.getElementById(id).className = 'clasicLastPlusNode';}}
 function displayTree(id){
+if(document.getElementById(id)){
 var e = document.getElementById(id);
 var display = e.style.display;
 if(display  ==  "none"){
 e.style.display = "";
 }else if(display  ==  ""){
-e.style.display = "none";}}
+e.style.display = "none";
+}
+}
+}
 function replaceClass(mid){
     var obj;
     if(document.all){
