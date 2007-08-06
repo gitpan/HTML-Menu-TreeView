@@ -1,5 +1,8 @@
 Revision history for Perl extension treeview.
-HTML::Menu::TreeView version 0.7.2
+HTML::Menu::TreeView version 0.7.3
+
+0.7.3
+	- Cleanup TreeView.pm
 0.7.2
 	- skip emty files module2treeview.pl --reverse=1
 	- Overwrought Documentation,Code,Examples, tests and Documentation.

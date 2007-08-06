@@ -24,7 +24,7 @@ my @tree = (
 		},
 		{
 		text => 'Kontakt',
-		href => 'mailto:dirk.lindner@gmx.de',
+		href => 'mailto:lindnerei@o2online.de',
 		},
 		{
 		text => 'Treeview.pm',
@@ -108,7 +108,7 @@ my @tree = (
 		},
 		{
 		text => 'Kontakt',
-		href => 'mailto:dirk.lindner@gmx.de',
+		href => 'mailto:lindnerei@o2online.de',
 		}
 );
 print $cgi->header,

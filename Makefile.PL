@@ -11,5 +11,5 @@ WriteMakefile(
               PL_FILES     => {'extra/release.pl' => "-release blib/bin  -readdir httpdocs/ -htpath $htd"},
               PREREQ_PM    => {'Test::More' => 0,},
               ($] >= 5.005 ? (AUTHOR => 'Dirk Lindner <lindnerei@o2online.de>') : ()),
-              SIGN => 1,
+#               SIGN => 1,
 );

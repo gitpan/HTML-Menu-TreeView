@@ -3,7 +3,7 @@ use strict;
 use warnings;
 require Exporter;
 use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView);
-$HTML::Menu::TreeView::VERSION   = '0.7.2';
+$HTML::Menu::TreeView::VERSION   = '0.7.3';
 @ISA                             = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK = qw(all Tree css jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style documentRoot loadTree saveTree  %anker sortTree orderBy prefix);
 %HTML::Menu::TreeView::EXPORT_TAGS = (
@@ -337,9 +337,9 @@ HTML::Menu::TreeView is a Modul to build an Html tree of an AoH.
 
 =head1 Changes
 
-0.7.2
+0.7.3
 
-Overwrought Documentation,Code,Examples, tests and Documentation.
+Cleanup TreeView.pm
 
 =head1 Public
 
@@ -395,7 +395,7 @@ return the  necessary css part without <style></style> tag.
 
 you can set the DocumentRoot if you pass a parameter
 
-css('%PATH%');
+css('/document/root/');
 
 You can also include it with
 
