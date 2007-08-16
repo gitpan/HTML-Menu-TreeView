@@ -425,6 +425,7 @@ td.minusNode{
 background-image:url('/style/Crystal/16/html-menu-treeview/minusNode.gif');
 cursor:pointer;
 background-repeat:no-repeat;
+height:22px;
 }
 td.lastMinusNode{
 background-image:url('/style/Crystal/16/html-menu-treeview/lastMinusNode.gif');
@@ -436,6 +437,7 @@ td.plusNode{
 background-image:url('/style/Crystal/16/html-menu-treeview/plusNode.gif');
 cursor:pointer;
 background-repeat:no-repeat;
+height:22px;
 }
 td.lastPlusNode{
 background-image:url('/style/Crystal/16/html-menu-treeview/lastPlusNode.gif');
@@ -449,6 +451,7 @@ cursor:pointer;
 font-size:14px;
 height:22px;
 background-repeat:repeat-y;
+vertical-align:top;
 text-align:left;
 }
 td.submenuDeco{
@@ -475,26 +478,52 @@ height:22px;
 color:blue;
 cursor:pointer;
 font-family:verdana,sans-serif;
+vertical-align:top;
 }
 td.columnsFolder{
+vertical-align:top;
+color:black;
 font-size:14px;
 height:22px;
-vertical-align:top;
 font-family:verdana, sans-serif;
+white-space: nowrap;
+vertical-align:top;
+
 }
 td.columnsFolderClosed{
+vertical-align:top;
+color:black;
 font-size:14px;
 height:22px;
-vertical-align:top;
 font-family:verdana, sans-serif;
+white-space: nowrap;
+vertical-align:top;
+
 }
 td.columnsNode{
+color:black;
 font-size:14px;
 height:22px;
 font-family:verdana, sans-serif;
+white-space: nowrap;
+vertical-align:top;
+
 }
 td.columnsLastNode{
+color:black;
 font-size:14px;
 font-family:verdana, sans-serif;
 height:22px;
+white-space: nowrap;
+vertical-align:top;
+
+}
+td.caption{
+color:black;
+height:24px;
+font-size:16px;
+white-space: nowrap;
+font-family:verdana, sans-serif;
+vertical-align:top;
+
 }

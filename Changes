@@ -1,6 +1,9 @@
 Revision history for Perl extension treeview.
-HTML::Menu::TreeView version 0.7.3
-
+HTML::Menu::TreeView version 0.7.4
+0.7.4
+	- style is renamed to Style you can import qw(:all style) explizit for backward compatibility.
+	- new possible usage of columns, give a list of Captions instead of the columns count.
+	- Overwrought Documentation,Code,Examples, tests and Documentation.
 0.7.3
 	- Cleanup TreeView.pm
 0.7.2

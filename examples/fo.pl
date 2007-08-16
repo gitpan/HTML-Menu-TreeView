@@ -9,8 +9,7 @@ my @tree = (
 		text => 'onclick',
 		},
 		{
-		text    => 'Treeview',
-		href    => './index.html',
+		text    => 'Html::Menu::TreeView',
 		target  => '_parent',
 		subtree => [
 			{

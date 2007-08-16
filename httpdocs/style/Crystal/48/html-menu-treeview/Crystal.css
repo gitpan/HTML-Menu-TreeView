@@ -1,5 +1,5 @@
 td.clasicMinusNode{
-background-image:url('/style/Crystal/16/html-menu-treeview/clasicMinusNode.gif');
+background-image:url('/style/Crystal/48/html-menu-treeview/clasicMinusNode.gif');
 cursor:pointer;
 background-repeat:no-repeat;
 }
@@ -460,16 +460,30 @@ font-family:verdana,sans-serif;
 td.columnsFolderClosed{
 font-size:46px;
 height:66px;
+font-family:verdana, sans-serif;
+white-space: nowrap;
 }
 td.columnsFolder{
 font-size:46px;
 height:66px;
+font-family:verdana, sans-serif;
+white-space: nowrap;
 }
 td.columnsNode{
 font-size:46px;
 height:66px;
+font-family:verdana, sans-serif;
+white-space: nowrap;
 }
 td.columnsLastNode{
 font-size:46px;
 height:66px;
+white-space: nowrap;
+font-family:verdana, sans-serif;
+}
+td.caption{
+font-size:46px;
+height:66px;
+font-family:verdana, sans-serif;
+white-space: nowrap;
 }

@@ -58,4 +58,26 @@ function replaceClass(mid){
     }
 }
 
-
+function hideArray(i){
+    var first = 1;
+    var display = '';
+    if(window.folders){
+        for (var j in window.folders[i]){
+            var node =document.getElementById('tr'+window.folders[i][j]);
+            if(first){
+                display  = node.style.display == 'none' ? '':'none'
+                        first = 0;
+            }
+            var subfolder = document.getElementById(window.folders[i][j]);
+            if(subfolder){
+                if(subfolder.style.display != display){
+                    ocFolder(window.folders[i][j]+'.folder');
+                    ocNode(window.folders[i][j]+'.node');
+                    replaceClass(window.folders[i][j]);
+                    displayTree(window.folders[i][j]);
+                }
+            }
+            node.style.display = display;
+        }
+    }
+}

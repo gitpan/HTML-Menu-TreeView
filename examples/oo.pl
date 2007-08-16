@@ -8,9 +8,7 @@ my @tree = (
 		text => 'onclick',
 		},
 		{
-		text    => 'Treeview',
-		href    => './index.html',
-		target  => '_parent',
+		text    => 'Html::Menu::TreeView',
 		subtree => [
 			{
 			text => 'treeview.tigris.org',
@@ -35,7 +33,7 @@ my @tree = (
 		},
 );
 my $TreeView = new HTML::Menu::TreeView();
-$TreeView->style('simple');
+$TreeView->Style('simple');
 $TreeView->clasic(1);
 my $q = new CGI;
 print $q->header,

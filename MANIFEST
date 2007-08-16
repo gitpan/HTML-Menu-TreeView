@@ -865,10 +865,12 @@ lib/HTML/Menu/TreeView.pm
 Makefile.PL
 MANIFEST			This list of files
 README
+t/01-Treeview.t
 t/02-Treeview.t
 t/03-Treeview.t
 t/04-Treeview.t
 t/05-Treeview.t
 t/06-Treeview.t
+t/07-Treeview.t
 todo
 META.yml                                 Module meta-data (added by MakeMaker)

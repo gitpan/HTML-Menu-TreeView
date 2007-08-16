@@ -2,17 +2,17 @@ td.folderOpen{
 background-image:url('/style/simple/16/html-menu-treeview/folderOpen.gif');
 background-repeat:no-repeat;
 cursor:pointer;
-padding-left:20px;
+padding-left:22px;
 font-size:14px;
-height:20px;
+height:22px;
 vertical-align:top;
 }
 td.folderClosed{
 background-image:url('/style/simple/16/html-menu-treeview/folderClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
-padding-left:20px;
-height:20px;
+padding-left:22px;
+height:22px;
 font-size:14px;
 vertical-align:top;
 }
@@ -35,14 +35,14 @@ td.lastPlusNode{
 background-image:url('/style/simple/16/html-menu-treeview/lastPlusNode.gif');
 background-repeat:no-repeat;
 cursor:pointer;
-height:20px;
+height:22px;
 }
 td.node{
 background-image:url('/style/simple/16/html-menu-treeview/node.gif');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:14px;
-height:20px;
+height:22px;
 
 }
 td.submenuDeco{
@@ -54,18 +54,18 @@ background-image:url('/style/simple/16/html-menu-treeview/lastNode.gif');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:14px;
-height:20px;
+height:22px;
 
 }
 a.treeviewLink{
 font-size:14px;
 color:black;
 cursor:pointer;
-height:20px;
+height:22px;
 }
 a.treeviewLink:hover{
 font-size:14px;
-height:20px;
+height:22px;
 color:blue;
 cursor:pointer;
 }
@@ -85,23 +85,41 @@ td.clasicLastPlusNode{
 background-image:url('/style/simple/16/html-menu-treeview/clasicLastPlusNode.gif');
 cursor:pointer;
 }
-td.columnsFolderClosed{
-vertical-align:top;
-font-size:14px;
-height:20px;
-}
+
 td.columnsFolder{
 vertical-align:top;
+color:black;
 font-size:14px;
-height:20px;
+height:22px;
+font-family:verdana, sans-serif;
+white-space: nowrap;
+}
+td.columnsFolderClosed{
+vertical-align:top;
+color:black;
+font-size:14px;
+height:22px;
+font-family:verdana, sans-serif;
+white-space: nowrap;
 }
 td.columnsNode{
-vertical-align:top;
+color:black;
 font-size:14px;
-height:20px;
+height:22px;
+font-family:verdana, sans-serif;
+white-space: nowrap;
 }
 td.columnsLastNode{
-vertical-align:top;
+color:black;
 font-size:14px;
-height:20px;
+font-family:verdana, sans-serif;
+height:22px;
+white-space: nowrap;
+}
+td.caption{
+color:black;
+height:24px;
+font-size:16px;
+white-space: nowrap;
+font-family:verdana, sans-serif;
 }

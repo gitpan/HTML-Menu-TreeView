@@ -458,16 +458,30 @@ font-family:verdana,sans-serif;
 td.columnsFolderClosed{
 font-size:64px;
 height:88px;
+font-family:verdana, sans-serif;
+white-space: nowrap
 }
 td.columnsFolder{
 font-size:64px;
 height:88px;
+font-family:verdana, sans-serif;
+white-space: nowrap
 }
 td.columnsNode{
 font-size:64px;
 height:88px;
+font-family:verdana, sans-serif;
+white-space: nowrap
 }
 td.columnsLastNode{
 font-size:64px;
 height:88px;
+font-family:verdana, sans-serif;
+white-space: nowrap
+}
+td.columnsFolder{
+font-size:64px;
+height:88px;
+font-family:verdana, sans-serif;
+white-space: nowrap;
 }

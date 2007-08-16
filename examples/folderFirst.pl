@@ -23,10 +23,6 @@ my @tree = (
 		href => "./folderFirst.pl?folderFirst=$folderfirst&amp;sort=$sort",
 		},
 		{
-		text => 'Kontakt',
-		href => 'mailto:lindnerei@o2online.de',
-		},
-		{
 		text => 'Treeview.pm',
 		href => '/html-menu-treeview.html',
 		onclick => '',
@@ -42,15 +38,19 @@ my @tree = (
 		subtree => [
 				{
 				text => 'OO Syntax',
-				href => 'oo.pl',
+				href => 'http://treeview.lindnerei.de/cgi-bin/oo.pl',
 				},
 				{
 				text => 'FO Syntax',
-				href => './fo.pl',
+				href => 'http://treeview.lindnerei.de/cgi-bin/fo.pl',
 				},
 				{
 				text => 'Crystal',
-				href => './crystal.pl',
+				href => 'http://treeview.lindnerei.de/cgi-bin/crystal.pl',
+				},
+				{
+				text => 'Sorting the Tree'
+				href => 'http://treeview.lindnerei.de/cgi-bin/folderFirst.pl',
 				},
 			],
 		},
@@ -87,27 +87,10 @@ my @tree = (
 						},
 					],
 				},
-				{
-				text    => 'Examples',
-				subtree => [
-					{
-					text => 'OO Syntax',
-					href => 'oo.pl',
-					},
-					{
-					text => 'FO Syntax',
-					href => './fo.pl',
-					},
-					{
-					text => 'Crystal',
-					href => './crystal.pl',
-					},
-				],
-				},
 			]
 		},
 		{
-		text => 'Kontakt',
+		text => 'Contact',
 		href => 'mailto:lindnerei@o2online.de',
 		}
 );
@@ -119,4 +102,3 @@ $cgi->start_html(
 ),
 $TreeView->Tree(\@tree),
 $cgi->end_html;
-
