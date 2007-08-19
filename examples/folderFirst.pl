@@ -49,7 +49,7 @@ my @tree = (
 				href => 'http://treeview.lindnerei.de/cgi-bin/crystal.pl',
 				},
 				{
-				text => 'Sorting the Tree'
+				text => 'Sorting the Tree',
 				href => 'http://treeview.lindnerei.de/cgi-bin/folderFirst.pl',
 				},
 			],

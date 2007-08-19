@@ -455,12 +455,6 @@ color:blue;
 cursor:pointer;
 font-family:verdana,sans-serif;
 }
-td.columnsFolderClosed{
-font-size:128px;
-height:176px;
-font-family:verdana, sans-serif;
-white-space: nowrap;
-}
 td.columnsFolder{
 font-size:128px;
 height:176px;
@@ -484,4 +478,46 @@ font-size:128px;
 height:176px;
 font-family:verdana, sans-serif;
 white-space: nowrap;
+}
+
+td.columnsFolderBorder{
+vertical-align:top;
+color:black;
+font-size:128px;
+height:176px;
+font-family:verdana, sans-serif;
+white-space: nowrap;
+vertical-align:top;
+border-left:1px;
+border-left-style:dashed;
+}
+td.columnsNodeBorder{
+color:black;
+font-size:128px;
+height:176px;
+font-family:verdana, sans-serif;
+white-space: nowrap;
+vertical-align:top;
+border-left:1px;
+border-left-style:dashed;
+}
+td.columnsLastNodeBorder{
+color:black;
+font-size:128px;
+height:176px;
+font-family:verdana, sans-serif;
+white-space: nowrap;
+vertical-align:top;
+border-left:1px;
+border-left-style:dashed;
+}
+td.captionBorder{
+color:black;
+font-size:128px;
+height:176px;
+white-space: nowrap;
+font-family:verdana, sans-serif;
+vertical-align:top;
+border-bottom:1px;
+border-bottom-style:dashed;
 }

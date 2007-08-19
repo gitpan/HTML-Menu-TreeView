@@ -246,16 +246,51 @@ vertical-align:top;
 font-family:verdana, sans-serif;
 white-space: nowrap;
 }
-td.columnsFolderClosed{
-font-size:21px;
-height:30px;
-vertical-align:top;
-font-family:verdana, sans-serif;
-white-space: nowrap;
-}
 td.caption{
 height:30px;
 font-size:21px;
 font-family:verdana, sans-serif;
 white-space: nowrap;
 }
+td.columnsFolderBorder{
+vertical-align:top;
+color:black;
+height:30px;
+font-size:21px;
+font-family:verdana, sans-serif;
+white-space: nowrap;
+vertical-align:top;
+border-left:1px;
+border-left-style:dashed;
+}
+td.columnsNodeBorder{
+color:black;
+height:30px;
+font-size:21px;
+font-family:verdana, sans-serif;
+white-space: nowrap;
+vertical-align:top;
+border-left:1px;
+border-left-style:dashed;
+}
+td.columnsLastNodeBorder{
+color:black;
+height:30px;
+font-size:21px;
+font-family:verdana, sans-serif;
+white-space: nowrap;
+vertical-align:top;
+border-left:1px;
+border-left-style:dashed;
+}
+td.captionBorder{
+color:black;
+height:30px;
+font-size:21px;
+white-space: nowrap;
+font-family:verdana, sans-serif;
+vertical-align:top;
+border-bottom:1px;
+border-bottom-style:dashed;
+}
+

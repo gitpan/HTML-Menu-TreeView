@@ -10,7 +10,7 @@ var isclosed = mclass.test(folder);
 if(isclosed  ==  true){
 document.getElementById(id).className = folder.replace(/(folder.*)Closed/,'\$1');
 }else{
-    document.getElementById(id).className = folder.replace(/(folder.*)/,'\$1Closed');
+document.getElementById(id).className = folder.replace(/(folder.*)/,'\$1Closed');
 }}}
 function ocNode(id){
 var folder = document.getElementById(id).className;if(folder  ==  "minusNode"){
@@ -42,22 +42,6 @@ e.style.display = "none";
 }
 }
 }
-function replaceClass(mid){
-    var obj;
-    if(document.all){
-        obj = document.all;
-    }else if(document.getElementsByTagName && !document.all){
-        obj = document.getElementsByTagName('*');
-    }
-    for(i=0; i < obj.length; i++){
-        if(obj[i].className == 'columnsFolderClosed' && obj[i].id.indexOf('td'+mid)!=-1 ){
-            obj[i].className = 'columnsFolder';
-        }else if(obj[i].className == 'columnsFolder' && obj[i].id.indexOf('td'+mid)!=-1 ){
-            obj[i].className = 'columnsFolderClosed';
-        }
-    }
-}
-
 function hideArray(i){
     var first = 1;
     var display = '';
@@ -70,14 +54,13 @@ function hideArray(i){
             }
             var subfolder = document.getElementById(window.folders[i][j]);
             if(subfolder){
-                if(subfolder.style.display != display){
+                if(subfolder.style.display != display && display == ''){
                     ocFolder(window.folders[i][j]+'.folder');
                     ocNode(window.folders[i][j]+'.node');
-                    replaceClass(window.folders[i][j]);
                     displayTree(window.folders[i][j]);
                 }
             }
             node.style.display = display;
-        }
+            }
     }
 }
