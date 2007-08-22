@@ -3,7 +3,7 @@ use strict;
 use warnings;
 require Exporter;
 use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView %openArrays);
-$HTML::Menu::TreeView::VERSION = '0.7.5';
+$HTML::Menu::TreeView::VERSION = '0.7.6';
 @ISA                           = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK =
   qw(all Tree css jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style Style documentRoot loadTree saveTree  %anker sortTree orderBy orderByColumn prefix setModern border);
@@ -172,11 +172,15 @@ Tree css jscript clasic preload help folderFirst  size documentRoot  loadTree sa
 
 Tree css jscript clasic preload folderFirst size Style documentRoot  loadTree saveTree sortTree orderBy prefix
 
-:standart Tree css jscript preload size Style documentRoot clasic,
+:standart
 
-:backward setDocumentRoot getDocumentRoot setSize setClasic setStyle style setModern %anker
+Tree css jscript preload size Style documentRoot clasic,
 
-columns  => border columns orderByColumn
+:backward
+
+setDocumentRoot getDocumentRoot setSize setClasic setStyle style setModern %anker
+
+:columns  border columns orderByColumn
 
 =head1 DESCRIPTION
 
@@ -184,13 +188,9 @@ HTML::Menu::TreeView is a Modul to build an Html tree of an AoH.
 
 =head1 Changes
 
-0.7.5
+0.7.6
 
-there are no new futures planned .
-
-new function orderByColumn(i), border.
-
-fix Columns, set the "Name" Column text.(see columns.pl ).
+a few fixes, the main change is one konqueror fix in the js file.
 
 =head1 Public
 
@@ -359,7 +359,7 @@ sub size {
 
 set the style in scalar context, or get in void context.
 
-setStyle('simple');
+Style('simple');
 
 simple = redmond like style.
 
@@ -396,7 +396,7 @@ sub Tree {
         $self->initTree(@TreeView) if(@TreeView);
         my $r;
         if(defined $self->{subtree}) {
-                $r .= "<script type=\"text/javascript\">\n//<! \nwindow.folders = new Object();\n";
+                $r .= "<script type=\"text/javascript\">\n//<! \nwindow.folders = new Array();\n";
                 $r .= $self->{js};
                 $r .= "\n//-->\n</script>";
         }
@@ -462,10 +462,9 @@ return the count in void context.
 
 $count = columns();
 
-or
-set the caption for the columns
+or set the caption for the columns
 
-columns("Column 1","Column 2","Column 3","Column 4");
+columns("Name","Column 1","Column 2","Column 3");
 
 =cut
 
@@ -867,7 +866,7 @@ sub getDocumentRoot {
 
 =head2 setClasic
 
-use clasic instead.
+use clasic() instead.
 
 for backward compatibility.
 
@@ -889,7 +888,7 @@ set the local path to the style folder.
 
 should be the Document Root of your webserver.
 
-example: setDocumentRoot('%PATH%');
+example: setDocumentRoot('/sv/www/htdocs/');
 
 default: this property is set during make
 
@@ -902,7 +901,7 @@ sub setDocumentRoot {
 
 =head2 setModern
 
-use clasic instead.
+use clasic() instead.
 
 for backward compatibility.
 
@@ -954,7 +953,7 @@ sub setStyle {
 
 set the style in scalar context, or get in void context.
 
-setStyle('simple');
+style('simple');
 
 simple = redmond like style.
 
@@ -1107,7 +1106,7 @@ sub appendFolder {
         }
         $self->initTree(\@$subtree);
         if($columns > 0) {
-                $self->{js} .= "\nfolders['$ty']= new Object();";
+                $self->{js} .= "\nfolders['$ty']= new Array();";
                 for(my $i = 0 ; $i < @$tmpref ; $i++) {
                         $self->{js} .= "folders['$ty']['$i'] = '$$tmpref[$i]';";
                 }
@@ -1167,7 +1166,7 @@ sub appendLastFolder {
         }
         $self->initTree(\@$subtree);
         if($columns > 0) {
-                $self->{js} .= "\nfolders['$ty']= new Object();";
+                $self->{js} .= "\nfolders['$ty']= new Array();";
                 for(my $i = 0 ; $i < @$tmpref ; $i++) {
                         $self->{js} .= "folders['$ty'][$i] = '$$tmpref[$i]';";
                 }

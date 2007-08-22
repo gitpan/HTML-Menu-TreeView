@@ -36,7 +36,7 @@ sub recursiveReadDir {
         my @files = readdir(DIR);
         closedir(DIR);
         my @t;
-        for(my $i = 0 ; $i < $#files ; $i++) {
+        for(my $i = 0 ; $i <= $#files ; $i++) {
                 unless ($files[$i] =~ /^\./) {
                         use File::stat;
                         my $sb = stat($dir . $files[$i]);

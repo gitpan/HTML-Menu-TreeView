@@ -46,7 +46,7 @@ function hideArray(i){
     var first = 1;
     var display = '';
     if(window.folders){
-        for (var j in window.folders[i]){
+        for (var j  =0;j < window.folders[i].length; j++){
             var node =document.getElementById('tr'+window.folders[i][j]);
             if(first){
                 display  = node.style.display == 'none' ? '':'none'
