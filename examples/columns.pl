@@ -4,16 +4,16 @@ use strict;
 use HTML::Menu::TreeView;
 my $q         = new CGI;
 my $TreeView  = new HTML::Menu::TreeView();
-my $subfolder = defined $q->param('subfolder') ? $q->param('subfolder') : '/srv/www/httpdocs/';
+my $subfolder = defined $q->param('subfolder') ? $q->param('subfolder') : $TreeView->documentRoot()."/";
 my $style     = $q->param('style') ? $q->param('style') : 'Crystal';
 my $size      = defined $q->param('size') ? $q->param('size') : 16;
 my @tree      = recursiveReadDir($subfolder);
 $TreeView->Style($style);
 $TreeView->columns(
-$q->a({href=>"./columns.pl?style=$style&amp;size=$size&sort=1",class => "treeviewLink$size"},'Name').'&#160;',
-$q->a({href=>"./columns.pl?style=$style&amp;size=$size&byColumn=0",class => "treeviewLink$size"},'Size').'&#160;',
-$q->a({href=>"./columns.pl?style=$style&amp;size=$size&byColumn=1",class => "treeviewLink$size"},'Permission').'&#160;',
-$q->a({href=>"./columns.pl?style=$style&amp;size=$size&byColumn=2",class => "treeviewLink$size"},'Last Modified').'&#160;'
+$q->a({href=>"./columns.pl?style=$style&amp;size=$size&amp;sort=1",class => "treeviewLink$size"},'Name').'&#160;',
+$q->a({href=>"./columns.pl?style=$style&amp;size=$size&amp;byColumn=0",class => "treeviewLink$size"},'Size').'&#160;',
+$q->a({href=>"./columns.pl?style=$style&amp;size=$size&amp;byColumn=1",class => "treeviewLink$size"},'Permission').'&#160;',
+$q->a({href=>"./columns.pl?style=$style&amp;size=$size&amp;byColumn=2",class => "treeviewLink$size"},'Last Modified').'&#160;'
 );
 
 if(defined $q->param('byColumn')) {
@@ -32,7 +32,7 @@ $q->a({href=>'./columns.pl?style=Crystal&amp;size=48',class => "treeviewLink$siz
 $q->a({href=>'./columns.pl?style=Crystal&amp;size=64',class => "treeviewLink$size"},'64').'&#160;|&#160;'.
 $q->a({href=>'./columns.pl?style=Crystal&amp;size=64',class => "treeviewLink$size"},'128');
 
-print $q->header, $q->start_html(-title => 'Columns', -script => $TreeView->jscript() . $TreeView->preload(), -style => {-code => $TreeView->css()},), "<div align=\"center\">$zoom<br/>", $TreeView->Tree(\@tree), '</div>', $q->end_html;
+print $q->header,$q->start_html(-title => 'Columns', -script => $TreeView->jscript() . $TreeView->preload(), -style => {-code => $TreeView->css()},), "<div align=\"center\">$zoom<br/>", $TreeView->Tree(\@tree), '</div>', $q->end_html;
 
 sub recursiveReadDir {
         my $dir = shift;

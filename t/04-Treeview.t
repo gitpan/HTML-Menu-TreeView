@@ -1,4 +1,3 @@
-# use lib("../lib");
 use HTML::Menu::TreeView qw(help);
 my $TreeView = new HTML::Menu::TreeView();
 my $hashref  = $TreeView->help();

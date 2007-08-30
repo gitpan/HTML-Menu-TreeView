@@ -1,4 +1,3 @@
-#use lib("../lib");
 use HTML::Menu::TreeView qw(Tree);
 my @tree = ({text => 'News', href => "TreeView.pl", subtree => [{text => 'TreeView', href => 'attribute', image => "news.gif"},],}, {text => "Help", onclick => 'attribute', image => "help.gif"},);
 

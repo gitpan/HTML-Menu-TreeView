@@ -1,4 +1,3 @@
-use lib("../lib");
 use HTML::Menu::TreeView qw(:all);
 my @tree = (
             {text => 'News', columns => [' a&#160;', ' b  jjjjj kkkkk llll iiiiiiiii', ' c ', ' d ', ' e '],},

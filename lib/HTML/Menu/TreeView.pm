@@ -3,7 +3,7 @@ use strict;
 use warnings;
 require Exporter;
 use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView %openArrays);
-$HTML::Menu::TreeView::VERSION = '0.7.7';
+$HTML::Menu::TreeView::VERSION = '0.7.8';
 @ISA                           = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK =
   qw(all Tree css jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style Style documentRoot loadTree saveTree  %anker sortTree orderBy orderByColumn prefix setModern border);
@@ -190,11 +190,11 @@ HTML::Menu::TreeView is a Modul to build an Html tree of an AoH.
 
 =head1 Changes
 
-0.7.7
+0.7.8
 
-Overwrought and clean up code.
+fix simple style
 
-TreeView is fit for different sizes within one Document.
+fix some images.
 
 =head1 Public
 
@@ -377,7 +377,7 @@ sub Style {
                 if(-e $path . '/style/' . $p[0]) {
                         $style = $p[0];
                 } else {
-                        warn "HTML::menu::TreeView::Style $/ $path . '/style/' . $p[0] not found";
+                        warn "HTML::menu::TreeView::Style $/ $path/style/$p[0] not found $/ $! $/";
                 }
         } else {
                 return $style;
@@ -556,7 +556,11 @@ orderByColumn(i)
 
 sub orderByColumn {
         my ($self, @p) = getSelf(@_);
-        $orderbyColumn = $p[0];
+        if(defined $p[0] && $p[0] =~ /(\d+)/) {
+                $orderbyColumn = $1;
+        } else {
+                return $orderbyColumn;
+        }
 }
 
 =head2 folderFirst
@@ -947,7 +951,7 @@ Crystal = Crystal style
 
 sub setStyle {
         my ($self, @p) = getSelf(@_);
-        $self->style($p[0]);
+        $self->style($p[0]) if(defined $p[0] && $p[0] =~ /(Crystal|simple)/);
 }
 
 =head2 style
