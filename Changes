@@ -1,6 +1,10 @@
 Revision history for Perl extension treeview.
-HTML::Menu::TreeView version 0.7.5
-
+HTML::Menu::TreeView version 0.7.7
+0.7.7
+	- Overwrought and clean up code.
+	- TreeView is fit for different sizes within one Document.
+0.7.6
+	- a few fixes, the main change is one konqueror fix in the js file.
 0.7.5
 	- there are no new futures planned .
 	- new function orderByColumn(i), border, hidden.

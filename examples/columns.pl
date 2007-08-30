@@ -10,10 +10,10 @@ my $size      = defined $q->param('size') ? $q->param('size') : 16;
 my @tree      = recursiveReadDir($subfolder);
 $TreeView->Style($style);
 $TreeView->columns(
-                   "<a href=\"./columns.pl?style=$style&amp;size=$size&sort=1\" class=\"treeviewLink\">Name</a>&#160;",
-                   "<a href=\"./columns.pl?style=$style&amp;size=$size&byColumn=0\" class=\"treeviewLink\">Size</a>&#160;",
-                   "<a href=\"./columns.pl?style=$style&amp;size=$size&byColumn=1\" class=\"treeviewLink\">Permission</a>&#160;",
-                   "<a href=\"./columns.pl?style=$style&amp;size=$size&byColumn=2\" class=\"treeviewLink\">Last Modified</a>&#160;",
+$q->a({href=>"./columns.pl?style=$style&amp;size=$size&sort=1",class => "treeviewLink$size"},'Name').'&#160;',
+$q->a({href=>"./columns.pl?style=$style&amp;size=$size&byColumn=0",class => "treeviewLink$size"},'Size').'&#160;',
+$q->a({href=>"./columns.pl?style=$style&amp;size=$size&byColumn=1",class => "treeviewLink$size"},'Permission').'&#160;',
+$q->a({href=>"./columns.pl?style=$style&amp;size=$size&byColumn=2",class => "treeviewLink$size"},'Last Modified').'&#160;'
 );
 
 if(defined $q->param('byColumn')) {
@@ -24,9 +24,14 @@ if(defined $q->param('byColumn')) {
 $TreeView->size($size);
 $TreeView->border(1);
 $TreeView->clasic(1) if(defined $q->param('clasic'));
-
 my $zoom =
-  '<a href="./columns.pl?style=Crystal&amp;size=16" class="treeviewLink">16</a>|<a href="./columns.pl?style=Crystal&amp;size=22" class="treeviewLink" >22</a>|<a href="./columns.pl?style=Crystal&amp;size=32" class="treeviewLink">32</a>|<a href="./columns.pl?style=Crystal&amp;size=48" class="treeviewLink">48</a>|<a href="./columns.pl?style=Crystal&amp;size=64" class="treeviewLink">64</a>|<a href="./columns.pl?style=Crystal&amp;size=128" class="treeviewLink">128</a>|<a href="./columns.pl?style=simple&amp;size=16" class="treeviewLink">Simple</a>';
+$q->a({href=>'./columns.pl?style=Crystal&amp;size=16',class => "treeviewLink$size"},'16').'&#160;|&#160;'.
+$q->a({href=>'./columns.pl?style=Crystal&amp;size=22',class => "treeviewLink$size"},'22').'&#160;|&#160;'.
+$q->a({href=>'./columns.pl?style=Crystal&amp;size=32',class => "treeviewLink$size"},'32').'&#160;|&#160;'.
+$q->a({href=>'./columns.pl?style=Crystal&amp;size=48',class => "treeviewLink$size"},'48').'&#160;|&#160;'.
+$q->a({href=>'./columns.pl?style=Crystal&amp;size=64',class => "treeviewLink$size"},'64').'&#160;|&#160;'.
+$q->a({href=>'./columns.pl?style=Crystal&amp;size=64',class => "treeviewLink$size"},'128');
+
 print $q->header, $q->start_html(-title => 'Columns', -script => $TreeView->jscript() . $TreeView->preload(), -style => {-code => $TreeView->css()},), "<div align=\"center\">$zoom<br/>", $TreeView->Tree(\@tree), '</div>', $q->end_html;
 
 sub recursiveReadDir {

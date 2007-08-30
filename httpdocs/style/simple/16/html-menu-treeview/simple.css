@@ -1,4 +1,4 @@
-td.folderOpen{
+td.folderOpen16{
 background-image:url('/style/simple/16/html-menu-treeview/folderOpen.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -7,7 +7,7 @@ font-size:14px;
 height:22px;
 vertical-align:top;
 }
-td.folderClosed{
+td.folderClosed16{
 background-image:url('/style/simple/16/html-menu-treeview/folderClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -16,28 +16,28 @@ height:22px;
 font-size:14px;
 vertical-align:top;
 }
-td.minusNode{
+td.minusNode16{
 background-image:url('/style/simple/16/html-menu-treeview/minusNode.gif');
 background-repeat:no-repeat;
 cursor:pointer;
 }
-td.lastMinusNode{
+td.lastMinusNode16{
 background-image:url('/style/simple/16/html-menu-treeview/lastMinusNode.gif');
 background-repeat:no-repeat;
 cursor:pointer;
 }
-td.plusNode{
+td.plusNode16{
 background-image:url('/style/simple/16/html-menu-treeview/plusNode.gif');
 background-repeat:no-repeat;
 cursor:pointer;
 }
-td.lastPlusNode{
+td.lastPlusNode16{
 background-image:url('/style/simple/16/html-menu-treeview/lastPlusNode.gif');
 background-repeat:no-repeat;
 cursor:pointer;
 height:22px;
 }
-td.node{
+td.node16{
 background-image:url('/style/simple/16/html-menu-treeview/node.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -45,11 +45,11 @@ font-size:14px;
 height:22px;
 
 }
-td.submenuDeco{
+td.submenuDeco16{
 background-image:url('/style/simple/16/html-menu-treeview/vertLine.gif');
 background-repeat:repeat-y;
 }
-td.lastNode{
+td.lastNode16{
 background-image:url('/style/simple/16/html-menu-treeview/lastNode.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -57,36 +57,36 @@ font-size:14px;
 height:22px;
 
 }
-a.treeviewLink{
+a.treeviewLink16{
 font-size:14px;
 color:black;
 cursor:pointer;
 height:22px;
 }
-a.treeviewLink:hover{
+a.treeviewLink16:hover{
 font-size:14px;
 height:22px;
 color:blue;
 cursor:pointer;
 }
-td.clasicMinusNode{
+td.clasicMinusNode16{
 background-image:url('/style/simple/16/html-menu-treeview/clasicMinusNode.gif');
 cursor:pointer;
 }
-td.clasicLastMinusNode{
+td.clasicLastMinusNode16{
 background-image:url('/style/simple/16/html-menu-treeview/clasicLastMinusNode.gif');
 cursor:pointer;
 }
-td.clasicPlusNode{
+td.clasicPlusNode16{
 background-image:url('/style/simple/16/html-menu-treeview/clasicPlusNode.gif');
 cursor:pointer;
 }
-td.clasicLastPlusNode{
+td.clasicLastPlusNode16{
 background-image:url('/style/simple/16/html-menu-treeview/clasicLastPlusNode.gif');
 cursor:pointer;
 }
 
-td.columnsFolder{
+td.columnsFolder16{
 vertical-align:top;
 color:black;
 font-size:14px;
@@ -94,28 +94,28 @@ height:22px;
 font-family:verdana, sans-serif;
 white-space: nowrap;
 }
-td.columnsNode{
+td.columnsNode16{
 color:black;
 font-size:14px;
 height:22px;
 font-family:verdana, sans-serif;
 white-space: nowrap;
 }
-td.columnsLastNode{
+td.columnsLastNode16{
 color:black;
 font-size:14px;
 font-family:verdana, sans-serif;
 height:22px;
 white-space: nowrap;
 }
-td.caption{
+td.caption16{
 color:black;
 height:24px;
 font-size:16px;
 white-space: nowrap;
 font-family:verdana, sans-serif;
 }
-td.columnsFolderBorder{
+td.columnsFolderBorder16{
 vertical-align:top;
 color:black;
 font-size:14px;
@@ -126,7 +126,7 @@ vertical-align:top;
 border-left:1px;
 border-left-style:dashed;
 }
-td.columnsNodeBorder{
+td.columnsNodeBorder16{
 color:black;
 font-size:14px;
 height:22px;
@@ -136,7 +136,7 @@ vertical-align:top;
 border-left:1px;
 border-left-style:dashed;
 }
-td.columnsLastNodeBorder{
+td.columnsLastNodeBorder16{
 color:black;
 font-size:14px;
 font-family:verdana, sans-serif;
@@ -146,7 +146,7 @@ vertical-align:top;
 border-left:1px;
 border-left-style:dashed;
 }
-td.captionBorder{
+td.captionBorder16{
 color:black;
 height:24px;
 font-size:16px;

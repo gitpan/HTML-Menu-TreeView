@@ -1,3 +1,5 @@
+use strict;
+
 # use lib("../lib");
 use HTML::Menu::TreeView;
 use vars qw(@TreeView @tree);
@@ -7,7 +9,7 @@ my $t    = $Tree->Tree(\@tree);
 $Tree->saveTree("./tree.pl");
 $Tree->loadTree("./tree.pl");
 *TreeView = \@{$HTML::Menu::TreeView::TreeView[0]};
-$tree2    = $Tree->Tree();
+my $tree2 = $Tree->Tree();
 use Test::More tests => 3;
 ok($tree2 ge $t);
 ok($tree[0]->{text} eq $TreeView[0]->{text});

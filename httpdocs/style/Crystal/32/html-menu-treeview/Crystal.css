@@ -1,4 +1,4 @@
-td.folderText{
+td.folderText32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderText.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -8,7 +8,7 @@ height:32px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderTextClosed{
+td.folderTextClosed32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderTextClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -17,7 +17,7 @@ vertical-align:top;
 font-size:24px;
 vertical-align:top;
 }
-td.folderGray{
+td.folderGray32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderGray.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -27,14 +27,14 @@ height:32px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderGrayClosed{
+td.folderGrayClosed32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderGrayClosed.gif'); background-repeat:no-repeat;
 cursor:pointer;
 padding-left:35px;
 vertical-align:top;
 font-size:24px;
 }
-td.folderGreen{
+td.folderGreen32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderGreen.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -44,7 +44,7 @@ height:32px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderGreenClosed{
+td.folderGreenClosed32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderGreenClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -52,7 +52,7 @@ padding-left:35px;
 vertical-align:top;
 font-size:24px;
 }
-td.folderOpen{
+td.folder32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderOpen.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -62,7 +62,7 @@ height:32px;
 vertical-align:top;
 font-family:verdana, sans-serif;
 }
-td.folderYellow{
+td.folderYellow32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderYellow.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -71,7 +71,7 @@ vertical-align:top;
 font-size:24px;
 vertical-align:top;
 }
-td.folderYellowClosed{
+td.folderYellowClosed32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderYellowClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -79,7 +79,7 @@ padding-left:35px;
 vertical-align:top;
 font-size:24px;
 }
-td.folderViolet{
+td.folderViolet32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderViolet.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -87,7 +87,7 @@ padding-left:35px;
 vertical-align:top;
 font-size:24px;
 }
-td.folderVioletClosed{
+td.folderVioletClosed32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderVioletClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -95,7 +95,7 @@ padding-left:35px;
 vertical-align:top;
 font-size:24px;
 }
-td.folderClosed{
+td.folderClosed32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -106,7 +106,7 @@ height:32px;
 vertical-align:top;
 font-family:verdana, sans-serif;
 }
-td.folderOrange{
+td.folderOrange32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderOrange.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -115,7 +115,7 @@ font-size:24px;
 height:32px;
 vertical-align:top;
 }
-td.folderOrangeClosed{
+td.folderOrangeClosed32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderOrangeClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -123,7 +123,7 @@ padding-left:35px;
 vertical-align:top;
 font-size:24px;
 }
-td.folderMan{
+td.folderMan32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderMan.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -131,7 +131,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderManClosed{
+td.folderManClosed32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderManClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -139,7 +139,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderHtml{
+td.folderHtml32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderHtml.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -147,7 +147,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderHtmlClosed{
+td.folderHtmlClosed32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderHtmlClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -155,7 +155,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderFavorite{
+td.folderFavorite32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderFavorite.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -163,7 +163,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderFavoriteClosed{
+td.folderFavoriteClosed32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderFavoriteClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -171,7 +171,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderText{
+td.folderText32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderText.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -179,7 +179,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderTextClosed{
+td.folderTextClosed32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderTextClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -187,7 +187,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderLocked{
+td.folderLocked32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderLocked.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -195,7 +195,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderLockedClosed{
+td.folderLockedClosed32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderLockedClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -203,7 +203,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderCrystal{
+td.folderCrystal32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderCrystal.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -211,7 +211,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderCrystalClosed{
+td.folderCrystalClosed32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderCrystalClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -219,7 +219,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderVideo{
+td.folderVideo32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderVideo.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -227,7 +227,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderVideoClosed{
+td.folderVideoClosed32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderVideoClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -235,7 +235,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderPrint{
+td.folderPrint32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderPrint.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -243,7 +243,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderPrintClosed{
+td.folderPrintClosed32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderPrintClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -251,7 +251,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderImage{
+td.folderImage32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderImage.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -259,7 +259,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderImageClosed{
+td.folderImageClosed32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderImageClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -267,7 +267,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderSound{
+td.folderSound32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderSound.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -275,7 +275,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderSoundClosed{
+td.folderSoundClosed32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderSoundClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -283,7 +283,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderImportant{
+td.folderImportant32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderImportant.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -291,7 +291,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderImportantClosed{
+td.folderImportantClosed32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderImportantClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -299,7 +299,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderTar{
+td.folderTar32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderTar.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -307,7 +307,7 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.folderTarClosed{
+td.folderTarClosed32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderTarClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -315,31 +315,31 @@ padding-left:35px;
 font-size:24px;
 vertical-align:top;
 }
-td.minusNode{
+td.minusNode32{
 background-image:url('/style/Crystal/32/html-menu-treeview/minusNode.gif');
 background-repeat:no-repeat;
 cursor:pointer;
 height:32px;
 }
-td.lastMinusNode{
+td.lastMinusNode32{
 background-image:url('/style/Crystal/32/html-menu-treeview/lastMinusNode.gif');
 background-repeat:no-repeat;
 cursor:pointer;
 height:32px;
 }
-td.plusNode{
+td.plusNode32{
 background-image:url('/style/Crystal/32/html-menu-treeview/plusNode.gif');
 background-repeat:no-repeat;
 cursor:pointer;
 height:32px;
 }
-td.lastPlusNode{
+td.lastPlusNode32{
 background-image:url('/style/Crystal/32/html-menu-treeview/lastPlusNode.gif');
 background-repeat:no-repeat;
 cursor:pointer;
 height:32px;
 }
-td.node{
+td.node32{
 background-image:url('/style/Crystal/32/html-menu-treeview/node.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -348,12 +348,12 @@ font-size:24px;
 vertical-align:top;
 font-family:verdana, sans-serif;
 }
-td.submenuDeco{
+td.submenuDeco32{
 background-image:url('/style/Crystal/32/html-menu-treeview/vertLine.gif');
 background-repeat:repeat-y;
 height:32px;
 }
-td.lastNode{
+td.lastNode32{
 background-image:url('/style/Crystal/32/html-menu-treeview/lastNode.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -362,66 +362,67 @@ height:32px;
 vertical-align:top;
 font-family:verdana, sans-serif;
 }
-td.clasicMinusNode{
+td.clasicMinusNode32{
 background-image:url('/style/Crystal/32/html-menu-treeview/clasicMinusNode.gif');
 cursor:pointer;
 height:32px;
 }
-td.clasicLastMinusNode{
+td.clasicLastMinusNode32{
 background-image:url('/style/Crystal/32/html-menu-treeview/clasicLastMinusNode.gif');
 cursor:pointer;
 height:32px;
 }
-td.clasicPlusNode{
+td.clasicPlusNode32{
 background-image:url('/style/Crystal/32/html-menu-treeview/clasicPlusNode.gif');
 cursor:pointer;
 height:32px;
 }
-td.clasicLastPlusNode{
+td.clasicLastPlusNode32{
 background-image:url('/style/Crystal/32/html-menu-treeview/clasicLastPlusNode.gif');
 cursor:pointer;
 height:32px;
 vertical-align:top;
 }
-a.treeviewLink{
+a.treeviewLink32{
+color:black;
 font-size:24px;
 cursor:pointer;
 font-family:verdana, sans-serif;
 }
-a.treeviewLink:hover{
+a.treeviewLink32:hover{
 font-size:24px;
 color:blue;
 cursor:pointer;
 font-family:verdana, sans-serif;
 }
-td.columnsFolder{
+td.columnsFolder32{
 font-size:24px;
 height:32px;
 vertical-align:top;
 font-family:verdana, sans-serif;
 white-space:nowrap;
 }
-td.columnsNode{
+td.columnsNode32{
 font-size:24px;
 height:32px;
 font-family:verdana, sans-serif;
 white-space:nowrap;
 vertical-align:top;
 }
-td.columnsLastNode{
+td.columnsLastNode32{
 font-size:24px;
 height:32px;
 white-space:nowrap;
 font-family:verdana, sans-serif;
 }
-td.caption{
+td.caption32{
 font-size:24px;
 height:32px;
 font-family:verdana, sans-serif;
 white-space:nowrap;
 vertical-align:top;
 }
-td.columnsFolderBorder{
+td.columnsFolderBorder32{
 vertical-align:top;
 color:black;
 font-size:24px;
@@ -432,7 +433,7 @@ vertical-align:top;
 border-left:1px;
 border-left-style:dashed;
 }
-td.columnsNodeBorder{
+td.columnsNodeBorder32{
 color:black;
 font-size:24px;
 height:32px;
@@ -442,7 +443,7 @@ vertical-align:top;
 border-left:1px;
 border-left-style:dashed;
 }
-td.columnsLastNodeBorder{
+td.columnsLastNodeBorder32{
 color:black;
 font-size:24px;
 height:32px;
@@ -452,7 +453,7 @@ vertical-align:top;
 border-left:1px;
 border-left-style:dashed;
 }
-td.captionBorder{
+td.captionBorder32{
 color:black;
 font-size:24px;
 height:32px;

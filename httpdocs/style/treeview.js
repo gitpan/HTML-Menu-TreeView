@@ -1,46 +1,56 @@
-function ocFolder(id){
-var folder = document.getElementById(id).className;
-if(folder  ==  'folderOpen'){
-document.getElementById(id).className = 'folderClosed';
-}else if(folder  ==  'folderClosed'){
-document.getElementById(id).className = 'folderOpen';
-}else{
-var mclass = /(folder.*)Closed/;
-var isclosed = mclass.test(folder);
-if(isclosed  ==  true){
-document.getElementById(id).className = folder.replace(/(folder.*)Closed/,'\$1');
-}else{
-document.getElementById(id).className = folder.replace(/(folder.*)/,'\$1Closed');
-}}}
-function ocNode(id){
-var folder = document.getElementById(id).className;if(folder  ==  "minusNode"){
-document.getElementById(id).className = 'plusNode';
-}else if(folder  ==  "plusNode"){
-document.getElementById(id).className = 'minusNode';
-}else if(folder  ==  "clasicPlusNode"){
-document.getElementById(id).className = 'clasicMinusNode';
-}else if(folder  ==  "clasicMinusNode"){
-document.getElementById(id).className = 'clasicPlusNode';}}
-function ocpNode(id){
-var folder = document.getElementById(id).className;
-if(folder  ==  "lastMinusNode"){
-document.getElementById(id).className = 'lastPlusNode';
-}else if(folder  ==  "lastPlusNode"){
-document.getElementById(id).className = 'lastMinusNode';
-}else if(folder  ==  "clasicLastPlusNode"){
-document.getElementById(id).className = 'clasicLastMinusNode';
-}else if(folder  ==  "clasicLastMinusNode"){
-document.getElementById(id).className = 'clasicLastPlusNode';}}
 function displayTree(id){
-if(document.getElementById(id)){
-var e = document.getElementById(id);
-var display = e.style.display;
-if(display  ==  "none"){
-e.style.display = "";
-}else if(display  ==  ""){
-e.style.display = "none";
+    if(document.getElementById(id)){
+        var e = document.getElementById(id);
+        var display = e.style.display;
+        if(display  ==  'none'){
+            e.style.display = '';
+        }else if(display  ==  ''){
+            e.style.display = 'none';
+        }
+    }
 }
+function ocNode(id,size){
+	var node = document.getElementById(id).className;
+        var mnode = 'minusNode'+size;
+        var cmnode = 'clasicMinusNode'+size;
+        var pnode = 'plusNode'+size;
+        var cpnode = 'clasicPlusNode'+size;
+        if(node  ==  mnode){
+            document.getElementById(id).className = pnode;
+        }else if(node  ==  pnode){
+            document.getElementById(id).className = mnode;
+        }else if(node  ==  cpnode){
+            document.getElementById(id).className = cmnode
+        }else if(node  ==  cmnode){
+            document.getElementById(id).className = cpnode;
+        }
 }
+function ocpNode(id,size){
+	var node = document.getElementById(id).className;
+        var mnode = 'lastMinusNode'+size;
+        var cmnode = 'clasicLastMinusNode'+size;
+        var pnode = 'lastPlusNode'+size;
+        var cpnode = 'clasicLastPlusNode'+size;
+        if(node  ==  mnode){
+            document.getElementById(id).className = pnode;
+        }else if(node  ==  pnode){
+            document.getElementById(id).className = mnode;
+        }else if(node  ==  cpnode){
+            document.getElementById(id).className = cmnode;
+        }else if(node  ==  cmnode){
+            document.getElementById(id).className = cpnode;
+        }
+}
+function ocFolder(id){
+    var fid = id+'.folder';
+    var folder = document.getElementById(fid).className;
+    var mclass = /(folder.*)Closed(\d+)/;
+    var isclosed = mclass.test(folder);
+    if(isclosed  ==  true){
+        document.getElementById(fid).className = folder.replace(/(folder.*)Closed(\d+)/,'\$1\$2');
+    }else{
+        document.getElementById(fid).className = folder.replace(/(folder[^\d]*)(\d+)/,'\$1Closed\$2');
+    }
 }
 function hideArray(i){
     var first = 1;
@@ -55,12 +65,12 @@ function hideArray(i){
             var subfolder = document.getElementById(window.folders[i][j]);
             if(subfolder){
                 if(subfolder.style.display != display && display == ''){
-                    ocFolder(window.folders[i][j]+'.folder');
+                    ocFolder(window.folders[i][j]);
                     ocNode(window.folders[i][j]+'.node');
                     displayTree(window.folders[i][j]);
                 }
             }
             node.style.display = display;
-            }
+        }
     }
 }
