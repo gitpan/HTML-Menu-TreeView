@@ -32,7 +32,16 @@ $q->a({href=>'./columns.pl?style=Crystal&amp;size=48',class => "treeviewLink$siz
 $q->a({href=>'./columns.pl?style=Crystal&amp;size=64',class => "treeviewLink$size"},'64').'&#160;|&#160;'.
 $q->a({href=>'./columns.pl?style=Crystal&amp;size=64',class => "treeviewLink$size"},'128');
 
-print $q->header,$q->start_html(-title => 'Columns', -script => $TreeView->jscript() . $TreeView->preload(), -style => {-code => $TreeView->css()},), "<div align=\"center\">$zoom<br/>", $TreeView->Tree(\@tree), '</div>', $q->end_html;
+print $q->header,
+$q->start_html(
+     -title => 'Columns',
+     -script => $TreeView->jscript() . $TreeView->preload(),
+     -style => {-code => $TreeView->css()},
+),
+$q->div({align =>'center'},$zoom.$q->br().$TreeView->Tree(\@tree) ),
+
+$q->end_html;
+
 
 sub recursiveReadDir {
         my $dir = shift;
@@ -53,7 +62,7 @@ sub recursiveReadDir {
                                   {
                                     text    => "$files[$i]",
                                     subtree => [@st],
-                                    href    => "./columns.pl?style=$style&amp;size=$size&subfolder=$dir$files[$i]/",
+                                    href    => "./columns.pl?style=$style&amp;size=$size&amp;subfolder=$dir$files[$i]/",
                                     columns => [sprintf("%s", $sb->size), sprintf("%04o", $sb->mode & 07777), sprintf("%s", scalar localtime $sb->mtime)]
                                   };
                         }

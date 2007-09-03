@@ -464,6 +464,7 @@ background-repeat:no-repeat;
 cursor:pointer;
 font-size:14px;
 height:22px;
+vertical-align:top;
 }
 a.treeviewLink16{
 font-size:14px;
@@ -486,7 +487,7 @@ color:black;
 font-size:14px;
 height:22px;
 font-family:verdana, sans-serif;
-white-space: nowrap;
+white-space:nowrap;
 vertical-align:top;
 
 }
@@ -495,7 +496,7 @@ color:black;
 font-size:14px;
 height:22px;
 font-family:verdana, sans-serif;
-white-space: nowrap;
+white-space:nowrap;
 vertical-align:top;
 
 }
@@ -504,14 +505,14 @@ color:black;
 font-size:14px;
 font-family:verdana, sans-serif;
 height:22px;
-white-space: nowrap;
+white-space:nowrap;
 vertical-align:top;
 }
 td.caption16{
 color:black;
 height:24px;
 font-size:16px;
-white-space: nowrap;
+white-space:nowrap;
 font-family:verdana, sans-serif;
 vertical-align:top;
 }
@@ -521,7 +522,7 @@ color:black;
 font-size:14px;
 height:22px;
 font-family:verdana, sans-serif;
-white-space: nowrap;
+white-space:nowrap;
 vertical-align:top;
 border-left:1px;
 border-left-style:dashed;
@@ -531,7 +532,7 @@ color:black;
 font-size:14px;
 height:22px;
 font-family:verdana, sans-serif;
-white-space: nowrap;
+white-space:nowrap;
 vertical-align:top;
 border-left:1px;
 border-left-style:dashed;
@@ -541,7 +542,7 @@ color:black;
 font-size:14px;
 font-family:verdana, sans-serif;
 height:22px;
-white-space: nowrap;
+white-space:nowrap;
 vertical-align:top;
 border-left:1px;
 border-left-style:dashed;
@@ -550,7 +551,7 @@ td.captionBorder16{
 color:black;
 height:24px;
 font-size:16px;
-white-space: nowrap;
+white-space:nowrap;
 font-family:verdana, sans-serif;
 vertical-align:top;
 border-bottom:1px;

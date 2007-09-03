@@ -28,7 +28,7 @@ for(my $i = 0 ; $i < $#lines ; ++$i) {
         }
 }
 documentRoot($htpath);
-Style("Crystal");
+Style('Crystal');
 size($size);
 clasic(1) if(defined param('clasic'));
 my $zoom =
@@ -44,6 +44,5 @@ start_html(
 	-script => jscript() . preload(),
 	-style => {-code => css()}
 ),
-"$zoom",br(),
-Tree(\@tree),
+div({align => 'center'},$zoom.br().Tree(\@tree)),
 end_html;

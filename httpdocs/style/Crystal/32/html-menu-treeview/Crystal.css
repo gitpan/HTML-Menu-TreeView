@@ -1,3 +1,7 @@
+table.treeview{
+background-color:white;
+color:black;
+}
 td.folderText32{
 background-image:url('/style/Crystal/32/html-menu-treeview/folderText.gif');
 background-repeat:no-repeat;

@@ -1,3 +1,7 @@
+table.treeview{
+background-color:white;
+color:black;
+}
 td.clasicMinusNode128{
 background-image:url('/style/Crystal/128/html-menu-treeview/clasicMinusNode.gif');
 cursor:pointer;
@@ -40,6 +44,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderYellow128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderYellow.gif');
@@ -50,6 +55,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderYellowClosed128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderYellowClosed.gif');
@@ -60,6 +66,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderViolet128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderViolet.gif');
@@ -70,6 +77,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderVioletClosed128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderVioletClosed.gif');
@@ -80,6 +88,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderOrange128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderOrange.gif');
@@ -90,6 +99,7 @@ padding-left:132px;
 font-size:128px;
 height:176px;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderOrangeClosed128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderOrangeClosed.gif');
@@ -100,6 +110,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderRed128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderRed.gif');
@@ -110,6 +121,7 @@ padding-left:132px;
 font-size:128px;
 height:176px;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderRedClosed128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderRedClosed.gif');
@@ -120,6 +132,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderGray128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderGray.gif');
@@ -130,6 +143,7 @@ padding-left:132px;
 font-size:128px;
 height:176px;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderGrayClosed128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderGrayClosed.gif');
@@ -140,6 +154,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderGreen128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderGreen.gif');
@@ -150,6 +165,7 @@ padding-left:132px;
 font-size:128px;
 height:176px;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderGreenClosed128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderGreenClosed.gif');
@@ -160,6 +176,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderMan128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderMan.gif');
@@ -170,6 +187,7 @@ padding-left:132px;
 font-size:128px;
 height:176px;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderManClosed128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderManClosed.gif');
@@ -180,6 +198,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderHtml128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderHtml.gif');
@@ -190,6 +209,7 @@ padding-left:132px;
 font-size:128px;
 height:176px;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderHtmlClosed128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderHtmlClosed.gif');
@@ -200,6 +220,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderFavorite128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderFavorite.gif');
@@ -210,6 +231,7 @@ padding-left:132px;
 font-size:128px;
 height:176px;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderFavoriteClosed128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderFavoriteClosed.gif');
@@ -220,6 +242,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderText128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderText.gif');
@@ -230,6 +253,7 @@ padding-left:132px;
 font-size:128px;
 height:176px;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderTextClosed128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderTextClosed.gif');
@@ -250,6 +274,7 @@ padding-left:132px;
 font-size:128px;
 height:176px;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderLockedClosed128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderLockedClosed.gif');
@@ -260,6 +285,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderCrystal128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderCrystal.gif');
@@ -270,6 +296,7 @@ padding-left:132px;
 font-size:128px;
 height:176px;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderCrystalClosed128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderCrystalClosed.gif');
@@ -280,6 +307,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderVideo128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderVideo.gif');
@@ -290,6 +318,7 @@ padding-left:132px;
 font-size:128px;
 height:176px;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderVideoClosed128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderVideoClosed.gif');
@@ -300,6 +329,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderPrint128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderPrint.gif');
@@ -310,6 +340,7 @@ padding-left:132px;
 font-size:128px;
 height:176px;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderPrintClosed128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderPrintClosed.gif');
@@ -320,6 +351,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderImage128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderImage.gif');
@@ -330,6 +362,7 @@ padding-left:132px;
 font-size:128px;
 height:176px;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderImageClosed128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderImageClosed.gif');
@@ -340,6 +373,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderSound128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderSound.gif');
@@ -350,6 +384,7 @@ padding-left:132px;
 font-size:128px;
 height:176px;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderSoundClosed128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderSoundClosed.gif');
@@ -360,6 +395,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderImportant128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderImportant.gif');
@@ -370,6 +406,7 @@ padding-left:132px;
 font-size:128px;
 height:176px;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderImportantClosed128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderImportantClosed.gif');
@@ -380,6 +417,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderTar128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderTar.gif');
@@ -390,6 +428,7 @@ padding-left:132px;
 font-size:128px;
 height:176px;
 vertical-align:top;
+white-space:nowrap;
 }
 td.folderTarClosed128{
 background-image:url('/style/Crystal/128/html-menu-treeview/folderTarClosed.gif');
@@ -400,6 +439,7 @@ font-size:128px;
 height:176px;
 color:black;
 vertical-align:top;
+white-space:nowrap;
 }
 td.minusNode128{
 background-image:url('/style/Crystal/128/html-menu-treeview/minusNode.gif');
@@ -429,6 +469,7 @@ font-size:128px;
 height:176px;
 background-repeat:repeat-y;
 text-align:left;
+white-space:nowrap;
 }
 td.submenuDeco128{
 background-image:url('/style/Crystal/128/html-menu-treeview/vertLine.gif');
@@ -447,6 +488,7 @@ color:black;
 cursor:pointer;
 height:176px;
 font-family:verdana,sans-serif;
+white-space:nowrap;
 }
 a.treeviewLink128:hover{
 font-size:128px;
@@ -454,6 +496,7 @@ height:176px;
 color:blue;
 cursor:pointer;
 font-family:verdana,sans-serif;
+white-space:nowrap;
 }
 td.columnsFolder128{
 font-size:128px;

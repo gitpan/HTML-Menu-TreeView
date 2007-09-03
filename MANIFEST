@@ -873,5 +873,4 @@ t/05-Treeview.t
 t/06-Treeview.t
 t/07-Treeview.t
 t/08-Treeview.t
-todo
 META.yml                                 Module meta-data (added by MakeMaker)

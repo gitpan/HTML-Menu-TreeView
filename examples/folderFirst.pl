@@ -5,7 +5,7 @@ use strict;
 my $cgi           = new CGI;
 my $TreeView      = new HTML::Menu::TreeView;
 my $serversubtree = './';
-my $style         = $cgi->param('style') ? $cgi->param('style') : "Crystal";
+my $style         = $cgi->param('style') ? $cgi->param('style') : 'Crystal';
 my $folderfirst   = $TreeView->folderFirst();
 my $changeState   = $cgi->param('folderFirst') ? 0 : 1;
 my $sort          = $cgi->param('sort') ? 0 : 1;
