@@ -7,7 +7,7 @@ ok(folderFirst()== 1);
 folderFirst(0);
 ok(folderFirst()== 0);
 my $t3 = Tree(\@tree);
-ok($t3 ge $t1);
+ok($t3 le $t1);
 ok(style() eq 'Crystal');
 documentRoot("blib/bin");
 style('simple');

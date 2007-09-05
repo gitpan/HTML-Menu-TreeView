@@ -6,7 +6,7 @@ my $htpath = documentRoot();
 my $size = defined param('size') ? param('size') : 16;
 $size = ($size== 22 or $size== 32 or $size== 48 or $size== 64 or $size== 128) ? $size : 16;
 my @tree;
-opendir(DIR, "$htpath/style/Crystal/$size/mimetypes") or die ":$htpath/style/Crystal/$size/mimetypes$!";
+opendir(DIR, "$htpath/style/Crystal/$size/mimetypes") or die ":$htpath/style/Crystal/$size/mimetypes $/ $! $/";
 my @lines = readdir(DIR);
 closedir(DIR);
 open(IN, "$htpath/style/Crystal/$size/html-menu-treeview/Crystal.css") or die ": $!";
@@ -31,13 +31,13 @@ documentRoot($htpath);
 Style('Crystal');
 size($size);
 clasic(1) if(defined param('clasic'));
-my $zoom =
+my $zoom = div({style=>"font-size:$size"."px;"},
 a({-href=>'./crystal.pl?style=Crystal&amp;size=16',-class => "treeviewLink$size"},'16').'&#160;|&#160;'.
 a({-href=>'./crystal.pl?style=Crystal&amp;size=22',-class => "treeviewLink$size"},'22').'&#160;|&#160;'.
 a({-href=>'./crystal.pl?style=Crystal&amp;size=32',-class => "treeviewLink$size"},'32').'&#160;|&#160;'.
 a({-href=>'./crystal.pl?style=Crystal&amp;size=48',-class => "treeviewLink$size"},'48').'&#160;|&#160;'.
 a({-href=>'./crystal.pl?style=Crystal&amp;size=64',-class => "treeviewLink$size"},'64').'&#160;|&#160;'.
-a({-href=>'./crystal.pl?style=Crystal&amp;size=64',-class => "treeviewLink$size"},'128');
+a({-href=>'./crystal.pl?style=Crystal&amp;size=64',-class => "treeviewLink$size"},'128'));
 print header(),
 start_html(
 	-title => 'Crystal',

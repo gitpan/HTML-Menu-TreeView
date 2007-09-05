@@ -3,7 +3,7 @@ use strict;
 use warnings;
 require Exporter;
 use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView %openArrays);
-$HTML::Menu::TreeView::VERSION = '0.7.9';
+$HTML::Menu::TreeView::VERSION = '0.8';
 @ISA                           = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK =
   qw(all Tree css jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style Style documentRoot loadTree saveTree  %anker sortTree orderBy orderByColumn prefix setModern border);
@@ -15,18 +15,14 @@ $HTML::Menu::TreeView::VERSION = '0.7.9';
                                       'columns'   => [qw(border columns orderByColumn)],
 );
 $DefaultClass = 'HTML::Menu::TreeView' unless defined $HTML::Menu::TreeView::DefaultClass;
-our $id       = 'a';
-our $style    = 'Crystal';
-our $size     = 16;
-our $path     = '%PATH%';
-our $clasic   = 0;
-our $ffirst   = 0;
-our $sort     = 0;
-our $border   = 0;
+our $id    = 'a';
+our $style = 'Crystal';
+our $size  = 16;
+our $path  = '%PATH%';
+our ($clasic, $ffirst, $sort, $border, $columns) = (0) x 5;
 our $saveFile = './TreeViewDump.pl';
 our $orderby  = 'text';
 our $pref     = '';
-our $columns  = 0;
 our (@caption, $orderbyColumn);
 
 %anker = (
@@ -55,7 +51,7 @@ our (@caption, $orderbyColumn);
           shape       => 'for use with client-side image maps',
           style       => 'specifies style information for the current element.',
           tabindex    => 'position in tabbing order',
-          target      => 'target frame information)',
+          target      => 'target frame information',
           type        => 'advisory content type ',
           title       => 'element title',
           id          => 'This attribute assigns a name to an element. This name must be unique in a document.',
@@ -190,7 +186,7 @@ HTML::Menu::TreeView is a Modul to build an Html tree of an AoH.
 
 =head1 Changes
 
-0.7.9
+0.8
 
 some fixes
 
@@ -200,11 +196,11 @@ some fixes
 
 if you use the oo interface you can say:
 
-my $TreeView = new HTML::Menu::TreeView(\@tree, optional style);
+     my $TreeView = new HTML::Menu::TreeView(\@tree, optional style);
 
 and then call Tree without arguments.
 
-print $TreeView->Tree();
+     print $TreeView->Tree();
 
 =cut
 
@@ -223,11 +219,11 @@ return the  necessary css part without <style></style> tag.
 
 you can set the DocumentRoot if you pass a parameter
 
-css('/document/root/');
+     css('/document/root/');
 
 You can also include it with
 
-<link href="/style/Crystal/16/html-menu-treeview/Crystal.css" rel="stylesheet" type="text/css">
+     <link href="/style/Crystal/16/html-menu-treeview/Crystal.css" rel="stylesheet" type="text/css">
 
 for example.
 
@@ -240,7 +236,7 @@ sub css {
         $self->documentRoot($p[0]) if(defined $p[0]);
         my $fh   = gensym;
         my $file = "$path/style/$style/$size/html-menu-treeview/$style.css";
-        open $fh, "$file" or warn "HTML::menu::TreeView::css $/ no style '$style.css' $style.css found $/  in  $path/style/html-menu-treeview/$style/ $/ $! $/";
+        open $fh, "$file" or warn "HTML::Menu::TreeView::css $/ no style '$style.css' $style.css found $/  in  $path/style/html-menu-treeview/$style/ $/ $! $/";
         seek $fh, 0, 0;
         my @lines = <$fh>;
         close $fh;
@@ -267,7 +263,7 @@ sub documentRoot {
                 if(-e $p[0]) {
                         $path = $p[0];
                 } else {
-                        warn "HTML::menu::TreeView::documentRoot $/ Document Root don't exits: $/ $! $/";
+                        warn "HTML::Menu::TreeView::documentRoot $/ Document Root don't exits: $/ $! $/";
                 }
         } else {
                 return $path;
@@ -280,7 +276,7 @@ return the necessary  javascript  without <script> tag.
 
 You can also include it with:
 
-<script language="JavaScript" type="text/javascript" src="/style/treeview.js"></script>
+     <script language="JavaScript" type="text/javascript" src="/style/treeview.js"></script>
 
 you can set the DocumentRoot if you pass a parameter
 
@@ -293,7 +289,7 @@ sub jscript {
         $self->documentRoot($p[0]) if(defined $p[0]);
         my $fh   = gensym;
         my $file = "$path/style/treeview.js";
-        open $fh, "$file" or warn "HTML::menu::TreeView::jscript $/ $! $/";
+        open $fh, "$file" or warn "HTML::Menu::TreeView::jscript $/ $! $/";
         seek $fh, 0, 0;
         my @js = <$fh>;
         close $fh;
@@ -306,11 +302,11 @@ return the necessary  javascript for preloading images  without <script> tag.
 
 for example you can also include it with
 
-<script language="JavaScript" type="text/javascript" src="/style/Crystal/16/html-menu-treeview/preload.js"></script>
+     <script language="JavaScript" type="text/javascript" src="/style/Crystal/16/html-menu-treeview/preload.js"></script>
 
 or
 
-<script language="JavaScript" type="text/javascript" src="/style/Crystal/preload.js"></script>
+     <script language="JavaScript" type="text/javascript" src="/style/Crystal/preload.js"></script>
 
 if you use different images sizes.
 
@@ -325,7 +321,7 @@ sub preload {
         $self->documentRoot($p[0]) if(defined $p[0]);
         my $fh   = gensym;
         my $file = "$path/style/$style/$size/html-menu-treeview/preload.js";
-        open $fh, "$file" or warn "HTML::menu::TreeView::preload $/ $! $/";
+        open $fh, "$file" or warn "HTML::Menu::TreeView::preload $/ $! $/";
         seek $fh, 0, 0;
         my @lines = <$fh>;
         close $fh;
@@ -359,9 +355,9 @@ sub size {
 
 =head2 Style
 
-set the style in scalar context, or get in void context.
+set the style in scalar context or get in void context.
 
-Style('simple');
+     Style('simple');
 
 simple = redmond like style.
 
@@ -375,7 +371,7 @@ sub Style {
                 if(-e $path . '/style/' . $p[0]) {
                         $style = $p[0];
                 } else {
-                        warn "HTML::menu::TreeView::Style $/ $path/style/$p[0] not found $/ $! $/";
+                        warn "HTML::Menu::TreeView::Style $/ $path/style/$p[0] not found $/ $! $/";
                 }
         } else {
                 return $style;
@@ -385,7 +381,7 @@ sub Style {
 
 =head2 Tree
 
-Tree(\@tree,optional $style);
+     Tree(\@tree,optional $style);
 
 Returns the html part of the Treeview without javasript and css.
 
@@ -399,17 +395,24 @@ sub Tree {
         my $r;
         if(defined $self->{subtree}) {
                 $r .= qq(<script type="text/javascript">\n//<!-- \nwindow.folders = new Array();\n);
-                $r .= $self->{js};
-                $r .= "\n//-->\n</script>";
+                foreach my $key (keys %{$self->{js}}) {
+                        $r .= "folders['$key']= new Array(";
+                        for(my $i = 0 ; $i < @{$self->{js}{$key}} ; $i++) {
+                                $r .= '"' . $self->{js}{$key}[$i] . '"';
+                                $r .= ',' if($i+ 1 != @{$self->{js}{$key}});
+                        }
+                        $r .= ");\n";
+                }
+                $r .= "//-->\n</script>";
         }
-        $r .= qq(<table border="0" cellpadding="2" cellspacing="1" summary="Tree"><tr><td><table align="left"  border="0" cellpadding="0" cellspacing="0" summary="Tree" width="100%" class="treeview"><colgroup><col width="$size"/></colgroup>);
+        $r .= qq(<table border="0" cellpadding="2" cellspacing="1" summary="Tree"><tr><td><table align="left" border="0" cellpadding="0" cellspacing="0" summary="Tree" width="100%" class="treeview"><colgroup><col width="$size"/></colgroup>);
         if(defined @caption) {
                 my $class = $border ? "captionBorder$size" : "caption$size";
                 $r .= qq(<tr><td class="$class"></td><td class="$class">$caption[0]</td></tr>);
         }
         $r .= $self->{tree} . '</table></td>';
         if(defined $self->{subtree}) {
-                $r .= '<td ><table align="left"  border="0" cellpadding="0" cellspacing="0" summary="subTree" width="100%" >';
+                $r .= '<td ><table align="left" border="0" cellpadding="0" cellspacing="0" summary="subTree" width="100%" >';
                 if(defined @caption) {
                         my $class = $border ? "captionBorder$size" : "caption$size";
                         $r .= '<tr>';
@@ -430,15 +433,15 @@ sub Tree {
 
 enable clasic  node decoration:
 
-clasic(1);
+     clasic(1);
 
 disable clasic  node decoration:
 
-clasic(0);
+     clasic(0);
 
 return the status in void context.
 
-$status = clasic();
+     $status = clasic();
 
 =cut
 
@@ -455,15 +458,15 @@ sub clasic {
 
 set number of columns
 
-columns(3);
+     columns(3);
 
 return the count in void context.
 
-$count = columns();
+     $count = columns();
 
 or set the caption for the columns
 
-columns("Name","Column 1","Column 2","Column 3");
+     columns("Name","Column 1","Column 2","Column 3");
 
 =cut
 
@@ -483,15 +486,15 @@ sub columns {
 
 enable border for columns :
 
-border(1);
+     border(1);
 
 disable border for columns :
 
-border(0);
+     border(0);
 
 return the status in void context.
 
-$status = border();
+     $status = border();
 
 =cut
 
@@ -512,15 +515,15 @@ default is false.
 
 enable sorting:
 
-sortTree(1);
+     sortTree(1);
 
 disable sorting:
 
-sortTree(0);
+     sortTree(0);
 
 return the status in void context.
 
-$status = sortTree();
+     $status = sortTree();
 
 =cut
 
@@ -548,7 +551,7 @@ sub orderBy {
 
 sort the TreeView by Column
 
-orderByColumn(i)
+     orderByColumn(i)
 
 =cut
 
@@ -569,15 +572,15 @@ default is false.
 
 enable show folders first:
 
-folderFirst(1);
+     folderFirst(1);
 
 disable show folders first:
 
-folderFirst(0);
+     folderFirst(0);
 
 return the status of this property in void context.
 
-$status = folderFirst();
+     $status = folderFirst();
 
 =cut
 
@@ -598,7 +601,7 @@ set this if you want to build offline websites.
 
 for example:
 
-prefix('.');
+     prefix('.');
 
 return the prefix in void context.
 
@@ -615,7 +618,7 @@ sub prefix {
 
 =head2 saveTree
 
-saveTree('filename',\@ref) or saveTree()
+     saveTree('filename',\@ref); # or saveTree()
 
 default: ./TreeViewDump.pl
 
@@ -634,7 +637,7 @@ sub saveTree {
         my $rsas = $saveAs =~ /^(\S+)$/ ? $1 : 0;
 
         if($rsas) {
-                open $fh, ">$rsas.bak" or warn "HTML::menu::TreeView::saveTree $/ $! $/ $rsas $/";
+                open $fh, ">$rsas.bak" or warn "HTML::Menu::TreeView::saveTree $/ $! $/ $rsas $/";
                 flock $fh, 2;
                 seek $fh, 0, 0;
                 truncate $fh, 0;
@@ -642,14 +645,14 @@ sub saveTree {
                 close $fh;
         }
         if(-e "$rsas.bak") {
-                rename "$rsas.bak", $rsas or warn "HTML::menu::TreeView::saveTree $/ $! $/";
+                rename "$rsas.bak", $rsas or warn "HTML::Menu::TreeView::saveTree $/ $! $/";
                 do $rsas;
         }
 }
 
 =head2 loadTree
 
-loadTree('filename') or loadTree()
+     loadTree('filename') or loadTree()
 
 default: ./TreeViewDump.pl
 
@@ -673,7 +676,7 @@ return a hashref in void context,
 
           print "$key : ", $hashref->{$key} ,$/;
 
-}
+     }
 
 or a help Message.
 
@@ -818,7 +821,10 @@ additional text behind the link
 
 an array of TreeView Items
 
-subtree => {{text => 'Fo'},{text => 'Bar'} ],
+     subtree => [{
+          text => 'Fo'},
+          {text => 'Bar'}
+     ]
 
 =item image.
 
@@ -891,7 +897,9 @@ set the local path to the style folder.
 
 should be the Document Root of your webserver.
 
-example: setDocumentRoot('/sv/www/htdocs/');
+example:
+
+     setDocumentRoot('/sv/www/htdocs/');
 
 default: this property is set during make
 
@@ -939,7 +947,7 @@ for backward compatibility.
 
 use style instead.
 
-setStyle('style');
+     setStyle('style');
 
 simple = redmond like style
 
@@ -949,14 +957,14 @@ Crystal = Crystal style
 
 sub setStyle {
         my ($self, @p) = getSelf(@_);
-        $self->style($p[0]) if(defined $p[0] && $p[0] =~ /(Crystal|simple)/);
+        $self->Style($p[0]);
 }
 
 =head2 style
 
 set the style in scalar context, or get in void context.
 
-style('simple');
+     style('simple');
 
 simple = redmond like style.
 
@@ -1081,6 +1089,7 @@ sub appendFolder {
                 $tmpref = \@{$openArrays{$id}};
         }
         $node->{onclick} = defined $node->{onclick} ? $node->{onclick} : defined $node->{href} ? '' : qq(ocFolder('$id');displayTree('$id');hideArray('$id');ocNode('$id.node','$size'););
+        my $onclick = qq(ocFolder('$id');displayTree('$id');hideArray('$id');ocNode('$id.node','$size'););
         $node->{class} = defined $node->{class} ? $node->{class} : "treeviewLink$size";
         my $FolderClass = defined $node->{folderclass} ? $node->{folderclass} . $size : "folder$size";
         $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
@@ -1089,14 +1098,14 @@ sub appendFolder {
         foreach my $key (keys %{$node}) {
                 $tt .= $key . '="' . $node->{$key} . '" ' if(exists $anker{$key});
         }
-        my $st = $columns > 0 ? 'style="white-space:nowrap;"' : '';
+        my $st = $node->{style} = (($columns > 0 or defined $node->{addition}) and not defined $node->{style}) ? 'style="white-space:nowrap;"' : '';
         my $addon =
           defined $node->{addition}
-          ? qq(<table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendFolder" width="100%"><td><a $tt $st>$node->{text}</a></td><td>$node->{addition}</td></tr></table>)
-          : "<a $tt $st>$node->{text}</a>";
+          ? qq(<table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendFolder" width="100%"><tr><td $st>&#160;<a $tt>$node->{text}</a>&#160;</td><td $st>$node->{addition}</td></tr></table>)
+          : "&#160;<a $tt >$node->{text}</a>&#160;";
         my $minusnode = $clasic ? "clasicMinusNode$size" : "minusNode$size";
         $self->{tree} .=
-          qq(<tr><td  id="$id.node" class="$minusnode" onclick="ocFolder('$id');displayTree('$id');hideArray('$id');ocNode('$id.node','$size');"><img src="$pref/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="spacer"/></td><td align="left" class="$FolderClass" id="$id.folder">$addon</td></tr><tr id="$id"><td class="submenuDeco$size"><img src="$pref/style/$style/$size/html-menu-treeview/spacer.gif" border="0" alt="spacer"/></td><td><table align="left" border="0" cellpadding="0" cellspacing="0"   summary="appendFolder" width="100%"><colgroup><col width="$size"/></colgroup>);
+          qq(<tr><td  id="$id.node" class="$minusnode"><img src="$pref/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="spacer" onclick="$onclick"/></td><td align="left" class="$FolderClass" id="$id.folder"><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$pref/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="spacer" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr><tr id="$id"><td class="submenuDeco$size"><img src="$pref/style/$style/$size/html-menu-treeview/spacer.gif" border="0" alt="spacer"/></td><td><table align="left" border="0" cellpadding="0" cellspacing="0"   summary="appendFolder" width="100%"><colgroup><col width="$size"/></colgroup>);
         if($columns > 0) {
                 my $class = $border ? "columnsFolderBorder$size" : "columnsFolder$size";
                 $self->{subtree} .= qq(<tr id="tr$id">);
@@ -1110,9 +1119,8 @@ sub appendFolder {
         }
         $self->initTree(\@$subtree);
         if($columns > 0) {
-                $self->{js} .= "\nfolders['$ty']= new Array();";
                 for(my $i = 0 ; $i < @$tmpref ; $i++) {
-                        $self->{js} .= "folders['$ty']['$i'] = '$$tmpref[$i]';";
+                        $self->{js}{$ty}[$i] = $$tmpref[$i];
                 }
                 @$tmpref = undef;
         }
@@ -1142,6 +1150,7 @@ sub appendLastFolder {
                 $tmpref = \@{$openArrays{$id}};
         }
         $node->{onclick} = defined $node->{onclick} ? $node->{onclick} : defined $node->{href} ? "" : qq(ocpNode('$id.node','$size');ocFolder('$id');displayTree('$id');hideArray('$id'););
+        my $onclick = qq(ocFolder('$id');displayTree('$id');hideArray('$id');ocNode('$id.node','$size'););
         $node->{class} = defined $node->{class} ? $node->{class} : "treeviewLink$size";
         my $FolderClass = defined $node->{FolderClass} ? $node->{FolderClass} . $size : "folder$size";
         $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
@@ -1150,14 +1159,14 @@ sub appendLastFolder {
         foreach my $key (keys %{$node}) {
                 $tt .= $key . '="' . $node->{$key} . '" ' if(exists $anker{$key});
         }
-        my $st = $columns > 0 ? 'style="white-space:nowrap;"' : '';
+        my $st = $node->{style} = (($columns > 0 or defined $node->{addition}) and not defined $node->{style}) ? 'style="white-space:nowrap;"' : '';
         my $addon =
           defined $node->{addition}
-          ? qq(<table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendLastFolder" width="100%"><td><a $tt $st>$node->{text}</a></td><td>$node->{addition}</td></tr></table>)
-          : "<a $tt $st>$node->{text}</a>";
+          ? qq(<table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendLastFolder"  width="100%"><tr><td $st>&#160;<a $tt >$node->{text}</a>&#160;</td><td $st>$node->{addition}</td></tr></table>)
+          : "&#160;<a $tt>$node->{text}</a>&#160;";
         my $lastminusnode = $clasic ? "clasicLastMinusNode$size" : "lastMinusNode$size";
         $self->{tree} .=
-          qq(<tr><td id="$id.node" class="$lastminusnode" onclick="ocpNode('$id.node','$size');ocFolder('$id');displayTree('$id');hideArray('$id');"></td><td align="left" class="$FolderClass" id="$id.folder">$addon</td></tr><tr id="$id"><td><img src="$pref/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="spacer"/></td><td><table align="left" width="100%" cellpadding="0" cellspacing="0" border="0" summary="appendLastFolder"><colgroup><col width="$size"/></colgroup>);
+          qq(<tr><td id="$id.node" class="$lastminusnode" onclick="$onclick"><img src="$pref/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="spacer" /></td><td align="left" class="$FolderClass" id="$id.folder"><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendLastFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$pref/style/$style/$size/html-menu-treeview/spacer.gif" border="0" alt="spacer" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr><tr id="$id"><td><img src="$pref/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="spacer"/></td><td><table align="left" width="100%" cellpadding="0" cellspacing="0" border="0" summary="appendLastFolder"><colgroup><col width="$size"/></colgroup>);
         if($columns > 0) {
                 my $class = $border ? "columnsFolderBorder$size" : "columnsFolder$size";
                 $self->{subtree} .= qq(<tr id="tr$id">);
@@ -1171,9 +1180,8 @@ sub appendLastFolder {
         }
         $self->initTree(\@$subtree);
         if($columns > 0) {
-                $self->{js} .= "\nfolders['$ty']= new Array();";
                 for(my $i = 0 ; $i < @$tmpref ; $i++) {
-                        $self->{js} .= "folders['$ty'][$i] = '$$tmpref[$i]';";
+                        $self->{js}{$ty}[$i] = $$tmpref[$i];
                 }
                 @$tmpref = undef;
         }
@@ -1191,7 +1199,7 @@ called by initTree() if the current item of the (sub)Tree is a node.
 sub appendNode {
         my $self = shift;
         my $node = shift;
-        $node->{image} = defined $node->{image} ? $node->{image} : "link.gif";
+        $node->{image} = defined $node->{image} ? $node->{image} : 'link.gif';
         $node->{class} = defined $node->{class} ? $node->{class} : "treeviewLink$size";
         $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
         $id++;
@@ -1204,11 +1212,11 @@ sub appendNode {
         foreach my $key (keys %{$node}) {
                 $tt .= $key . '="' . $node->{$key} . '" ' if(exists $anker{$key});
         }
-        my $st = $columns > 0 ? 'style="white-space:nowrap;"' : '';
+        my $st = $node->{style} = (($columns > 0 or defined $node->{addition}) and not defined $node->{style}) ? 'style="white-space:nowrap;"' : '';
         my $addon =
           defined $node->{addition}
-          ? qq(<table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendNode" width="100%"><td><a $tt $st>$node->{text}</a></td><td>$node->{addition}</td></tr></table>)
-          : "<a $tt $st>$node->{text}</a>";
+          ? qq(<table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendNode" width="100%"><tr><td $st>&#160;<a $tt >$node->{text}</a>&#160;</td><td $st>$node->{addition}</td></tr></table>)
+          : "&#160;<a $tt>$node->{text}</a>";
         my $paddingLeft = $size+ 2 . "px";
         $self->{tree} .=
           qq(<tr><td class="node$size"><img src="$pref/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="spacer" align="middle"/></td><td align="left"  style="background-image:url('$pref/style/$style/$size/mimetypes/$node->{image}');background-repeat:no-repeat;cursor:pointer;padding-left:$paddingLeft">$addon</td></tr>);
@@ -1236,7 +1244,7 @@ called by initTree() if the last item of the current (sub)Tree is a node.
 sub appendLastNode {
         my $self = shift;
         my $node = shift;
-        $node->{image} = defined $node->{image} ? $node->{image} : "link.gif";
+        $node->{image} = defined $node->{image} ? $node->{image} : 'link.gif';
         $node->{class} = defined $node->{class} ? $node->{class} : "treeviewLink$size";
         $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
         $id++;
@@ -1249,11 +1257,11 @@ sub appendLastNode {
         foreach my $key (keys %{$node}) {
                 $tt .= $key . '="' . $node->{$key} . '" ' if(exists $anker{$key});
         }
-        my $st = $columns > 0 ? 'style="white-space:nowrap;"' : '';
+        my $st = $node->{style} = (($columns > 0 or defined $node->{addition}) and not defined $node->{style}) ? 'style="white-space:nowrap;"' : '';
         my $addon =
           defined $node->{addition}
-          ? qq(<table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendLastNode" width="100%"><td><a $tt $st>$node->{text}</a></td><td>) . $node->{addition} . '</td></tr></table>'
-          : "<a $tt $st>$node->{text}</a>";
+          ? qq(<table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendLastNode" width="100%"><tr><td $st><a $tt>$node->{text}</a></td><td $st>$node->{addition}</td></tr></table>)
+          : "&#160;<a $tt>$node->{text}</a>";
         my $paddingLeft = $size+ 2 . "px";
         $self->{tree} .=
           qq(<tr><td class="lastNode$size"><img src="$pref/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="spacer"/></td><td align="left"  style="background-image:url('$pref/style/$style/$size/mimetypes/$node->{image}');background-repeat:no-repeat;cursor:pointer;padding-left:$paddingLeft;">$addon</td></tr>);

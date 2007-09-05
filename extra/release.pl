@@ -5,6 +5,7 @@ my $dir     = 'httpdocs/';
 my $path    = '.';
 my $result  = GetOptions("release=s" => \$release, "readdir=s" => \$dir, "htpath=s" => \$path,);
 system("mkdir -p $release") unless -e $release;
+
 &change($dir);
 
 sub change {
@@ -19,6 +20,10 @@ sub change {
                         my $e = $c;
                         $e =~ s/^$dir(.*)/$1/;
                         unless (-d $d . $files[$i]) {
+
+                                #                                 if($files[$i] =~ /\.css$/) {
+                                #                                         removeEmtyLines($d . $files[$i]);
+                                #                                 }
                                 system(" cp " . $c . " $release/$e") unless (-e $release . "/" . $e && $files[$i] =~ /\~$/);
                         } else {
                                 unless ($files[$i] =~ /CVS/) {
@@ -45,4 +50,18 @@ sub replacePath {
         truncate(EDIT, tell(EDIT));
         close(EDIT);
 }
+
+# sub removeEmtyLines {
+#         my $file = shift;
+#         chmod 0644, $file;
+#         open(EDIT, "+<$file") or die "$! $/";
+#         my $file = '';
+#         while(<EDIT>) {
+#                 $file .= $_ unless ($_ =~ /^$/);
+#         }
+#         seek(EDIT, 0, 0);
+#         print EDIT $file;
+#         truncate(EDIT, tell(EDIT));
+#         close(EDIT);
+# }
 1;

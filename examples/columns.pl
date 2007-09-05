@@ -24,13 +24,13 @@ if(defined $q->param('byColumn')) {
 $TreeView->size($size);
 $TreeView->border(1);
 $TreeView->clasic(1) if(defined $q->param('clasic'));
-my $zoom =
-$q->a({href=>'./columns.pl?style=Crystal&amp;size=16',class => "treeviewLink$size"},'16').'&#160;|&#160;'.
+my $zoom = $q->div({style=>"font-size:$size px;"},$q->a({href=>'./columns.pl?style=Crystal&amp;size=16',class => "treeviewLink$size"},'16').'&#160;|&#160;'.
 $q->a({href=>'./columns.pl?style=Crystal&amp;size=22',class => "treeviewLink$size"},'22').'&#160;|&#160;'.
 $q->a({href=>'./columns.pl?style=Crystal&amp;size=32',class => "treeviewLink$size"},'32').'&#160;|&#160;'.
 $q->a({href=>'./columns.pl?style=Crystal&amp;size=48',class => "treeviewLink$size"},'48').'&#160;|&#160;'.
 $q->a({href=>'./columns.pl?style=Crystal&amp;size=64',class => "treeviewLink$size"},'64').'&#160;|&#160;'.
-$q->a({href=>'./columns.pl?style=Crystal&amp;size=64',class => "treeviewLink$size"},'128');
+$q->a({href=>'./columns.pl?style=Crystal&amp;size=64',class => "treeviewLink$size"},'128').'&#160;|&#160;'.
+$q->a({-href=>'./columns.pl?style=simple&amp;size=16',-class => "treeviewLink$size"},'simple'));
 
 print $q->header,
 $q->start_html(

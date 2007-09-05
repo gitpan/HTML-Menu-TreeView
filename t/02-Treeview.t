@@ -16,7 +16,7 @@ ok(length($TreeView->css()) > 0);
 my $TreeView2 = new HTML::Menu::TreeView(\@tree);
 my $tree      = $TreeView2->Tree();
 my $tree2     = Tree();
-ok(length($tree) eq length($tree2));
+ok(length($tree) le length($tree2));
 my $tree3 = Tree(\@tree2);
 ok(length($tree3) le length($tree2));
 

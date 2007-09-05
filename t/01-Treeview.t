@@ -7,7 +7,7 @@ my @tree2    = ({text => 'News', href => "TreeView.pl", subtree => [{text => 'Tr
 
 use Test::More tests => 2;
 my $tree2 = Tree(\@tree);
-ok(length($tree2) eq length($tree));
+ok(length($tree2) ge length($tree));
 my $tree3 = Tree(\@tree2);
 ok(length($tree3) < length($tree));
 1;
