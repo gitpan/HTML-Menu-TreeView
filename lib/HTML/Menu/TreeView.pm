@@ -3,12 +3,12 @@ use strict;
 use warnings;
 require Exporter;
 use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView %openArrays);
-$HTML::Menu::TreeView::VERSION = '0.8';
+$HTML::Menu::TreeView::VERSION = '0.8.1';
 @ISA                           = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK =
-  qw(all Tree css jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style Style documentRoot loadTree saveTree  %anker sortTree orderBy orderByColumn prefix setModern border);
+  qw(border Tree css columns jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style Style documentRoot loadTree saveTree  %anker sortTree orderBy orderByColumn prefix setModern border);
 %HTML::Menu::TreeView::EXPORT_TAGS = (
-                                      'all'       => [qw(Tree css jscript clasic preload help folderFirst  size documentRoot  loadTree saveTree sortTree orderBy prefix Style orderByColumn  border)],
+                                      'all'       => [qw(Tree css jscript clasic columns preload help folderFirst  size documentRoot  loadTree saveTree sortTree orderBy prefix Style orderByColumn  border)],
                                       'recommend' => [qw(Tree css jscript clasic preload folderFirst size Style documentRoot  loadTree saveTree sortTree orderBy prefix)],
                                       'standart'  => [qw(Tree css jscript preload size Style documentRoot clasic)],
                                       'backward'  => [qw(setDocumentRoot getDocumentRoot setSize setClasic setStyle style setModern %anker)],
@@ -186,9 +186,15 @@ HTML::Menu::TreeView is a Modul to build an Html tree of an AoH.
 
 =head1 Changes
 
-0.8
+0.8.1
 
-some fixes
+fix background color if different sizes are used.
+
+fix treeviewLink classname.
+
+get Document Root form previous installed Version.
+
+fixe export_ok and export tag :all.
 
 =head1 Public
 
@@ -405,7 +411,7 @@ sub Tree {
                 }
                 $r .= "//-->\n</script>";
         }
-        $r .= qq(<table border="0" cellpadding="2" cellspacing="1" summary="Tree"><tr><td><table align="left" border="0" cellpadding="0" cellspacing="0" summary="Tree" width="100%" class="treeview"><colgroup><col width="$size"/></colgroup>);
+        $r .= qq(<table border="0" cellpadding="2" cellspacing="1" summary="Tree"><tr><td><table align="left" border="0" cellpadding="0" cellspacing="0" summary="Tree" width="100%" class="treeview$size"><colgroup><col width="$size"/></colgroup>);
         if(defined @caption) {
                 my $class = $border ? "captionBorder$size" : "caption$size";
                 $r .= qq(<tr><td class="$class"></td><td class="$class">$caption[0]</td></tr>);

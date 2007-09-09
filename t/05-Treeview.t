@@ -1,13 +1,11 @@
 use HTML::Menu::TreeView qw(:all style);
 my @tree = ({text => "Help", onclick => 'attribute', image => "help.gif"}, {text => 'News', href => 'TreeView.pl', subtree => [{text => 'TreeView', href => 'attribute', image => "news.gif",},],});
-use Test::More tests => 11;
+use Test::More tests => 10;
 my $t1 = Tree(\@tree);
 folderFirst(1);
 ok(folderFirst()== 1);
 folderFirst(0);
 ok(folderFirst()== 0);
-my $t3 = Tree(\@tree);
-ok($t3 le $t1);
 ok(style() eq 'Crystal');
 documentRoot("blib/bin");
 style('simple');

@@ -1,5 +1,10 @@
 Revision history for Perl extension treeview.
-HTML::Menu::TreeView version 0.8
+HTML::Menu::TreeView version 0.8.1
+0.8.1
+     - fix background color if different sizes are used.
+     - fix treeviewLink classname.
+     - get Document Root form previous installed Version.
+     - fixe export_ok and export tag :all.
 0.8
      - Overwrought Code.
 0.7.9
