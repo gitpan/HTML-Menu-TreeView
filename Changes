@@ -1,5 +1,8 @@
 Revision history for Perl extension treeview.
-HTML::Menu::TreeView version 0.8.1
+HTML::Menu::TreeView version 0.8.2
+0.8.2
+     - new attribute empty
+     - new subs appendEmptyFolder, appendLastEmptyFolder.
 0.8.1
      - fix background color if different sizes are used.
      - fix treeviewLink classname.

@@ -2,8 +2,8 @@ package HTML::Menu::TreeView;
 use strict;
 use warnings;
 require Exporter;
-use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView %openArrays);
-$HTML::Menu::TreeView::VERSION = '0.8.1';
+use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView %openArrays @caption $columns $clasic $ffirst $sort $border $orderby $size $style $orderbyColumn $pref);
+$HTML::Menu::TreeView::VERSION = '0.8.2';
 @ISA                           = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK =
   qw(border Tree css columns jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style Style documentRoot loadTree saveTree  %anker sortTree orderBy orderByColumn prefix setModern border);
@@ -16,14 +16,14 @@ $HTML::Menu::TreeView::VERSION = '0.8.1';
 );
 $DefaultClass = 'HTML::Menu::TreeView' unless defined $HTML::Menu::TreeView::DefaultClass;
 our $id    = 'a';
-our $style = 'Crystal';
-our $size  = 16;
+$style = 'Crystal';
+$size  = 16;
 our $path  = '%PATH%';
-our ($clasic, $ffirst, $sort, $border, $columns) = (0) x 5;
+($clasic, $ffirst, $sort, $border) = (0) x 4;
 our $saveFile = './TreeViewDump.pl';
-our $orderby  = 'text';
-our $pref     = '';
-our (@caption, $orderbyColumn);
+$orderby  = 'text';
+$columns  = 0;
+$pref     = '';
 
 %anker = (
           href        => 'URI for linked resource',
@@ -186,15 +186,11 @@ HTML::Menu::TreeView is a Modul to build an Html tree of an AoH.
 
 =head1 Changes
 
-0.8.1
+0.8.2
 
-fix background color if different sizes are used.
+new attribute empty
 
-fix treeviewLink classname.
-
-get Document Root form previous installed Version.
-
-fixe export_ok and export tag :all.
+new subs appendEmptyFolder, appendLastEmptyFolder.
 
 =head1 Public
 
@@ -418,7 +414,7 @@ sub Tree {
         }
         $r .= $self->{tree} . '</table></td>';
         if(defined $self->{subtree}) {
-                $r .= '<td ><table align="left" border="0" cellpadding="0" cellspacing="0" summary="subTree" width="100%" >';
+                $r .= '<td><table align="left" border="0" cellpadding="0" cellspacing="0" summary="subTree" width="100%" >';
                 if(defined @caption) {
                         my $class = $border ? "captionBorder$size" : "caption$size";
                         $r .= '<tr>';
@@ -862,6 +858,12 @@ an array of columns
 
 columns => [ 1,2,3,4,5]
 
+=item empty.
+
+set it true if you ant a closed Folder,
+
+which load a location onclick, you must additional set the href attribute.
+
 =back
 
 =head1 backward compatibility
@@ -1021,6 +1023,12 @@ sub initTree {
                                 } elsif ($length eq 0) {
                                         $self->appendLastFolder(@$tree[$i], \@{@$tree[$i]->{subtree}});
                                 }
+                        } elsif (defined @$tree[$i]->{empty}) {
+                                if($length > 0) {
+                                        $self->appendEmptyFolder(@$tree[$i]);
+                                } elsif ($length eq 0) {
+                                        $self->appendLastEmptyFolder(@$tree[$i]);
+                                }
                         } else {
                                 if($length > 0) {
                                         $self->appendNode(@$tree[$i]);
@@ -1102,7 +1110,7 @@ sub appendFolder {
         my $tt;
 
         foreach my $key (keys %{$node}) {
-                $tt .= $key . '="' . $node->{$key} . '" ' if(exists $anker{$key});
+                $tt .= $key . '="' . $node->{$key} . '" ' if( $anker{$key} && $node->{$key});
         }
         my $st = $node->{style} = (($columns > 0 or defined $node->{addition}) and not defined $node->{style}) ? 'style="white-space:nowrap;"' : '';
         my $addon =
@@ -1163,7 +1171,7 @@ sub appendLastFolder {
         my $tt;
 
         foreach my $key (keys %{$node}) {
-                $tt .= $key . '="' . $node->{$key} . '" ' if(exists $anker{$key});
+                $tt .= $key . '="' . $node->{$key} . '" ' if( $anker{$key} && $node->{$key});
         }
         my $st = $node->{style} = (($columns > 0 or defined $node->{addition}) and not defined $node->{style}) ? 'style="white-space:nowrap;"' : '';
         my $addon =
@@ -1194,6 +1202,112 @@ sub appendLastFolder {
         $self->{tree} .= '</table></td></tr>';
 }
 
+=head2 appendEmptyFolder
+
+called by initTree(), append a empty Folder.
+
+=cut
+
+sub appendEmptyFolder {
+        my $self = shift;
+        my $node = shift;
+        ++$id;
+        my ($tmpref, $ty);
+        if($columns > 0) {
+                $ty = $id;
+                foreach my $key (keys %openArrays) {
+                        push @{$openArrays{$key}}, $id;
+                }
+                $tmpref = \@{$openArrays{$id}};
+        }
+        my $onclick = qq(location.href='$node->{href}');
+        $node->{class} = defined $node->{class} ? $node->{class} : "treeviewLink$size";
+        my $FolderClass = defined $node->{folderclass} ? $node->{folderclass} . "Closed$size" : "folderClosed$size";
+        $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
+        my $tt;
+        foreach my $key (keys %{$node}) {
+                $tt .= $key . '="' . $node->{$key} . '" ' if( $anker{$key} && $node->{$key});
+        }
+        my $st = $node->{style} = (($columns > 0 or defined $node->{addition}) and not defined $node->{style}) ? 'style="white-space:nowrap;"' : '';
+        my $addon =
+          defined $node->{addition}
+          ? qq(<table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendEmptyFolder" width="100%"><tr><td $st>&#160;<a $tt>$node->{text}</a>&#160;</td><td $st>$node->{addition}</td></tr></table>)
+          : "&#160;<a $tt >$node->{text}</a>&#160;";
+        my $plusnode = $clasic ? "clasicPlusNode$size" : "plusNode$size";
+        $self->{tree} .=
+          qq(<tr><td  id="$id.node" class="$plusnode"><img src="$pref/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="spacer" onclick="$onclick"/></td><td align="left" class="$FolderClass" id="$id.folder"><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$pref/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="spacer" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr>);
+        if($columns > 0) {
+                my $class = $border ? "columnsFolderBorder$size" : "columnsFolder$size";
+                $self->{subtree} .= qq(<tr id="tr$id">);
+                for(my $i = 0 ; $i < $columns ; $i++) {
+                        if(defined $node->{columns}[$i]) {
+                                my $txt = $node->{columns}[$i];
+                                $self->{subtree} .= qq(<td class="$class">$txt</td>);
+                        }
+                }
+                $self->{subtree} .= '</tr>';
+                for(my $i = 0 ; $i < @$tmpref ; $i++) {
+                        $self->{js}{$ty}[$i] = $$tmpref[$i];
+                }
+                @$tmpref = undef;
+        }
+}
+
+=head2 appendLastEmptyFolder
+
+$self->appendLastEmptyFolder($node);
+
+called by initTree() if the last item of the (sub)Tree is a folder.
+
+=cut
+
+sub appendLastEmptyFolder {
+        my $self = shift;
+        my $node = shift;
+        $id++;
+        my $tmpref;
+        my $ty;
+        if($columns > 0) {
+                $ty = $id;
+                foreach my $key (keys %openArrays) {
+                        push @{$openArrays{$key}}, $id;
+                }
+                $tmpref = \@{$openArrays{$id}};
+        }
+        my $onclick = qq(location.href='$node->{href}');
+        $node->{class} = defined $node->{class} ? $node->{class} : "treeviewLink$size";
+        my $FolderClass = defined $node->{folderclass} ? $node->{folderclass} . "Closed$size" : "folderClosed$size";
+        $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
+        my $tt;
+
+        foreach my $key (keys %{$node}) {
+                $tt .= $key . '="' . $node->{$key} . '" ' if( $anker{$key} && $node->{$key});
+        }
+        my $st = $node->{style} = (($columns > 0 or defined $node->{addition}) and not defined $node->{style}) ? 'style="white-space:nowrap;"' : '';
+        my $addon =
+          defined $node->{addition}
+          ? qq(<table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendLastFolder"  width="100%"><tr><td $st>&#160;<a $tt >$node->{text}</a>&#160;</td><td $st>$node->{addition}</td></tr></table>)
+          : "&#160;<a $tt>$node->{text}</a>&#160;";
+        my $lastpusnode = $clasic ? "clasicLastPlusNode$size" : "lastPlusNode$size";
+        $self->{tree} .=
+          qq(<tr><td id="$id.node" class="$lastpusnode" onclick="$onclick"><img src="$pref/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="spacer" /></td><td align="left" class="$FolderClass" id="$id.folder"><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendLastFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$pref/style/$style/$size/html-menu-treeview/spacer.gif" border="0" alt="spacer" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr>);
+        if($columns > 0) {
+                my $class = $border ? "columnsFolderBorder$size" : "columnsFolder$size";
+                $self->{subtree} .= qq(<tr id="tr$id">);
+                for(my $i = 0 ; $i < $columns ; $i++) {
+                        if(defined $node->{columns}[$i]) {
+                                my $txt = $node->{columns}[$i];
+                                $self->{subtree} .= qq(<td class="$class">$txt</td>);
+                        }
+                }
+                $self->{subtree} .= '</tr>';
+                for(my $i = 0 ; $i < @$tmpref ; $i++) {
+                        $self->{js}{$ty}[$i] = $$tmpref[$i];
+                }
+                @$tmpref = undef;
+        }
+}
+
 =head2 appendNode
 
 $self->appendLastNode(\$node);
@@ -1216,7 +1330,7 @@ sub appendNode {
         }
         my $tt;
         foreach my $key (keys %{$node}) {
-                $tt .= $key . '="' . $node->{$key} . '" ' if(exists $anker{$key});
+                $tt .= $key . '="' . $node->{$key} . '" ' if( $anker{$key} && $node->{$key});
         }
         my $st = $node->{style} = (($columns > 0 or defined $node->{addition}) and not defined $node->{style}) ? 'style="white-space:nowrap;"' : '';
         my $addon =
@@ -1261,7 +1375,7 @@ sub appendLastNode {
         }
         my $tt;
         foreach my $key (keys %{$node}) {
-                $tt .= $key . '="' . $node->{$key} . '" ' if(exists $anker{$key});
+                $tt .= $key . '="' . $node->{$key} . '" ' if( $anker{$key} && $node->{$key});
         }
         my $st = $node->{style} = (($columns > 0 or defined $node->{addition}) and not defined $node->{style}) ? 'style="white-space:nowrap;"' : '';
         my $addon =
