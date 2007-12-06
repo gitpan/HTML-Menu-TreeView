@@ -893,3 +893,4 @@ t/06-Treeview.t
 t/07-Treeview.t
 t/08-Treeview.t
 META.yml                                 Module meta-data (added by MakeMaker)
+SIGNATURE                                Public-key signature (added by MakeMaker)

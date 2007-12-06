@@ -12,8 +12,8 @@ WriteMakefile(
         INSTALLBIN    => $htd,
         INSTALLSCRIPT => $htd,
         PL_FILES      => {'extra/release.pl' => "-release blib/bin  -readdir httpdocs/ -htpath $htd"},
-        PREREQ_PM     => {'Test::More' => 0,},
+        PREREQ_PM     => {'Test::More' => 0,'Test::Signature' => 1.10},
         ($] >= 5.005 ? (AUTHOR => 'Dirk Lindner <lindnerei@o2online.de>') : ()),
 
-        #               SIGN => 1,
+                      SIGN => 1,
 );
