@@ -1,10 +1,10 @@
+Build.PL
 Changes
 examples/columns.pl
 examples/crystal.pl
 examples/fo.pl
 examples/folderFirst.pl
 examples/oo.pl
-extra/release.pl
 httpdocs/style/Crystal/128/html-menu-treeview/clasicLastMinusNode.gif
 httpdocs/style/Crystal/128/html-menu-treeview/clasicLastPlusNode.gif
 httpdocs/style/Crystal/128/html-menu-treeview/clasicMinusNode.gif
@@ -883,7 +883,9 @@ httpdocs/style/treeview.js
 lib/HTML/Menu/TreeView.pm
 Makefile.PL
 MANIFEST			This list of files
+META.yml
 README
+t/00-signature.t
 t/01-Treeview.t
 t/02-Treeview.t
 t/03-Treeview.t
@@ -892,5 +894,6 @@ t/05-Treeview.t
 t/06-Treeview.t
 t/07-Treeview.t
 t/08-Treeview.t
-META.yml                                 Module meta-data (added by MakeMaker)
-SIGNATURE                                Public-key signature (added by MakeMaker)
+t/09-coverage.t
+t/10-pod.t
+SIGNATURE    Added here by Module::Build

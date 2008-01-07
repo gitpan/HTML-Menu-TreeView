@@ -14,17 +14,17 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 200f67751fb6a6120b3a5081b50a30d4b17873e3 Changes
-SHA1 41a7975b02e4b3b623220443fd0564533a99f917 MANIFEST
-SHA1 f7bf38c3911dbc94b3fbd141ad9c4aa1ab30fa47 META.yml
-SHA1 7693f5e890c2545548eacf6a3125b45e052912f5 Makefile.PL
+SHA1 b78eb59813da15451b47634bd8bc32406fb08e07 Build.PL
+SHA1 3febbb30e3921c7800e6bb35897fc4fce2626efe Changes
+SHA1 9be10ce495dc628814caa54aac0f922631eb116e MANIFEST
+SHA1 8c1f4a4a0b7f21079aafdd94e2926e6407ffceee META.yml
+SHA1 5bedaf3697eaaad9c8d731085afd462d17d11b61 Makefile.PL
 SHA1 59413bee48b05ad73a513082da0644efdfe18ee3 README
-SHA1 e15cd7198bc59099e6c588a8d0826f74bf92aed2 examples/columns.pl
-SHA1 f28edaaffff511779cf7b31b6f2f6975a7c48559 examples/crystal.pl
-SHA1 c140e614d5aaf82c4cfb07b1a2c70d5d14e1ef6f examples/fo.pl
-SHA1 72ae4b0e539156e955f22cff95def08ef4f7c399 examples/folderFirst.pl
-SHA1 c148da786c5ae8892b7a8fdb6b340dbda1079960 examples/oo.pl
-SHA1 848149a657edb942b37c5fa20a04565c9913d894 extra/release.pl
+SHA1 5bc08a82c25f2839a3da2604031adbb597a1b994 examples/columns.pl
+SHA1 644b6d9e81089ba50eb1b39f73bd42167f6b0330 examples/crystal.pl
+SHA1 5e8aa64000f62539f45ab63c9bd57e5458ba96b9 examples/fo.pl
+SHA1 39a6a095bca5baef593d8442227599f02b0336bf examples/folderFirst.pl
+SHA1 3a69b160cd5a0a74bd762192460e604db1ebf5a4 examples/oo.pl
 SHA1 33e1496804f9dba64819229482bdb27da69a04b8 httpdocs/style/Crystal/128/html-menu-treeview/Crystal.css
 SHA1 44ef2a8a3addb9b0c891ad6d181a3bd7d78195fb httpdocs/style/Crystal/128/html-menu-treeview/clasicLastMinusNode.gif
 SHA1 ecefdf5d4f1ebf0afb4e4cf231b7c693b25c2164 httpdocs/style/Crystal/128/html-menu-treeview/clasicLastPlusNode.gif
@@ -900,19 +900,22 @@ SHA1 c290ecb506c42a4da5e825cb91d608df916800d9 httpdocs/style/simple/16/html-menu
 SHA1 529640ff50ef296395eaf92b7fc83ac13d4d191b httpdocs/style/simple/16/html-menu-treeview/vertLine.gif
 SHA1 def3c8e27a5430dc5d7e696bcdc2230dc653a3e0 httpdocs/style/simple/16/mimetypes/link.gif
 SHA1 b1a918bc3fdd483ae6acdeff237ee58ad81e561f httpdocs/style/treeview.js
-SHA1 1881904a048709b817d0b121e303ad2769887ceb lib/HTML/Menu/TreeView.pm
+SHA1 61f460c5dfede1268676ddb87325ef4508c71c75 lib/HTML/Menu/TreeView.pm
+SHA1 7e1544d327b9f8855090a2517c0845173f2171b8 t/00-signature.t
 SHA1 4555459dc641ad245cafe837ec1f08953bd0ffd0 t/01-Treeview.t
 SHA1 64d48a60f3aeda0c09e2de67028c18d6215ff14f t/02-Treeview.t
-SHA1 c2e6eb3de97e2720448882ce201869ecce645f38 t/03-Treeview.t
+SHA1 dde5d831ad3731f257c9392837ca7ce1fd975afc t/03-Treeview.t
 SHA1 389474bf72e4a5962a69d46ce445336c6a8f6ef3 t/04-Treeview.t
-SHA1 9465230a5589e35eaa2191cdb41340592a701d8b t/05-Treeview.t
+SHA1 2d0f8fdb52aa999d2f44032574086678144959e2 t/05-Treeview.t
 SHA1 516c3fff0f1883b9f4f189b5a2ef10d89ad75ec1 t/06-Treeview.t
 SHA1 2b7e95ef1633b2ad9f5521cdda31080d45a6a23c t/07-Treeview.t
-SHA1 1962fb7521a509c1798cd4041bcc766e03de49c2 t/08-Treeview.t
+SHA1 ca928c67f7e8cc30af859ceb5b44c7686b08f67b t/08-Treeview.t
+SHA1 54a26d74ac4be249293d8e7a25ba60bc87c9489d t/09-coverage.t
+SHA1 bb0da54f2b3f2d7955baa41ee458cb3d1887f475 t/10-pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.2 (GNU/Linux)
 
-iD8DBQFHVc/N1DBb9kCO+t0RAlqIAJ9xv1j40G9MB55+c4h4iJEiyXwq7wCfRzmp
-j664EpGuZUJSWHQDcAk42tc=
-=br2r
+iD8DBQFHgkDC1DBb9kCO+t0RAuR0AJwJQwmOSrlwg67F2Jd23fbaQFIUVwCgvGAr
+UDGVRLAL4BNVG5ZkHWu++xs=
+=MDRf
 -----END PGP SIGNATURE-----

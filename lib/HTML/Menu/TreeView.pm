@@ -3,26 +3,26 @@ use strict;
 use warnings;
 require Exporter;
 use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView %openArrays @caption $columns $clasic $ffirst $sort $border $orderby $size $style $orderbyColumn $prefix);
-$HTML::Menu::TreeView::VERSION = '0.8.3';
+$HTML::Menu::TreeView::VERSION = '0.84';
 @ISA                           = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK =
   qw(border Tree css columns jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style Style documentRoot loadTree saveTree  %anker sortTree orderBy orderByColumn prefix setModern border);
 %HTML::Menu::TreeView::EXPORT_TAGS = (
                                       'all'       => [qw(Tree css jscript clasic columns preload help folderFirst  size documentRoot  loadTree saveTree sortTree orderBy prefix Style orderByColumn  border)],
-                                      'recommend' => [qw(Tree css jscript clasic preload folderFirst size Style documentRoot  loadTree saveTree sortTree orderBy prefix)],
+                                      'recommend' => [qw(Tree css jscript clasic preload folderFirst help size Style documentRoot  loadTree saveTree sortTree orderBy prefix)],
                                       'standart'  => [qw(Tree css jscript preload size Style documentRoot clasic)],
                                       'backward'  => [qw(setDocumentRoot getDocumentRoot setSize setClasic setStyle style setModern %anker)],
                                       'columns'   => [qw(border columns orderByColumn)],
 );
 $DefaultClass = 'HTML::Menu::TreeView' unless defined $HTML::Menu::TreeView::DefaultClass;
-our $id = 'a';
+our $id       = 'a';
+our $path     = '%PATH%';
+our $saveFile = './TreeViewDump.pl';
 $style = 'Crystal';
 $size  = 16;
-our $path = '%PATH%';
 ($clasic, $ffirst, $sort, $border, $columns) = (0) x 5;
-our $saveFile = './TreeViewDump.pl';
 $orderby = 'text';
-$prefix    = '';
+$prefix  = '';
 
 %anker = (
           href        => 'URI for linked resource',
@@ -185,9 +185,11 @@ HTML::Menu::TreeView is a Modul to build an Html tree of an AoH.
 
 =head1 Changes
 
-0.8.3
+0.84
 
-fix some problems with mod_perl and alt attributes.
+        make usage of Module::Build
+        Overwrought Code.
+        a few fixes
 
 =head1 Public
 
@@ -235,7 +237,7 @@ sub css {
         $self->documentRoot($p[0]) if(defined $p[0]);
         my $fh   = gensym;
         my $file = "$path/style/$style/$size/html-menu-treeview/$style.css";
-        open $fh, "$file" or warn "HTML::Menu::TreeView::css $/ no style '$style.css' $style.css found $/  in  $path/style/html-menu-treeview/$style/ $/ $! $/";
+        open $fh, $file or warn "HTML::Menu::TreeView::css $/ no style '$style.css' $style.css found $/  in  $path/style/html-menu-treeview/$style/ $/ $! $/";
         seek $fh, 0, 0;
         my @lines = <$fh>;
         close $fh;
@@ -288,7 +290,7 @@ sub jscript {
         $self->documentRoot($p[0]) if(defined $p[0]);
         my $fh   = gensym;
         my $file = "$path/style/treeview.js";
-        open $fh, "$file" or warn "HTML::Menu::TreeView::jscript $/ $! $/";
+        open $fh, $file or warn "HTML::Menu::TreeView::jscript $/ $! $/";
         seek $fh, 0, 0;
         my @js = <$fh>;
         close $fh;
@@ -320,7 +322,7 @@ sub preload {
         $self->documentRoot($p[0]) if(defined $p[0]);
         my $fh   = gensym;
         my $file = "$path/style/$style/$size/html-menu-treeview/preload.js";
-        open $fh, "$file" or warn "HTML::Menu::TreeView::preload $/ $! $/";
+        open $fh, $file or warn "HTML::Menu::TreeView::preload $/ $! $/";
         seek $fh, 0, 0;
         my @lines = <$fh>;
         close $fh;
