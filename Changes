@@ -1,5 +1,8 @@
 Revision history for Perl extension treeview.
-HTML::Menu::TreeView version 0.84
+HTML::Menu::TreeView version 0.85
+
+0.85
+      - clean up
 0.84
       - make usage of Module::Build
       - Overwrought Code.

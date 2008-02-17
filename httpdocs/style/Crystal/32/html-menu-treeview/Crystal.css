@@ -3,12 +3,14 @@ color:#000;
 cursor:pointer;
 font-family:verdana, sans-serif;
 font-size:24px;
+white-space:nowrap;
 }
 a.treeviewLink32:hover {
 color:blue;
 cursor:pointer;
 font-family:verdana, sans-serif;
 font-size:24px;
+white-space:nowrap;
 }
 table.treeview32 {
 background-color:#FFF;

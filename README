@@ -12,7 +12,7 @@ UNINSTALLATION
 
    To uninstall this module type the following:
 
-   make uninstall
+   make install unistall=1
 
 DEPENDENCIES
 

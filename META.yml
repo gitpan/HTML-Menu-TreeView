@@ -1,6 +1,6 @@
 ---
 name: HTML-Menu-TreeView
-version: 0.84
+version: 0.85
 author:
   - 'Dirk Lindner <lindnerei@o2online.de>'
 abstract: Tool for Building a HTML TreeView
@@ -16,7 +16,7 @@ requires:
 provides:
   HTML::Menu::TreeView:
     file: lib/HTML/Menu/TreeView.pm
-    version: 0.84
+    version: 0.85
 generated_by: Module::Build version 0.2808
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html

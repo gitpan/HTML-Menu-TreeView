@@ -5,6 +5,7 @@ font-family:verdana,sans-serif;
 font-size:46px;
 height:66px;
 vertical-align:top;
+white-space:nowrap;
 }
 a.treeviewLink48:hover {
 color:blue;
@@ -13,6 +14,7 @@ font-family:verdana,sans-serif;
 font-size:46px;
 height:66px;
 vertical-align:top;
+white-space:nowrap;
 }
 table.treeview48 {
 background-color:#FFF;
