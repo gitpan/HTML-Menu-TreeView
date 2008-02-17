@@ -1,9 +1,9 @@
 ---
 name: HTML-Menu-TreeView
-version: 0.85
+version: 0.86
 author:
   - 'Dirk Lindner <lindnerei@o2online.de>'
-abstract: Tool for Building a HTML TreeView
+abstract: Building a HTML TreeView
 license: lgpl
 resources:
   license: http://opensource.org/licenses/artistic-license.php
@@ -12,11 +12,10 @@ requires:
   Test::More: 0
   Test::Pod: 1
   Test::Pod::Coverage: 0.55
-  Test::Signature: 1.1
 provides:
   HTML::Menu::TreeView:
     file: lib/HTML/Menu/TreeView.pm
-    version: 0.85
+    version: 0.86
 generated_by: Module::Build version 0.2808
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html

@@ -1,14 +1,16 @@
 use strict;
 use Module::Build;
+use vars qw($skip);
 my $class = Module::Build->subclass(class => "Module::Build::Custom", code => <<'SUBCLASS' );
-my $release = 'blib/html/';
+my $release = 'blib/rhtml/';
 my $dir     = 'httpdocs/';
 my $path = '.';
 sub ACTION_build {
 my $self = shift;
+$path = $self->{'properties'}{htd};
 &change($dir);
-# &replacePath('blib/lib/HTML/Menu/TreeView.pm');
 $self->SUPER::ACTION_build;
+&replacePath('blib/lib/HTML/Menu/TreeView.pm');
 }
 sub change {
 my $d = shift;
@@ -33,7 +35,7 @@ system("mkdir -p $release/$e") unless (-e $release . "/" . $e);
 sub replacePath {
 my $f = shift;
 chmod 0644, $f;
-open(EDIT, "+<$f") or die "$! $/";
+open(EDIT, "+<$f") or die "replacePath $f $! $/";
 my $file = '';
 while(<EDIT>) {
 s/%PATH%/$path/;
@@ -45,25 +47,24 @@ truncate(EDIT, tell(EDIT));
 close(EDIT);
 }
 SUBCLASS
-my $htd = "/srv/www/httpdocs";
-my $prefix;
-$prefix = $1 if "@ARGV"=~/--prefix (\S+)/ ;
+my $inctance = $class->new(
+                           get_options => {skip => {store => \$skip},},
+                           module_name => 'HTML::Menu::TreeView',
+                           requires => {'Test::More' => 0, 'Module::Build' => 0.2808, 'Test::Pod::Coverage' => 0.55, 'Test::Pod' => 1.00,},
+                           ($] >= 5.005 ? (AUTHOR => 'Dirk Lindner <lze@cpan.org>') : ()),
+                           dist_abstract      => "Building a HTML TreeView",
+                           license            => "lgpl",
+                           create_makefile_pl => 'passthrough',
+);
+$inctance->{properties}{htd} = "/srv/www/htdocs";
 eval 'use HTML::Menu::TreeView qw(documentRoot)';
-$htd = documentRoot() unless $@;
-$htd =  Module::Build->prompt("Where is your Document root ?", $htd);
-$class->new(
-module_name => 'HTML::Menu::TreeView',
-requires => {
-'Test::More' => 0,
-'Test::Signature' => 1.10,
-'Module::Build' => 0.2808,
-'Test::Pod::Coverage' => 0.55,
-'Test::Pod' => 1.00,
-},
-($] >= 5.005 ? (AUTHOR => 'Dirk Lindner <lindnerei@o2online.de>') : ()),
-dist_abstract => "Tool for Building a HTML TreeView",
-license => "lgpl",
-install_path => { html => $prefix.$htd },
-create_makefile_pl => 'passthrough',
-sign => 1,
-)->create_build_script;
+$inctance->{properties}{htd} = documentRoot() unless $@;
+$inctance->{properties}{htd} = $inctance->args('htd') if defined $inctance->args('htd');
+
+unless ($skip) {
+        $inctance->{properties}{htd} = Module::Build->prompt("Where is your Document root ?", $inctance->{properties}{htd});
+} else {
+        print "Document root: $inctance->{properties}{htd}$/";
+}
+$inctance->{properties}{install_path}{rhtml} = $inctance->{properties}{htd};
+$inctance->create_build_script;

@@ -7,7 +7,7 @@ ok(folderFirst()== 1);
 folderFirst(0);
 ok(folderFirst()== 0);
 ok(style() eq 'Crystal');
-documentRoot("blib/html");
+documentRoot("blib/rhtml");
 style('simple');
 ok(style() eq 'simple');
 ok(size()== 16);
