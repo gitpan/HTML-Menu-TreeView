@@ -3,7 +3,7 @@ use strict;
 use warnings;
 require Exporter;
 use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView %openArrays @caption $columns $clasic $ffirst $sort $border $orderby $size $style $orderbyColumn $prefix);
-$HTML::Menu::TreeView::VERSION = '0.86';
+$HTML::Menu::TreeView::VERSION = '0.87';
 @ISA                           = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK =
   qw(border Tree css columns jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style Style documentRoot loadTree saveTree  %anker sortTree orderBy orderByColumn prefix setModern border);
@@ -185,8 +185,12 @@ HTML::Menu::TreeView is a Modul to build an Html tree of an AoH.
 
 =head1 Changes
 
-0.86
-        clean up build system
+0.87
+
+some fixes.
+
+starting renaming mimetypes.
+
 
 =head1 Public
 
@@ -1400,7 +1404,7 @@ http://www.lindnerei.de, http://treeview.lindnerei.de,
 
 =head1 AUTHOR
 
-Dirk Lindner <lindnerei@o2online.de>
+Dirk Lindner <lze@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

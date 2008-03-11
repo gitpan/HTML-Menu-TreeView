@@ -50,7 +50,10 @@ SUBCLASS
 my $inctance = $class->new(
                            get_options => {skip => {store => \$skip},},
                            module_name => 'HTML::Menu::TreeView',
-                           requires => {'Test::More' => 0, 'Module::Build' => 0.2808, 'Test::Pod::Coverage' => 0.55, 'Test::Pod' => 1.00,},
+                           requires => {
+                                'Test::More'                     => ">=0.7",
+                                'Module::Build'                  => ">=0.2808",
+                           },
                            ($] >= 5.005 ? (AUTHOR => 'Dirk Lindner <lze@cpan.org>') : ()),
                            dist_abstract      => "Building a HTML TreeView",
                            license            => "lgpl",
