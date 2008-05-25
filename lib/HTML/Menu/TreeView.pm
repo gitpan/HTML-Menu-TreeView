@@ -3,7 +3,7 @@ use strict;
 use warnings;
 require Exporter;
 use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView %openArrays @caption $columns $clasic $ffirst $sort $border $orderby $size $style $orderbyColumn $prefix);
-$HTML::Menu::TreeView::VERSION = '0.88';
+$HTML::Menu::TreeView::VERSION = '1.00';
 @ISA                           = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK =
   qw(border Tree css columns jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style Style documentRoot loadTree saveTree  %anker sortTree orderBy orderByColumn prefix setModern border);
@@ -185,11 +185,10 @@ HTML::Menu::TreeView is a Modul to build an Html tree of an AoH.
 
 =head1 Changes
 
-0.87
+1.00
 
-some fixes.
+some fixes. 2 new examples.
 
-starting renaming mimetypes.
 
 
 =head1 Public
@@ -466,7 +465,7 @@ return the count in void context.
 
      $count = columns();
 
-or set the caption for the columns
+or set the captions for the columns
 
      columns("Name","Column 1","Column 2","Column 3");
 
@@ -599,7 +598,7 @@ sub folderFirst {
 
 prefix used by css.
 
-set this if you want to build offline websites.
+set this if you want build offline websites
 
 for example:
 
@@ -1066,7 +1065,7 @@ this function is used within initTree for sorting the TreeView if folderFirst(1)
 
 =head2 getSelf
 
-HTML::Menu::TreeView Module use a Lincoln loader like class system.
+HTML::Menu::TreeView Module make use of a Lincoln loader like class system.
 
 if the first parameter is a HTML::Menu::TreeView object (oo syntax ) this function returns the given parameters.
 
@@ -1406,7 +1405,8 @@ http://www.lindnerei.de, http://treeview.lindnerei.de,
 
 Dirk Lindner <lze@cpan.org>
 
-=head1 COPYRIGHT AND LICENSE
+=head1 LICENSE
+
 
 Copyright (C) 2007 by Hr. Dirk Lindner
 
