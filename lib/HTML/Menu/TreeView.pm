@@ -3,13 +3,13 @@ use strict;
 use warnings;
 require Exporter;
 use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView %openArrays @caption $columns $clasic $ffirst $sort $border $orderby $size $style $orderbyColumn $prefix);
-$HTML::Menu::TreeView::VERSION = '1.00';
+$HTML::Menu::TreeView::VERSION = '1.01';
 @ISA                           = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK =
   qw(border Tree css columns jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style Style documentRoot loadTree saveTree  %anker sortTree orderBy orderByColumn prefix setModern border);
 %HTML::Menu::TreeView::EXPORT_TAGS = (
-                                      'all'       => [qw(Tree css jscript clasic columns preload help folderFirst  size documentRoot  loadTree saveTree sortTree orderBy prefix Style orderByColumn  border)],
-                                      'recommend' => [qw(Tree css jscript clasic preload folderFirst help size Style documentRoot  loadTree saveTree sortTree orderBy prefix)],
+                                      'all'       => [qw(Tree css jscript clasic columns preload help folderFirst size documentRoot loadTree saveTree sortTree orderBy prefix Style orderByColumn border)],
+                                      'recommend' => [qw(Tree css jscript clasic preload folderFirst help size Style documentRoot loadTree saveTree sortTree orderBy prefix)],
                                       'standart'  => [qw(Tree css jscript preload size Style documentRoot clasic)],
                                       'backward'  => [qw(setDocumentRoot getDocumentRoot setSize setClasic setStyle style setModern %anker)],
                                       'columns'   => [qw(border columns orderByColumn)],
@@ -120,9 +120,9 @@ HTML::Menu::TreeView
 
                     {
 
-                         text => 'subversion',
+                         text => 'Cpan',
 
-                         href => 'http://treeview.tigris.org',
+                         href => 'http://cpan.org',
 
                     },
 
@@ -161,11 +161,11 @@ Here is a list of the function sets you can import:
 
 :all
 
-Tree css jscript clasic preload help folderFirst  size documentRoot  loadTree saveTree sortTree orderBy prefix Style orderByColumn border
+Tree css jscript clasic preload help folderFirst size documentRoot loadTree saveTree sortTree orderBy prefix Style orderByColumn border
 
 :recommend
 
-Tree css jscript clasic preload folderFirst size Style documentRoot  loadTree saveTree sortTree orderBy prefix
+Tree css jscript clasic preload folderFirst size Style documentRoot loadTree saveTree sortTree orderBy prefix
 
 :standart
 
@@ -181,19 +181,20 @@ border columns orderByColumn
 
 =head1 DESCRIPTION
 
-HTML::Menu::TreeView is a Modul to build an Html tree of an AoH.
+HTML::Menu::TreeView is a Modul to build an Html TreeView.
 
 =head1 Changes
 
-1.00
+1.01
 
-some fixes. 2 new examples.
+German Translation aviable.Right permissions
 
+Remove Svn links because this should be Final !
 
 
 =head1 Public
 
-=head2  new
+=head2 new
 
 if you use the oo interface you can say:
 
@@ -216,7 +217,7 @@ sub new {
 
 =head2 css
 
-return the  necessary css part without <style></style> tag.
+return the necessary css part without <style></style> tag.
 
 you can set the DocumentRoot if you pass a parameter
 
@@ -273,7 +274,7 @@ sub documentRoot {
 
 =head2 jscript
 
-return the necessary  javascript  without <script> tag.
+return the necessary javascript without <script> tag.
 
 You can also include it with:
 
@@ -299,7 +300,7 @@ sub jscript {
 
 =head2 preload
 
-return the necessary  javascript for preloading images  without <script> tag.
+return the necessary javascript for preloading images without <script> tag.
 
 for example you can also include it with
 
@@ -341,7 +342,7 @@ only for Crystal styles
 
 set the size in scalar context, or get in void context.
 
-16,32,48,64 and 128  are possible values.
+16,32,48,64 and 128 are possible values.
 
 =cut
 
@@ -432,11 +433,11 @@ sub Tree {
 
 =head2 clasic
 
-enable clasic  node decoration:
+enable clasic node decoration:
 
      clasic(1);
 
-disable clasic  node decoration:
+disable clasic node decoration:
 
      clasic(0);
 
@@ -847,7 +848,7 @@ folderImage,folderSound,folderImportant,
 
 folderTar,folderYellow ,folderGray,
 
-folderGreen and  folderRed
+folderGreen and folderRed
 
 see http://treeview.lindnerei.de/cgi-bin/crystal.pl for a complete list of possible values for folderclass.
 
@@ -923,7 +924,7 @@ use clasic() instead.
 
 for backward compatibility.
 
-use a modern  node decoration
+use a modern node decoration
 
 =cut
 
@@ -939,7 +940,7 @@ use size instead.
 
 only for Crystal styles
 
-16,32,48,64 and 128  are possible values.
+16,32,48,64 and 128 are possible values.
 
 =cut
 
@@ -1071,7 +1072,7 @@ if the first parameter is a HTML::Menu::TreeView object (oo syntax ) this functi
 
 or the first parameter it is not a object referenz (fo syntax) it create a new HTML::Menu::TreeView object,
 
-return it as first value  and  @_  as the second value .
+return it as first value and  @_ as the second value .
 
 my ($self, @p) = getSelf(@_);
 
@@ -1118,7 +1119,7 @@ sub appendFolder {
           : "&#160;<a $tt >$node->{text}</a>&#160;";
         my $minusnode = $clasic ? "clasicMinusNode$size" : "minusNode$size";
         $self->{tree} .=
-          qq(<tr><td  id="$id.node" class="$minusnode"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td align="left" class="$FolderClass" id="$id.folder"><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr><tr id="$id"><td class="submenuDeco$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" alt=""/></td><td><table align="left" border="0" cellpadding="0" cellspacing="0"   summary="appendFolder" width="100%"><colgroup><col width="$size"/></colgroup>);
+          qq(<tr><td id="$id.node" class="$minusnode"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td align="left" class="$FolderClass" id="$id.folder"><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr><tr id="$id"><td class="submenuDeco$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" alt=""/></td><td><table align="left" border="0" cellpadding="0" cellspacing="0"   summary="appendFolder" width="100%"><colgroup><col width="$size"/></colgroup>);
         if($columns > 0) {
                 my $class = $border ? "columnsFolderBorder$size" : "columnsFolder$size";
                 $self->{subtree} .= qq(<tr id="tr$id">);
@@ -1234,7 +1235,7 @@ sub appendEmptyFolder {
           : "&#160;<a $tt >$node->{text}</a>&#160;";
         my $plusnode = $clasic ? "clasicPlusNode$size" : "plusNode$size";
         $self->{tree} .=
-          qq(<tr><td  id="$id.node" class="$plusnode"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td align="left" class="$FolderClass" id="$id.folder"><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr>);
+          qq(<tr><td id="$id.node" class="$plusnode"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td align="left" class="$FolderClass" id="$id.folder"><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr>);
         if($columns > 0) {
                 my $class = $border ? "columnsFolderBorder$size" : "columnsFolder$size";
                 $self->{subtree} .= qq(<tr id="tr$id">);
@@ -1399,7 +1400,7 @@ sub appendLastNode {
 
 =head1 SEE ALSO
 
-http://www.lindnerei.de, http://treeview.lindnerei.de,
+http://www.lindnerei.de, http://treeview.lindnerei.de,  L<HTML::Menu::TreeView:GER>
 
 =head1 AUTHOR
 
@@ -1408,7 +1409,7 @@ Dirk Lindner <lze@cpan.org>
 =head1 LICENSE
 
 
-Copyright (C) 2007 by Hr. Dirk Lindner
+Copyright (C) 2008 by Hr. Dirk Lindner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public License
