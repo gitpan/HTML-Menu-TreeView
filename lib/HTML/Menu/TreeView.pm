@@ -3,7 +3,7 @@ use strict;
 use warnings;
 require Exporter;
 use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView %openArrays @caption $columns $clasic $ffirst $sort $border $orderby $size $style $orderbyColumn $prefix);
-$HTML::Menu::TreeView::VERSION = '1.01';
+$HTML::Menu::TreeView::VERSION = '1.02';
 @ISA                           = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK =
   qw(border Tree css columns jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style Style documentRoot loadTree saveTree  %anker sortTree orderBy orderByColumn prefix setModern border);
@@ -104,14 +104,6 @@ HTML::Menu::TreeView
 
           {
 
-               href => "http://www.lindnerei.de",
-
-               text => 'Lindnerei.de',
-
-          },
-
-          {
-
                text => 'Folder',
 
                folderclass => 'folderMan', # only for Crystal styles
@@ -185,12 +177,9 @@ HTML::Menu::TreeView is a Modul to build an Html TreeView.
 
 =head1 Changes
 
-1.01
+1.02
 
-German Translation aviable.Right permissions
-
-Remove Svn links because this should be Final !
-
+Fixe Perldoc links and Charset
 
 =head1 Public
 
@@ -1400,7 +1389,9 @@ sub appendLastNode {
 
 =head1 SEE ALSO
 
-http://www.lindnerei.de, http://treeview.lindnerei.de,  L<HTML::Menu::TreeView:GER>
+http://www.lindnerei.de, http://treeview.lindnerei.de,
+
+L<HTML::Menu::TreeView::GER>, http://treeview.tigris.org,
 
 =head1 AUTHOR
 
@@ -1408,6 +1399,7 @@ Dirk Lindner <lze@cpan.org>
 
 =head1 LICENSE
 
+LGPL
 
 Copyright (C) 2008 by Hr. Dirk Lindner
 

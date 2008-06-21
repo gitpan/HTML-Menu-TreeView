@@ -1,7 +1,11 @@
 Revision history for Perl extension treeview.
-HTML::Menu::TreeView version 1.00
+HTML::Menu::TreeView version 1.02
+1.02
+      -Fixe Perldoc links and Charset
+1.01
+      -German Translation avaible. Right permissions
 1.00
-	This should be final.
+      -This should be final.
 
 0.88
     - Start renameing mimetypes.

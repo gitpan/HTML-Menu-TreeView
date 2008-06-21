@@ -1,7 +1,7 @@
 package HTML::Menu::TreeView::GER;
 use strict;
 use warnings;
-$HTML::Menu::TreeView::GER::VERSION = '1.01';
+$HTML::Menu::TreeView::GER::VERSION = '1.02';
 
 =head1 NAME
 
@@ -51,17 +51,9 @@ HTML::Menu::TreeView
 
           {
 
-               href => "http://www.lindnerei.de",
-
-               text => 'Lindnerei.de',
-
-          },
-
-          {
-
                text => 'Folder',
 
-               folderclass => 'folderMan', #Nur für Crystal Styles.
+               folderclass => 'folderMan', # Nur für Crystal Styles.
 
                subtree => [
 
@@ -132,11 +124,11 @@ HTML::Menu::TreeView ist ein Module um ein HTML TreeView zu erstellen.
 
 =head1 Changes
 
-1.01
+1.02
 
-Einige Berechtigungen waren in der letzten Version falsch gesetzt.
+Deutsche Umlaute wurden falsch dargestellt.
 
-Wie angekündigt gibt es diese Deutsche Übersetzung in der Final Version.
+Einige Ergänzungen in der Deutschen Dokumentation.
 
 =head1 Public
 
@@ -154,17 +146,17 @@ Wie angekündigt gibt es diese Deutsche Übersetzung in der Final Version.
 
 Gibt den benötigten Stylesheet(css) zurück, der In die Seite eingebunden werden muss.
 
-Mann kann den documentRoot setzen wenn man ein Argument übergibt.
+Mann kann den Document Root setzen wenn man ein Argument übergibt.
 
      css('/document/root/');
 
-Man kann den benötigten Stylesheet natürlich per Hand einbinden.
+Man kann den benötigten Stylesheet natürlich per Hand einbinden:
 
      <link href="/style/Crystal/16/html-menu-treeview/Crystal.css" rel="stylesheet" type="text/css">
 
 =head2 documentRoot
 
-Setzt den document root im Scalar Context, gibt Ihn in void Context zurück.
+Setzt den Document Root im Scalar Context, gibt Ihn in void Context zurück.
 
 default: Diese Variable wird durch make gesetzt.
 
@@ -172,9 +164,9 @@ default: Diese Variable wird durch make gesetzt.
 
 Gibt den benötigten Javascript zurück, der In die Seite eingebunden werden muss.
 
-Mann kann den document root setzen wenn man ein Argument übergibt.
+Mann kann den Document Root setzen wenn man ein Argument übergibt.
 
-Man kann den benötigten Javascript natürlich per Hand einbinden.
+Man kann den benötigten Javascript natürlich per Hand einbinden:
 
      <script language="JavaScript" type="text/javascript" src="/style/treeview.js"></script>
 
@@ -186,11 +178,11 @@ Mann kann den document root setzen wenn man ein Argument übergibt.
 
 Man kann den benötigten javascript natürlich auch per Hand einbinden.
 
-Für die eine Größe.
+Für eine Größe:
 
      <script language="JavaScript" type="text/javascript" src="/style/Crystal/16/html-menu-treeview/preload.js"></script>
 
-Oder für alle Größen
+Oder für alle Größen:
 
      <script language="JavaScript" type="text/javascript" src="/style/Crystal/preload.js"></script>
 
@@ -216,7 +208,7 @@ Crystal = Kde Crystal style (default).
 
      Tree(\@tree,optional $style);
 
-Gibt den HTML teil des Treeviews ohne javascript und css zurück.
+Gibt den HTML teil des Treeviews ohne Javascript und Css zurück.
 
 =head2 clasic
 
@@ -235,8 +227,11 @@ gibt den Status in void Context zurück.
 =head2 columns
 
 Anzahl der Spalten setzen.
+
      columns(3);
+
 Gibt die Anzahl in void Context zurück.
+
      $anzahl = columns();
 
 Oder man kann die Titel für die Spalten Setzen
@@ -248,20 +243,22 @@ Oder man kann die Titel für die Spalten Setzen
 Spalten Rahmen ein- oder ausschalten.
 
 =head2 sortTree
+
 Spalten nach Name oder dem Attribute das von orderBy gesetzt wurde sortieren.
+
 =head2 orderBy
 
-Setzt das Attribute dass von sortTree und folderFirst benutzt wird.
+Setzt das Attribute das von sortTree und folderFirst benutzt wird.
 
 =head2 orderByColumn
 
-Nach Spalte Sortieren
+Nach Spalte Sortieren.
 
      orderByColumn(i)
 
 =head2 folderFirst
 
-Verzeichnisse zuerst anzeigen
+Verzeichnisse zuerst anzeigen.
 
 =head2 prefix
 
@@ -275,20 +272,20 @@ setzen.
 
 =head2 saveTree
 
-     saveTree('filename',\@ref); # or saveTree()
+     saveTree('filename',\@ref); # oder saveTree()
 
 default: ./TreeViewDump.pl
 
 =head2 loadTree
 
-     loadTree('filename') or loadTree()
+     loadTree('filename')  oder loadTree()
 
 default: ./TreeViewDump.pl
 
 
 =head2 help
 
-Die Hilde für die Link Attribute
+Die Hilfe für die Link Attribute
 
 gibt eine Referenz auf ein hash zurück (void Context),
 
@@ -304,7 +301,7 @@ oder eine Hilfe Nachricht.
 
      print help('href'),$/;
 
-Nur auf Englisch verfügbar
+(Nur auf Englisch verfügbar)
 
 =head3 reservierte Attribute:
 
@@ -312,17 +309,17 @@ Nur auf Englisch verfügbar
 
 =item href
 
-Dieses Attribut gibt die Position einer Web-Ressource an und definiert so einen Link zwischen dem 
+Dieses Attribut gibt die Position einer Web-Ressource an und definiert so einen Link zwischen dem
 
 aktuellen Element (dem Quellanker) und dem durch dieses Attribut definierten Zielanker.
 
 =item accesskey
 
-Dieses Attribut weist einem Element ein Zugriffstaste zu.
+Dieses Attribut weist einem Element eine Zugriffstaste zu.
 
 =item charset
 
-Gibt die Zeichenkodierungen an
+Gibt die Zeichenkodierungen an.
 
 =item class
 
@@ -334,7 +331,7 @@ Für Image maps.
 
 =item dir
 
-Leserichtung
+Leserichtung.
 
 =item hreflang
 
@@ -346,15 +343,15 @@ Basis-Sprache der Attribute und des Inhalts.
 
 =item onblur
 
-verliert die Auswahl
+Element verliert die Auswahl.
 
 =item ondblclick
 
-Event handler. Doppelklick
+Wenn mit der Maus auf das Element doppelt angeklickt wird.
 
 =item onclick
 
-mausüber evnt
+Wenn mit der Maus auf das Element geklickt wird.
 
 =item onfocus
 
@@ -362,23 +359,23 @@ Element wird ausgewählt.
 
 =item onkeydown
 
-wenn eine taste gedrückt wird.
+Wenn eine taste gedrückt wird.
 
 =item onkeypress
 
-wenn eine taste gedrückt und wieder losgelassen wird.
+Wenn eine taste gedrückt und wieder losgelassen wird.
 
 =item onkeyup
 
-wenn die taste wieder losgelassen wird.
+Wenn die taste wieder losgelassen wird.
 
 =item onmousedown
 
-wenn eine maustaste gedrückt wird.
+Wenn eine Maustaste gedrückt wird.
 
 =item onmousemove
 
-maus wird bewegt
+Maus wird bewegt.
 
 =item onmouseout
 
@@ -386,11 +383,11 @@ Maus verlässt den link.
 
 =item onmouseover
 
-mausüber
+Maus über den link
 
 =item onmouseup
 
-wenn die maustaste wieder losgelassen wird.
+Wenn die Maustaste wieder losgelassen wird.
 
 =item rel
 
@@ -402,15 +399,15 @@ Dieses Attribut gibt die Zeichenkodierung der durch den Link bezeichneten Ressou
 
 =item shape
 
-für image maps.
+Für image maps.
 
 =item style
 
-stylesheet Informationen
+Stylesheet Informationen.
 
 =item tabindex
 
-Position in der tab reihenfolge
+Position in der tab Reihenfolge.
 
 =item target
 
@@ -429,7 +426,7 @@ _blank, um den Verweis in einem neuen Fenster zu öffnen,
 
 =item type
 
-content type.
+Content type.
 
 =item title
 
@@ -437,18 +434,20 @@ Titel.
 
 =item id
 
-Die id de links. Wird gesetzt.
+Die id des links. Wird gesetzt.
 
 =item addition
 
-zusätzlicher text hinter dem link
+Zusätzlicher text hinter dem link.
 
 =item subtree
 
-
      subtree => [{
+
           text => 'Fo'},
+
           {text => 'Bar'}
+
      ]
 
 =item image.
@@ -457,7 +456,7 @@ Bild Name, muss im /style/mimetypes Verzeichnis liegen
 
 =item folderclass :
 
-Nur für  Crystal styles
+Nur für Crystal styles
 
 Mögliche Werte:
 
@@ -471,9 +470,9 @@ folderImage,folderSound,folderImportant,
 
 folderTar,folderYellow ,folderGray,
 
-folderGreen and folderRed
+folderGreen und folderRed
 
-Auf http://treeview.lindnerei.de/cgi-bin/crystal.pl gibt es eine komplette liste möglicher werte..
+Auf  http://treeview.lindnerei.de/cgi-bin/crystal.pl gibt es eine komplette liste möglicher werte.
 
 =item columns
 
@@ -485,15 +484,93 @@ Auf wahr setzen wenn man einen geschlossenes Verzeichnis haben möchte.
 
 =back
 
-=head1 backward compatibility Private
+=head1 backward compatibility
 
-Diese Funktionen werden nicht  weiter erläutert.
+=head2 getDocumentRoot
 
-Siehe Englische Dokumentation
+siehe documentRoot()
+
+=head2 setClasic
+
+siehe clasic()
+
+=head2 setDocumentRoot
+
+siehe documentRoot()
+
+=head2 setModern
+
+siehe clasic()
+
+=head2 setSize
+
+siehe size()
+
+=head2 setStyle
+
+siehe Style()
+
+=head2 style
+
+siehe Style()
+
+=head1 Private
+
+=head2 initTree
+
+Erzeugt den Treeview, wird von initTree, new  oder rekursive von appendFolder aufgerufen.
+
+=head2 ffolderFirst
+
+Wird innerhalb von initTree zum sortieren benutzt wenn Verzeichnisse zuerst angezeigt werden sollen.
+
+=head2 getSelf
+
+Dieses Module benutzt ein Lincoln loader mäßiges Klassen System.
+
+Wenn der erste übergebene Parameter von ein HTML::Menu::TreeView Objekt ist (oo syntax). werden einfach die übergebenen Parameter zurück gegeben.
+
+Ansonsten (fo syntax)  wird ein neues HTML::Menu::TreeView Objekt erzeugt und als erster wert gefolgt von den übergeben Parametern zurückgegeben.
+
+=head2 appendFolder
+
+Wird von initTree aufgerufen wenn ein item vom aktuellen (sub)tree ein Verzeichnis ist.
+
+=head2 appendLastFolder
+
+$self->appendLastFolder(\@tree);
+
+Wird von initTree aufgerufen wenn das letzte item vom aktuellen (sub)tree ein Verzeichnis ist.
+
+=head2 appendEmptyFolder
+
+$self->appendEmptyFolder(\$node);
+
+Wird von initTree aufgerufen wenn ein item vom aktuellen (sub)tree ein ein leeres Verzeichnis ist.
+
+=head2 appendLastEmptyFolder
+
+$self->appendEmptyFolder(\$node);
+
+Wird von initTree aufgerufen wenn das letzte item vom aktuellen (sub)tree ein leeres Verzeichnis ist.
+
+=head2 appendNode
+
+$self->appendNode(\$node);
+
+Wird von initTree aufgerufen wenn ein item vom aktuellen (sub)tree ein Knoten ist.
+
+=head2 appendLastNode
+
+$self->appendLastNode(\$node);
+
+wir von initTree aufgerufen wenn das letzte item vom aktuellen (sub)tree ein Knoten ist.
 
 =head1 SEE ALSO
 
-http://www.lindnerei.de, http://treeview.lindnerei.de, L<HTML::Menu::TreeView:GER>
+http://www.lindnerei.de, http://treeview.lindnerei.de,
+
+L<HTML::Menu::TreeView>, http://treeview.tigris.org,
 
 =head1 AUTHOR
 
