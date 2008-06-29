@@ -1,14 +1,14 @@
 a.treeviewLink16 {
 color:#000;
 cursor:pointer;
-font-size:14px;
+font-size:16px;
 height:22px;
 vertical-align:top;
 }
 a.treeviewLink16:hover {
 color:blue;
 cursor:pointer;
-font-size:14px;
+font-size:16px;
 height:22px;
 vertical-align:top;
 }
@@ -17,7 +17,6 @@ color:#000;
 font-family:verdana, sans-serif;
 font-size:16px;
 height:24px;
-white-space:nowrap;
 }
 td.captionBorder16 {
 border-bottom:1px;
@@ -27,7 +26,6 @@ font-family:verdana, sans-serif;
 font-size:16px;
 height:24px;
 vertical-align:top;
-white-space:nowrap;
 }
 td.clasicLastMinusNode16 {
 background-image:url('/style/simple/16/html-menu-treeview/clasicLastMinusNode.gif');
@@ -52,10 +50,8 @@ vertical-align:top;
 td.columnsFolder16 {
 color:#000;
 font-family:verdana, sans-serif;
-font-size:14px;
+font-size:16px;
 height:22px;
-vertical-align:top;
-white-space:nowrap;
 vertical-align:top;
 }
 td.columnsFolderBorder16,td.columnsNodeBorder16 {
@@ -63,17 +59,15 @@ border-left:1px;
 border-left-style:dashed;
 color:#000;
 font-family:verdana, sans-serif;
-font-size:14px;
+font-size:16px;
 height:22px;
 vertical-align:top;
-white-space:nowrap;
 }
 td.columnsLastNode16 {
 color:#000;
 font-family:verdana, sans-serif;
-font-size:14px;
+font-size:16px;
 height:22px;
-white-space:nowrap;
 vertical-align:top;
 }
 td.columnsLastNodeBorder16 {
@@ -81,24 +75,22 @@ border-left:1px;
 border-left-style:dashed;
 color:#000;
 font-family:verdana, sans-serif;
-font-size:14px;
+font-size:16px;
 height:22px;
 vertical-align:top;
-white-space:nowrap;
 }
 td.columnsNode16 {
 color:#000;
 font-family:verdana, sans-serif;
-font-size:14px;
+font-size:16px;
 height:22px;
-white-space:nowrap;
 vertical-align:top;
 }
 td.folder16 {
 background-image:url('/style/simple/16/html-menu-treeview/folderOpen.gif');
 background-repeat:no-repeat;
 cursor:pointer;
-font-size:14px;
+font-size:16px;
 height:22px;
 vertical-align:top;
 }
@@ -106,7 +98,7 @@ td.folderClosed16 {
 background-image:url('/style/simple/16/html-menu-treeview/folderClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
-font-size:14px;
+font-size:16px;
 height:22px;
 vertical-align:top;
 }
@@ -120,7 +112,7 @@ td.lastNode16 {
 background-image:url('/style/simple/16/html-menu-treeview/lastNode.gif');
 background-repeat:no-repeat;
 cursor:pointer;
-font-size:14px;
+font-size:16px;
 height:22px;
 vertical-align:top;
 }
@@ -141,7 +133,7 @@ td.node16 {
 background-image:url('/style/simple/16/html-menu-treeview/node.gif');
 background-repeat:no-repeat;
 cursor:pointer;
-font-size:14px;
+font-size:16px;
 height:22px;
 vertical-align:top;
 }

@@ -53,10 +53,9 @@ my $inctance = $class->new(
                            requires => {
                                 'Test::More'                     => ">=0.7",
                                 'Module::Build'                  => ">=0.2808",
-				'perl'				=> ">=5.6",
                            },
                            ($] >= 5.005 ? (AUTHOR => 'Dirk Lindner <lze@cpan.org>') : ()),
-                           dist_abstract      => "Building a HTML TreeView",
+                           dist_abstract      => "Create a HTML TreeView from scratch",
                            license            => "lgpl",
                            create_makefile_pl => 'passthrough',
 			#   sign =>1,

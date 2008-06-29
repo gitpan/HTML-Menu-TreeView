@@ -5,7 +5,6 @@ font-family:verdana,sans-serif;
 font-size:46px;
 height:66px;
 vertical-align:top;
-white-space:nowrap;
 }
 a.treeviewLink48:hover {
 color:blue;
@@ -14,7 +13,6 @@ font-family:verdana,sans-serif;
 font-size:46px;
 height:66px;
 vertical-align:top;
-white-space:nowrap;
 }
 table.treeview48 {
 background-color:#FFF;
@@ -28,7 +26,6 @@ font-family:verdana, sans-serif;
 font-size:46px;
 height:66px;
 vertical-align:top;
-white-space:nowrap;
 }
 td.clasicLastMinusNode48 {
 background-image:url('/style/Crystal/48/html-menu-treeview/clasicLastMinusNode.gif');
@@ -61,7 +58,6 @@ td.columnsFolder48,td.columnsNode48,td.caption48 {
 font-family:verdana, sans-serif;
 font-size:46px;
 height:66px;
-white-space:nowrap;
 vertical-align:top;
 }
 td.columnsFolderBorder48,td.columnsNodeBorder48,td.columnsLastNodeBorder48 {
@@ -72,13 +68,11 @@ font-family:verdana, sans-serif;
 font-size:46px;
 height:66px;
 vertical-align:top;
-white-space:nowrap;
 }
 td.columnsLastNode48 {
 font-family:verdana, sans-serif;
 font-size:46px;
 height:66px;
-white-space:nowrap;
 }
 td.folder48 {
 background-image:url('/style/Crystal/48/html-menu-treeview/folderOpen.gif');

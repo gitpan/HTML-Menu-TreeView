@@ -98,6 +98,7 @@ white-space:nowrap;
 td.folder16 {
 background-image:url('/style/Crystal/16/html-menu-treeview/folderOpen.gif');
 background-repeat:no-repeat;
+background-position: 0px 2px;
 color:#000;
 cursor:pointer;
 font-size:14px;
@@ -107,6 +108,7 @@ vertical-align:top;
 td.folderClosed16 {
 background-image:url('/style/Crystal/16/html-menu-treeview/folderClosed.gif');
 background-repeat:no-repeat;
+background-position: 0px 2px;
 color:#000;
 cursor:pointer;
 font-size:14px;

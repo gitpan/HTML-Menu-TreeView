@@ -2,8 +2,9 @@ package HTML::Menu::TreeView;
 use strict;
 use warnings;
 require Exporter;
+use 5.00600;
 use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView %openArrays @caption $columns $clasic $ffirst $sort $border $orderby $size $style $orderbyColumn $prefix);
-$HTML::Menu::TreeView::VERSION = '1.02';
+$HTML::Menu::TreeView::VERSION = '1.03';
 @ISA                           = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK =
   qw(border Tree css columns jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style Style documentRoot loadTree saveTree  %anker sortTree orderBy orderByColumn prefix setModern border);
@@ -58,7 +59,7 @@ $prefix  = '';
 
 =head1 NAME
 
-HTML::Menu::TreeView
+HTML::Menu::TreeView - Create a HTML TreeView from scratch
 
 =head1 SYNOPSIS
 
@@ -147,7 +148,7 @@ HTML::Menu::TreeView
      print Tree(\@tree,"Crystal");
 
 
-=head3 function sets 
+=head3 function sets
 
 Here is a list of the function sets you can import:
 
@@ -177,9 +178,13 @@ HTML::Menu::TreeView is a Modul to build an Html TreeView.
 
 =head1 Changes
 
-1.02
+1.03
 
-Fixe Perldoc links and Charset
+Change Charset to ISO 8859-1 (HTML::Menu::TreeView::GER)
+
+Background-position Crystal 16px style.
+
+Fix Required Perl Version. it is 5.00600
 
 =head1 Public
 
@@ -726,7 +731,7 @@ the element lost the focus.
 
 =item ondblclick
 
-event occurs when the pointing device button is double clicked 
+event occurs when the pointing device button is double clicked
 
 =item onclick
 

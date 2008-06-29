@@ -1,7 +1,7 @@
 package HTML::Menu::TreeView::GER;
 use strict;
 use warnings;
-$HTML::Menu::TreeView::GER::VERSION = '1.02';
+$HTML::Menu::TreeView::GER::VERSION = '1.03';
 
 =head1 NAME
 
@@ -53,7 +53,7 @@ HTML::Menu::TreeView
 
                text => 'Folder',
 
-               folderclass => 'folderMan', # Nur fÃ¼r Crystal Styles.
+               folderclass => 'folderMan', # Nur für Crystal Styles.
 
                subtree => [
 
@@ -96,7 +96,7 @@ HTML::Menu::TreeView
 
 =head3 Funktions- Sets
 
-Hier die liste der mÃ¶glichen Import Sets
+Hier die liste der möglichen Import Sets
 
 :all
 
@@ -128,13 +128,13 @@ HTML::Menu::TreeView ist ein Module um ein HTML TreeView zu erstellen.
 
 Deutsche Umlaute wurden falsch dargestellt.
 
-Einige ErgÃ¤nzungen in der Deutschen Dokumentation.
+Einige Ergänzungen in der Deutschen Dokumentation.
 
 =head1 Public
 
 =head2 new
 
-     Bei der Objektorientierten Schnittstelle kann man die Array Referenz direkt an new Ã¼bergeben
+     Bei der Objektorientierten Schnittstelle kann man die Array Referenz direkt an new übergeben
 
      ms $TreeView = new HTML::Menu::TreeView(\@tree, optional style);
 
@@ -144,63 +144,63 @@ Einige ErgÃ¤nzungen in der Deutschen Dokumentation.
 
 =head2 css
 
-Gibt den benÃ¶tigten Stylesheet(css) zurÃ¼ck, der In die Seite eingebunden werden muss.
+Gibt den benötigten Stylesheet(css) zurück, der In die Seite eingebunden werden muss.
 
-Mann kann den Document Root setzen wenn man ein Argument Ã¼bergibt.
+Mann kann den Document Root setzen wenn man ein Argument übergibt.
 
      css('/document/root/');
 
-Man kann den benÃ¶tigten Stylesheet natÃ¼rlich per Hand einbinden:
+Man kann den benötigten Stylesheet natürlich per Hand einbinden:
 
      <link href="/style/Crystal/16/html-menu-treeview/Crystal.css" rel="stylesheet" type="text/css">
 
 =head2 documentRoot
 
-Setzt den Document Root im Scalar Context, gibt Ihn in void Context zurÃ¼ck.
+Setzt den Document Root im Scalar Context, gibt Ihn in void Context zurück.
 
 default: Diese Variable wird durch make gesetzt.
 
 =head2 jscript
 
-Gibt den benÃ¶tigten Javascript zurÃ¼ck, der In die Seite eingebunden werden muss.
+Gibt den benötigten Javascript zurück, der In die Seite eingebunden werden muss.
 
-Mann kann den Document Root setzen wenn man ein Argument Ã¼bergibt.
+Mann kann den Document Root setzen wenn man ein Argument übergibt.
 
-Man kann den benÃ¶tigten Javascript natÃ¼rlich per Hand einbinden:
+Man kann den benötigten Javascript natürlich per Hand einbinden:
 
      <script language="JavaScript" type="text/javascript" src="/style/treeview.js"></script>
 
 =head2 preload
 
-Gibt den benÃ¶tigten javascript zurÃ¼ck um Bilder per Javascript in Vorhinein zu laden.
+Gibt den benötigten javascript zurück um Bilder per Javascript in Vorhinein zu laden.
 
-Mann kann den document root setzen wenn man ein Argument Ã¼bergibt.
+Mann kann den document root setzen wenn man ein Argument übergibt.
 
-Man kann den benÃ¶tigten javascript natÃ¼rlich auch per Hand einbinden.
+Man kann den benötigten javascript natürlich auch per Hand einbinden.
 
-FÃ¼r eine GrÃ¶ÃŸe:
+Für eine Größe:
 
      <script language="JavaScript" type="text/javascript" src="/style/Crystal/16/html-menu-treeview/preload.js"></script>
 
-Oder fÃ¼r alle GrÃ¶ÃŸen:
+Oder für alle Größen:
 
      <script language="JavaScript" type="text/javascript" src="/style/Crystal/preload.js"></script>
 
 =head2 size
 
-Verschiedene GrÃ¶ÃŸen sind nur fÃ¼r den Crystal Style verfÃ¼gbar.
+Verschiedene Größen sind nur für den Crystal Style verfügbar.
 
-Setzt die GrÃ¶ÃŸe im Scalar Context, gibt Sie in void Context zurÃ¼ck.
+Setzt die Größe im Scalar Context, gibt Sie in void Context zurück.
 
-16,32,48,64 und 128 sind mÃ¶gliche Werte.
+16,32,48,64 und 128 sind mögliche Werte.
 
 =head2 Style
 
-Setzt den Style im Scalar Context, gibt Ihn in void Context zurÃ¼ck.
+Setzt den Style im Scalar Context, gibt Ihn in void Context zurück.
 
      Style('simple');
 
-simple = Redmond mÃ¤ÃŸiger style.
+simple = Redmond mäßiger style.
 
 Crystal = Kde Crystal style (default).
 
@@ -208,7 +208,7 @@ Crystal = Kde Crystal style (default).
 
      Tree(\@tree,optional $style);
 
-Gibt den HTML teil des Treeviews ohne Javascript und Css zurÃ¼ck.
+Gibt den HTML teil des Treeviews ohne Javascript und Css zurück.
 
 =head2 clasic
 
@@ -220,7 +220,7 @@ klassische Knoten Dekoration ausschalten
 
      clasic(0);
 
-gibt den Status in void Context zurÃ¼ck.
+gibt den Status in void Context zurück.
 
      $status = clasic();
 
@@ -230,11 +230,11 @@ Anzahl der Spalten setzen.
 
      columns(3);
 
-Gibt die Anzahl in void Context zurÃ¼ck.
+Gibt die Anzahl in void Context zurück.
 
      $anzahl = columns();
 
-Oder man kann die Titel fÃ¼r die Spalten Setzen
+Oder man kann die Titel für die Spalten Setzen
 
      columns("Name","Column 1","Column 2","Column 3");
 
@@ -285,9 +285,9 @@ default: ./TreeViewDump.pl
 
 =head2 help
 
-Die Hilfe fÃ¼r die Link Attribute
+Die Hilfe für die Link Attribute
 
-gibt eine Referenz auf ein hash zurÃ¼ck (void Context),
+gibt eine Referenz auf ein hash zurück (void Context),
 
      my $hashref =  help();
 
@@ -301,7 +301,7 @@ oder eine Hilfe Nachricht.
 
      print help('href'),$/;
 
-(Nur auf Englisch verfÃ¼gbar)
+(Nur auf Englisch verfügbar)
 
 =head3 reservierte Attribute:
 
@@ -327,7 +327,7 @@ Name der Klasse des Elements.
 
 =item coords
 
-FÃ¼r Image maps.
+Für Image maps.
 
 =item dir
 
@@ -355,15 +355,15 @@ Wenn mit der Maus auf das Element geklickt wird.
 
 =item onfocus
 
-Element wird ausgewÃ¤hlt.
+Element wird ausgewählt.
 
 =item onkeydown
 
-Wenn eine taste gedrÃ¼ckt wird.
+Wenn eine taste gedrückt wird.
 
 =item onkeypress
 
-Wenn eine taste gedrÃ¼ckt und wieder losgelassen wird.
+Wenn eine taste gedrückt und wieder losgelassen wird.
 
 =item onkeyup
 
@@ -371,7 +371,7 @@ Wenn die taste wieder losgelassen wird.
 
 =item onmousedown
 
-Wenn eine Maustaste gedrÃ¼ckt wird.
+Wenn eine Maustaste gedrückt wird.
 
 =item onmousemove
 
@@ -379,11 +379,11 @@ Maus wird bewegt.
 
 =item onmouseout
 
-Maus verlÃ¤sst den link.
+Maus verlässt den link.
 
 =item onmouseover
 
-Maus Ã¼ber den link
+Maus über den link
 
 =item onmouseup
 
@@ -399,7 +399,7 @@ Dieses Attribut gibt die Zeichenkodierung der durch den Link bezeichneten Ressou
 
 =item shape
 
-FÃ¼r image maps.
+Für image maps.
 
 =item style
 
@@ -411,13 +411,13 @@ Position in der tab Reihenfolge.
 
 =item target
 
-Mit dem Attribut target im einleitenden <a>-Tag kÃ¶nnen Sie ein Zielfenster fÃ¼r den Verweis festlegen. Der im Wert zugewiesene Name muss mit einem Buchstaben (A-Z, a-z) beginnen, auÃŸer in den folgenden
+Mit dem Attribut target im einleitenden <a>-Tag können Sie ein Zielfenster für den Verweis festlegen. Der im Wert zugewiesene Name muss mit einem Buchstaben (A-Z, a-z) beginnen, außer in den folgenden
 
-Ausnahmen, die durch einen fÃ¼hrenden Unterstrich gekennzeichnet sind:
+Ausnahmen, die durch einen führenden Unterstrich gekennzeichnet sind:
 
-_blank, um den Verweis in einem neuen Fenster zu Ã¶ffnen,
+_blank, um den Verweis in einem neuen Fenster zu öffnen,
 
- _self, um den Verweis im aktuellen Fenster zu Ã¶ffnen,
+ _self, um den Verweis im aktuellen Fenster zu öffnen,
 
  _parent, um bei verschachtelten Framesets das aktuelle Frameset zu sprengen,
 
@@ -438,7 +438,7 @@ Die id des links. Wird gesetzt.
 
 =item addition
 
-ZusÃ¤tzlicher text hinter dem link.
+Zusätzlicher text hinter dem link.
 
 =item subtree
 
@@ -456,9 +456,9 @@ Bild Name, muss im /style/mimetypes Verzeichnis liegen
 
 =item folderclass :
 
-Nur fÃ¼r Crystal styles
+Nur für Crystal styles
 
-MÃ¶gliche Werte:
+Mögliche Werte:
 
 folderMan, folderVideo,folderCrystal,
 
@@ -472,7 +472,7 @@ folderTar,folderYellow ,folderGray,
 
 folderGreen und folderRed
 
-Auf  http://treeview.lindnerei.de/cgi-bin/crystal.pl gibt es eine komplette liste mÃ¶glicher werte.
+Auf  http://treeview.lindnerei.de/cgi-bin/crystal.pl gibt es eine komplette liste möglicher werte.
 
 =item columns
 
@@ -480,7 +480,7 @@ Ein Array mit den Spalten.
 
 =item empty.
 
-Auf wahr setzen wenn man einen geschlossenes Verzeichnis haben mÃ¶chte.
+Auf wahr setzen wenn man einen geschlossenes Verzeichnis haben möchte.
 
 =back
 
@@ -526,11 +526,11 @@ Wird innerhalb von initTree zum sortieren benutzt wenn Verzeichnisse zuerst ange
 
 =head2 getSelf
 
-Dieses Module benutzt ein Lincoln loader mÃ¤ÃŸiges Klassen System.
+Dieses Module benutzt ein Lincoln loader mäßiges Klassen System.
 
-Wenn der erste Ã¼bergebene Parameter von ein HTML::Menu::TreeView Objekt ist (oo syntax). werden einfach die Ã¼bergebenen Parameter zurÃ¼ck gegeben.
+Wenn der erste übergebene Parameter von ein HTML::Menu::TreeView Objekt ist (oo syntax). werden einfach die übergebenen Parameter zurück gegeben.
 
-Ansonsten (fo syntax)  wird ein neues HTML::Menu::TreeView Objekt erzeugt und als erster wert gefolgt von den Ã¼bergeben Parametern zurÃ¼ckgegeben.
+Ansonsten (fo syntax)  wird ein neues HTML::Menu::TreeView Objekt erzeugt und als erster wert gefolgt von den übergeben Parametern zurückgegeben.
 
 =head2 appendFolder
 
@@ -582,13 +582,13 @@ LGPL
 
 Copyright (C) 2008  Dirk Lindner
 
-Diese Bibliothek ist freie Software. Sie dÃ¼rfen sie unter den Bedingungen
-der GNU Lesser General Public License, wie von der Free Software Foundation verÃ¶ffentlicht,
-weiterverteilen und/oder modifizieren; entweder gemÃ¤ÃŸ Version 2.1 der Lizenz oder (nach Ihrer
-Option) jeder spÃ¤teren Version. Diese Bibliothek wird in der Hoffnung weiterverbreitet,
-daÃŸ sie nÃ¼tzlich sein wird, jedoch OHNE IRGENDEINE GARANTIE,
-auch ohne die implizierte Garantie der MARKTREIFE oder der VERWENDBARKEIT FÃœR EINEN BESTIMMTEN ZWECK.
-Mehr Details finden Sie in der GNU Lesser General Public License. 
+Diese Bibliothek ist freie Software. Sie dürfen sie unter den Bedingungen
+der GNU Lesser General Public License, wie von der Free Software Foundation veröffentlicht,
+weiterverteilen und/oder modifizieren; entweder gemäß Version 2.1 der Lizenz oder (nach Ihrer
+Option) jeder späteren Version. Diese Bibliothek wird in der Hoffnung weiterverbreitet,
+daß sie nützlich sein wird, jedoch OHNE IRGENDEINE GARANTIE,
+auch ohne die implizierte Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK.
+Mehr Details finden Sie in der GNU Lesser General Public License.
 Sie sollten eine Kopie der GNU Lesser General Public License zusammen mit dieser Bibliothek erhalten haben.
 falls nicht,
 schreiben Sie an die Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110, USA.

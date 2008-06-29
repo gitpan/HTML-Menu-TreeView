@@ -1,5 +1,10 @@
 Revision history for Perl extension treeview.
-HTML::Menu::TreeView version 1.02
+HTML::Menu::TreeView version 1.03
+
+1.03
+       -Change Charset to ISO 8859-1 (HTML::Menu::TreeView::GER)
+       -Background-position Crystal 16px style.
+       -Fix Required Perl Version. it is 5.00600
 1.02
       -Fixe Perldoc links and Charset
 1.01
@@ -114,7 +119,7 @@ HTML::Menu::TreeView version 1.02
 0.6
      - setClasic, setModern clasic ( alternate node decoration ).
      - setSize ( new Style Cyrstal 32 ) 16 or 32 are possible.
-     - make installdocs 
+     - make installdocs
        (install html documentation vor HTML::Menu::TreeView like http://treeview.lindnerei.de.
         Open /TreeView.html on your host into your browser after installation.)
      - include some styles into Cyrstal.
