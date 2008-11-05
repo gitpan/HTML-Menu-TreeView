@@ -384,3 +384,7 @@ background-image:url('/style/Crystal/32/html-menu-treeview/vertLine.gif');
 background-repeat:repeat-y;
 height:32px;
 }
+tr.trOver{
+color:black;
+background-color:#d4d0c8;
+}

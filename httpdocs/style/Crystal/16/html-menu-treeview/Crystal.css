@@ -510,3 +510,7 @@ td.submenuDeco16 {
 background-image:url('/style/Crystal/16/html-menu-treeview/vertLine.gif');
 background-repeat:repeat-y;
 }
+tr.trOver{
+color:black;
+background-color:#d4d0c8;
+}

@@ -3,17 +3,17 @@ use strict;
 use warnings;
 require Exporter;
 use 5.00600;
-use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView %openArrays @caption $columns $clasic $ffirst $sort $border $orderby $size $style $orderbyColumn $prefix);
-$HTML::Menu::TreeView::VERSION = '1.03';
+use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView %openArrays @caption $columns $clasic $ffirst $sort $border $orderby $size $style $orderbyColumn $prefix $m_sTrOver);
+$HTML::Menu::TreeView::VERSION = '1.04';
 @ISA                           = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK =
-  qw(border Tree css columns jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style Style documentRoot loadTree saveTree  %anker sortTree orderBy orderByColumn prefix setModern border);
+  qw(border Tree css columns jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style Style documentRoot loadTree saveTree  %anker sortTree orderBy orderByColumn prefix setModern border TrOver);
 %HTML::Menu::TreeView::EXPORT_TAGS = (
-                                      'all'       => [qw(Tree css jscript clasic columns preload help folderFirst size documentRoot loadTree saveTree sortTree orderBy prefix Style orderByColumn border)],
+                                      'all'       => [qw(Tree css jscript clasic columns preload help folderFirst size documentRoot loadTree saveTree sortTree orderBy prefix Style orderByColumn border TrOver)],
                                       'recommend' => [qw(Tree css jscript clasic preload folderFirst help size Style documentRoot loadTree saveTree sortTree orderBy prefix)],
                                       'standart'  => [qw(Tree css jscript preload size Style documentRoot clasic)],
                                       'backward'  => [qw(setDocumentRoot getDocumentRoot setSize setClasic setStyle style setModern %anker)],
-                                      'columns'   => [qw(border columns orderByColumn)],
+                                      'columns'   => [qw(border columns orderByColumn )],
 );
 $DefaultClass = 'HTML::Menu::TreeView' unless defined $HTML::Menu::TreeView::DefaultClass;
 our $id       = 'a';
@@ -177,6 +177,10 @@ border columns orderByColumn
 HTML::Menu::TreeView is a Modul to build an Html TreeView.
 
 =head1 Changes
+
+1.04
+
+TrOver  enable mouseover for rows tr.trOver{}
 
 1.03
 
@@ -593,7 +597,7 @@ sub folderFirst {
 
 prefix used by css.
 
-set this if you want build offline websites
+use this if you want build a offline website
 
 for example:
 
@@ -610,6 +614,23 @@ sub prefix {
         } else {
                 return $prefix;
         }
+}
+
+=head2 TrOver
+
+enable mouseover
+
+tr.trOver{}
+
+=cut
+
+sub TrOver{
+        my ($self, @p) = getSelf(@_);
+        if(defined $p[0]) {
+                $m_sTrOver = $p[0];
+} else {
+                return $m_sTrOver;
+}
 }
 
 =head2 saveTree
@@ -988,27 +1009,37 @@ construct the TreeView called by Tree, new or recursive by appendFolder.
 =cut
 
 sub initTree {
-        my ($self, @p) = getSelf(@_);
-        my $tree = $p[0];
+      my ($self, @p) = getSelf(@_);
+      my $tree = $p[0];
+      return if ref $tree  ne "ARRAY";
       SWITCH: {
                 if($ffirst) {
-                        my @tr = sort {&ffolderFirst} @$tree;
+                        my @tr = sort {&_ffolderFirst} @$tree;
                         $tree = \@tr;
                         last SWITCH;
                 }
                 if($sort) {
-                        my @tr = sort {lc($a->{$orderby}) cmp lc($b->{$orderby})} @$tree;
+                        my @tr = sort {
+                        return -1 unless $a || $b;
+                        return -1 if ref $a  ne "HASH";
+                        return +1 if ref $b ne "HASH";
+                        return lc($a->{$orderby}) cmp lc($b->{$orderby})} @$tree;
                         $tree = \@tr;
                         last SWITCH;
                 }
                 if(defined $orderbyColumn) {
-                        my @tr = sort {lc($a->{columns}[$orderbyColumn]) cmp lc($b->{columns}[$orderbyColumn])} @$tree;
+                        my @tr = sort {
+                        return -1 unless $a || $b;
+                        return -1 if ref $a  ne "HASH";
+                        return +1 if ref $b ne "HASH";
+                     return lc($a->{columns}[$orderbyColumn]) cmp lc($b->{columns}[$orderbyColumn])} @$tree;
                         $tree = \@tr;
                         last SWITCH;
                 }
         }
         my $length = @$tree;
         for(my $i = 0 ; $i < @$tree ; $i++) {
+                next if ref @$tree[$i]  ne "HASH";
                 $length--;
                 if(defined @$tree[$i]) {
                         if(defined @{@$tree[$i]->{subtree}}) {
@@ -1033,15 +1064,17 @@ sub initTree {
                 }
         }
 
-=head2 ffolderFirst
+=head2 _ffolderFirst
 
 this function is used within initTree for sorting the TreeView if folderFirst(1) is set.
 
 =cut
 
-        sub ffolderFirst {
-                no warnings;
+        sub _ffolderFirst {
+              no warnings;
               SWITCH: {
+                        return -1 if ref $a  ne "HASH";
+                        return +1 if ref $b ne "HASH";
                         if(defined @{$a->{subtree}} and defined @{$b->{subtree}}) {
                                 return lc($a->{$orderby}) cmp lc($b->{$orderby});
                                 last SWITCH;
@@ -1113,7 +1146,7 @@ sub appendFolder {
           : "&#160;<a $tt >$node->{text}</a>&#160;";
         my $minusnode = $clasic ? "clasicMinusNode$size" : "minusNode$size";
         $self->{tree} .=
-          qq(<tr><td id="$id.node" class="$minusnode"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td align="left" class="$FolderClass" id="$id.folder"><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr><tr id="$id"><td class="submenuDeco$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" alt=""/></td><td><table align="left" border="0" cellpadding="0" cellspacing="0"   summary="appendFolder" width="100%"><colgroup><col width="$size"/></colgroup>);
+          ($m_sTrOver ? qq(<tr  onmouseover = "if(m_bOver)this.className = 'trOver';" onmouseout="this.className = '';">):'<tr>').qq(<td id="$id.node" class="$minusnode"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td align="left" class="$FolderClass" id="$id.folder"><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr><tr id="$id"><td class="submenuDeco$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" alt=""/></td><td><table align="left" border="0" cellpadding="0" cellspacing="0"   summary="appendFolder" width="100%"><colgroup><col width="$size"/></colgroup>);
         if($columns > 0) {
                 my $class = $border ? "columnsFolderBorder$size" : "columnsFolder$size";
                 $self->{subtree} .= qq(<tr id="tr$id">);
@@ -1174,7 +1207,7 @@ sub appendLastFolder {
           : "&#160;<a $tt>$node->{text}</a>&#160;";
         my $lastminusnode = $clasic ? "clasicLastMinusNode$size" : "lastMinusNode$size";
         $self->{tree} .=
-          qq(<tr><td id="$id.node" class="$lastminusnode" onclick="$onclick"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" /></td><td align="left" class="$FolderClass" id="$id.folder"><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendLastFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" alt="" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr><tr id="$id"><td><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt=""/></td><td><table align="left" width="100%" cellpadding="0" cellspacing="0" border="0" summary="appendLastFolder"><colgroup><col width="$size"/></colgroup>);
+          ($m_sTrOver ? qq(<tr  onmouseover = "if(m_bOver)this.className = 'trOver';" onmouseout="this.className = '';">):'<tr>').qq(<td id="$id.node" class="$lastminusnode" onclick="$onclick"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" /></td><td align="left" class="$FolderClass" id="$id.folder"><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendLastFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" alt="" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr><tr id="$id"><td><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt=""/></td><td><table align="left" width="100%" cellpadding="0" cellspacing="0" border="0" summary="appendLastFolder"><colgroup><col width="$size"/></colgroup>);
         if($columns > 0) {
                 my $class = $border ? "columnsFolderBorder$size" : "columnsFolder$size";
                 $self->{subtree} .= qq(<tr id="tr$id">);
@@ -1229,7 +1262,7 @@ sub appendEmptyFolder {
           : "&#160;<a $tt >$node->{text}</a>&#160;";
         my $plusnode = $clasic ? "clasicPlusNode$size" : "plusNode$size";
         $self->{tree} .=
-          qq(<tr><td id="$id.node" class="$plusnode"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td align="left" class="$FolderClass" id="$id.folder"><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr>);
+          ($m_sTrOver ? qq(<tr  onmouseover = "if(m_bOver)this.className = 'trOver';" onmouseout="this.className = '';">):'<tr>').qq(<td id="$id.node" class="$plusnode"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td align="left" class="$FolderClass" id="$id.folder"><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr>);
         if($columns > 0) {
                 my $class = $border ? "columnsFolderBorder$size" : "columnsFolder$size";
                 $self->{subtree} .= qq(<tr id="tr$id">);
@@ -1284,7 +1317,7 @@ sub appendLastEmptyFolder {
           : "&#160;<a $tt>$node->{text}</a>&#160;";
         my $lastpusnode = $clasic ? "clasicLastPlusNode$size" : "lastPlusNode$size";
         $self->{tree} .=
-          qq(<tr><td id="$id.node" class="$lastpusnode" onclick="$onclick"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" /></td><td align="left" class="$FolderClass" id="$id.folder"><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendLastFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" alt="" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr>);
+          ($m_sTrOver ? qq(<tr  onmouseover = "if(m_bOver)this.className = 'trOver';" onmouseout="this.className = '';">):'<tr>').qq(<td id="$id.node" class="$lastpusnode" onclick="$onclick"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" /></td><td align="left" class="$FolderClass" id="$id.folder"><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendLastFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" alt="" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr>);
         if($columns > 0) {
                 my $class = $border ? "columnsFolderBorder$size" : "columnsFolder$size";
                 $self->{subtree} .= qq(<tr id="tr$id">);
@@ -1333,7 +1366,7 @@ sub appendNode {
           : "&#160;<a $tt>$node->{text}</a>";
         my $paddingLeft = $size+ 2 . "px";
         $self->{tree} .=
-          qq(<tr><td class="node$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" align="middle"/></td><td align="left"  style="background-image:url('$prefix/style/$style/$size/mimetypes/$node->{image}');background-repeat:no-repeat;cursor:pointer;padding-left:$paddingLeft">$addon</td></tr>);
+          ($m_sTrOver ? qq(<tr  onmouseover = "if(m_bOver)this.className = 'trOver';" onmouseout="this.className = '';">):'<tr>').qq(<td class="node$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" align="middle"/></td><td align="left"  style="background-image:url('$prefix/style/$style/$size/mimetypes/$node->{image}');background-repeat:no-repeat;cursor:pointer;padding-left:$paddingLeft">$addon</td></tr>);
         if($columns > 0) {
                 $self->{subtree} .= qq(<tr id="tr$id">);
                 my $class = $border ? "columnsNodeBorder$size" : "columnsNode$size";
@@ -1378,7 +1411,7 @@ sub appendLastNode {
           : "&#160;<a $tt>$node->{text}</a>";
         my $paddingLeft = $size+ 2 . "px";
         $self->{tree} .=
-          qq(<tr><td class="lastNode$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt=""/></td><td align="left"  style="background-image:url('$prefix/style/$style/$size/mimetypes/$node->{image}');background-repeat:no-repeat;cursor:pointer;padding-left:$paddingLeft;">$addon</td></tr>);
+          ($m_sTrOver ? qq(<tr  onmouseover = "if(m_bOver)this.className = 'trOver';" onmouseout="this.className = '';">):'<tr>').qq(<td class="lastNode$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt=""/></td><td align="left"  style="background-image:url('$prefix/style/$style/$size/mimetypes/$node->{image}');background-repeat:no-repeat;cursor:pointer;padding-left:$paddingLeft;">$addon</td></tr>);
         if($columns > 0) {
                 my $class = $border ? "columnsLastNodeBorder$size" : "columnsLastNode$size";
                 $self->{subtree} .= qq(<tr id="tr$id">);

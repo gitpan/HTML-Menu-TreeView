@@ -9,6 +9,7 @@ function displayTree(id){
         }
     }
 }
+var m_bOver = true;
 function ocNode(id,size){
 	var node = document.getElementById(id).className;
         var mnode = 'minusNode'+size;

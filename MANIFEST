@@ -6,6 +6,7 @@ examples/fo.pl
 examples/folderFirst.pl
 examples/oo.pl
 examples/open.pl
+examples/OperaBookMarks2TreeView.pl
 examples/select.pl
 httpdocs/style/Crystal/128/html-menu-treeview/clasicLastMinusNode.gif
 httpdocs/style/Crystal/128/html-menu-treeview/clasicLastPlusNode.gif

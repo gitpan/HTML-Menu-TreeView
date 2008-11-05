@@ -1,6 +1,6 @@
 ---
 name: HTML-Menu-TreeView
-version: 1.03
+version: 1.04
 author:
   - 'Dirk Lindner <lze@cpan.org>'
 abstract: Create a HTML TreeView from scratch
@@ -13,7 +13,7 @@ requires:
 provides:
   HTML::Menu::TreeView:
     file: lib/HTML/Menu/TreeView.pm
-    version: 1.03
+    version: 1.04
   HTML::Menu::TreeView::GER:
     file: lib/HTML/Menu/TreeView/GER.pm
     version: 1.03
