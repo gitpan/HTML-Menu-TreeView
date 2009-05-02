@@ -75,3 +75,27 @@ function hideArray(i){
         }
     }
 }
+
+function trOver(id){
+     var node =document.getElementById('tr'+id);
+     var node2 =document.getElementById('tree'+id);
+     if(m_bOver){
+          if(node)
+          node.className = 'trOver';
+          if(node2)
+          node2.className = 'trOver';
+     }
+}
+function trUnder(id){
+     var node =document.getElementById('tr'+id);
+     var node2 =document.getElementById('tree'+id);
+     if(m_bOver){
+          if(node)
+          node.className = '';
+          if(node2)
+          node2.className = '';
+     }
+}
+
+
+

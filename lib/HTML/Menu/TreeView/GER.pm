@@ -1,7 +1,7 @@
 package HTML::Menu::TreeView::GER;
 use strict;
 use warnings;
-$HTML::Menu::TreeView::GER::VERSION = '1.03';
+$HTML::Menu::TreeView::GER::VERSION = '1.05';
 
 =head1 NAME
 
@@ -100,7 +100,7 @@ Hier die liste der möglichen Import Sets
 
 :all
 
-Tree css jscript clasic preload help folderFirst size documentRoot loadTree saveTree sortTree orderBy prefix Style orderByColumn border
+Tree css jscript clasic preload help folderFirst size documentRoot loadTree saveTree sortTree orderBy prefix Style orderByColumn border TrOver
 
 :recommend
 
@@ -118,19 +118,24 @@ setDocumentRoot getDocumentRoot setSize setClasic setStyle style setModern %anke
 
 border columns orderByColumn
 
-=head1 DESCRIPTION
+=head1 Beschreibung
 
-HTML::Menu::TreeView ist ein Module um ein HTML TreeView zu erstellen.
+HTML::Menu::TreeView ist ein Module HTML Baumansicht zu erstellen.
 
-=head1 Changes
+=head1 Änderungen
 
-1.02
+1.05
 
-Deutsche Umlaute wurden falsch dargestellt.
+desc rückwärts sortieren
 
-Einige Ergänzungen in der Deutschen Dokumentation.
+TrOver Mouseover effekt für spalten gefixt
 
-=head1 Public
+1.04
+
+TrOver Mouseover effekt für Zeilen
+
+
+=head1 Öffentlich
 
 =head2 new
 
@@ -156,7 +161,7 @@ Man kann den benötigten Stylesheet natürlich per Hand einbinden:
 
 =head2 documentRoot
 
-Setzt den Document Root im Scalar Context, gibt Ihn in void Context zurück.
+Setzt den Document Root im Scalar Context, gibt Ihn ohne argument zurück.
 
 default: Diese Variable wird durch make gesetzt.
 
@@ -190,13 +195,13 @@ Oder für alle Größen:
 
 Verschiedene Größen sind nur für den Crystal Style verfügbar.
 
-Setzt die Größe im Scalar Context, gibt Sie in void Context zurück.
+Setzt die Größe im Scalar Context, gibt Sie ohne argument zurück.
 
 16,32,48,64 und 128 sind mögliche Werte.
 
 =head2 Style
 
-Setzt den Style im Scalar Context, gibt Ihn in void Context zurück.
+Setzt den Style im Scalar Context, gibt Ihn ohne argument zurück.
 
      Style('simple');
 
@@ -220,7 +225,7 @@ klassische Knoten Dekoration ausschalten
 
      clasic(0);
 
-gibt den Status in void Context zurück.
+gibt den Status in ohne argument zurück.
 
      $status = clasic();
 
@@ -230,7 +235,7 @@ Anzahl der Spalten setzen.
 
      columns(3);
 
-Gibt die Anzahl in void Context zurück.
+Gibt die Anzahl in ohne argument  zurück.
 
      $anzahl = columns();
 
@@ -245,6 +250,19 @@ Spalten Rahmen ein- oder ausschalten.
 =head2 sortTree
 
 Spalten nach Name oder dem Attribute das von orderBy gesetzt wurde sortieren.
+
+
+=head2 desc
+
+rückwärts sortieren
+
+     desc(1);
+
+ohne argument wird der wert zurückgegeben.
+
+     $status = desc();
+
+=cut
 
 =head2 orderBy
 
@@ -270,6 +288,14 @@ z.Bsp:
 
 setzen.
 
+=head2 TrOver
+
+mouseover aktivieren
+
+tr.trOver{}
+
+=cut
+
 =head2 saveTree
 
      saveTree('filename',\@ref); # oder saveTree()
@@ -287,7 +313,7 @@ default: ./TreeViewDump.pl
 
 Die Hilfe für die Link Attribute
 
-gibt eine Referenz auf ein hash zurück (void Context),
+gibt eine Referenz auf ein hash zurück (ohne argument ),
 
      my $hashref =  help();
 
@@ -472,7 +498,7 @@ folderTar,folderYellow ,folderGray,
 
 folderGreen und folderRed
 
-Auf  http://treeview.lindnerei.de/cgi-bin/crystal.pl gibt es eine komplette liste möglicher werte.
+http://treeview.lindnerei.de/cgi-bin/crystal.pl gibt es eine komplette liste möglicher werte.
 
 =item columns
 
@@ -484,7 +510,7 @@ Auf wahr setzen wenn man einen geschlossenes Verzeichnis haben möchte.
 
 =back
 
-=head1 backward compatibility
+=head1 rückwärts kompatibilität
 
 =head2 getDocumentRoot
 
@@ -566,7 +592,7 @@ $self->appendLastNode(\$node);
 
 wir von initTree aufgerufen wenn das letzte item vom aktuellen (sub)tree ein Knoten ist.
 
-=head1 SEE ALSO
+=head1 Siehe auch
 
 http://www.lindnerei.de, http://treeview.lindnerei.de,
 
@@ -576,11 +602,11 @@ L<HTML::Menu::TreeView>, http://treeview.tigris.org,
 
 Dirk Lindner <lze@cpan.org>
 
-=head1 LICENSE
+=head1 Lizenz
 
 LGPL
 
-Copyright (C) 2008  Dirk Lindner
+Copyright (C) 2009  Dirk Lindner
 
 Diese Bibliothek ist freie Software. Sie dürfen sie unter den Bedingungen
 der GNU Lesser General Public License, wie von der Free Software Foundation veröffentlicht,

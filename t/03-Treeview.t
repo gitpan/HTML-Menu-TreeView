@@ -1,14 +1,12 @@
 use HTML::Menu::TreeView qw(:all);
-my @tree = (
-    {   text    => 'News',
-        href    => 'TreeView.pl',
-        subtree => [
-            {   text  => 'TreeView',
-                href  => 'attribute',
-                image => "news.gif",
-            },
-        ],
-    },
+my @tree = ( {  text    => 'News',
+                href    => 'TreeView.pl',
+                subtree => [ {  text  => 'TreeView',
+                                href  => 'attribute',
+                                image => "news.gif",
+                             },
+                ],
+             },
 );
 use Test::More tests => 2;
 my $TreeView = new HTML::Menu::TreeView();

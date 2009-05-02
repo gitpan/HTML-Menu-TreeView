@@ -1,20 +1,18 @@
 use strict;
 use HTML::Menu::TreeView;
 use vars qw(@TreeView @tree);
-@tree = (
-    {   text    => 'News',
-        href    => "TreeView.pl",
-        subtree => [
-            {   text  => 'TreeView',
-                href  => 'attribute',
-                image => "news.gif"
-            },
-        ],
-    },
-    {   text    => "Help",
-        onclick => 'attribute',
-        image   => "help.gif"
-    },
+@tree = ( {  text    => 'News',
+             href    => "TreeView.pl",
+             subtree => [ {  text  => 'TreeView',
+                             href  => 'attribute',
+                             image => "news.gif"
+                          },
+             ],
+          },
+          {  text    => "Help",
+             onclick => 'attribute',
+             image   => "help.gif"
+          },
 );
 my $Tree = new HTML::Menu::TreeView();
 my $t    = $Tree->Tree( \@tree );

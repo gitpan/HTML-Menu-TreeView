@@ -1,6 +1,7 @@
 Revision history for Perl extension treeview.
-HTML::Menu::TreeView version 1.03
-
+HTML::Menu::TreeView version 1.05
+1.05
+       Sorting, German translation, Trover (columns)  and rights fixed.
 1.03
        -Change Charset to ISO 8859-1 (HTML::Menu::TreeView::GER)
        -Background-position Crystal 16px style.

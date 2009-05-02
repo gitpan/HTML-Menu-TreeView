@@ -1,29 +1,25 @@
 use HTML::Menu::TreeView qw(:all );
-my @tree = (
-    {   text    => 'News',
-        href    => 'TreeView.pl',
-        subtree => [
-            {   text  => 'TreeView',
-                href  => 'attribute',
-                image => "news.gif"
-            },
-        ],
-    },
-    {   text    => "Help",
-        onclick => 'attribute',
-        image   => "help.gif"
-    },
+my @tree = ( {  text    => 'News',
+                href    => 'TreeView.pl',
+                subtree => [ {  text  => 'TreeView',
+                                href  => 'attribute',
+                                image => "news.gif"
+                             },
+                ],
+             },
+             {  text    => "Help",
+                onclick => 'attribute',
+                image   => "help.gif"
+             },
 );
-my @tree2 = (
-    {   text    => 'News',
-        href    => 'TreeView.pl',
-        subtree => [
-            {   text  => 'TreeView',
-                href  => 'attribute',
-                image => "news.gif",
-            },
-        ],
-    },
+my @tree2 = ( {  text    => 'News',
+                 href    => 'TreeView.pl',
+                 subtree => [ {  text  => 'TreeView',
+                                 href  => 'attribute',
+                                 image => "news.gif",
+                              },
+                 ],
+              },
 );
 use Cwd;
 my $path = getcwd;
