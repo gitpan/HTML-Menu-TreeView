@@ -13,8 +13,8 @@ font-size:24px;
 white-space:nowrap;
 }
 table.treeview32 {
-background-color:#FFF;
 color:#000;
+white-space:nowrap;
 }
 td.captionBorder32 {
 border-bottom:1px;
@@ -78,8 +78,9 @@ vertical-align:top;
 white-space:nowrap;
 }
 td.folder32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderOpen.gif');
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_open.png');
 background-repeat:no-repeat;
+white-space:nowrap;
 cursor:pointer;
 font-family:verdana, sans-serif;
 font-size:24px;
@@ -87,8 +88,9 @@ height:32px;
 vertical-align:top;
 }
 td.folderClosed32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderClosed.gif');
+background-image:url('/style/Crystal/32/html-menu-treeview/folder.png');
 background-repeat:no-repeat;
+white-space:nowrap;
 cursor:pointer;
 font-family:verdana, sans-serif;
 font-size:24px;
@@ -96,35 +98,40 @@ height:32px;
 vertical-align:top;
 }
 td.folderCrystal32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderCrystal.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_crystal_open.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderCrystalClosed32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderCrystalClosed.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_crystal.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderFavorite32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderFavorite.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_favorite_open.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderFavoriteClosed32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderFavoriteClosed.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_favorite.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderGray32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderGray.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_grey_open.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
@@ -132,14 +139,16 @@ height:32px;
 vertical-align:top;
 }
 td.folderGrayClosed32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderGrayClosed.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_grey.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderGreen32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderGreen.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_green_open.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
@@ -147,84 +156,95 @@ height:32px;
 vertical-align:top;
 }
 td.folderGreenClosed32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderGreenClosed.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_green.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderHtml32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderHtml.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_html_open.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderHtmlClosed32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderHtmlClosed.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_html.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderImage32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderImage.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_image_open.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderImageClosed32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderImageClosed.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_image.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderImportant32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderImportant.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_important_open.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderImportantClosed32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderImportantClosed.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_important.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderLocked32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderLocked.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_locked_open.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderLockedClosed32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderLockedClosed.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_locked.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderMan32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderMan.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_man_open.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderManClosed32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderManClosed.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_man.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderOrange32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderOrange.gif');
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_orange_open.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
@@ -232,56 +252,64 @@ height:32px;
 vertical-align:top;
 }
 td.folderOrangeClosed32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderOrangeClosed.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_orange.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderPrint32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderPrint.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_print_open.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderPrintClosed32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderPrintClosed.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_print.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderSound32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderSound.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_sound_open.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderSoundClosed32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderSoundClosed.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_sound.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderTar32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderTar.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_tar_open.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderTarClosed32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderTarClosed.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_tar.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderText32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderText.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_txt_open.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
@@ -289,61 +317,70 @@ height:32px;
 vertical-align:top;
 }
 td.folderTextClosed32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderTextClosed.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_txt.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderVideo32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderVideo.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_video_open.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderVideoClosed32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderVideoClosed.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_video.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderViolet32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderViolet.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_violet_open.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderVioletClosed32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderVioletClosed.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_violet.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderYellow32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderYellow.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_yellow_open.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.folderYellowClosed32 {
-background-image:url('/style/Crystal/32/html-menu-treeview/folderYellowClosed.gif');
+white-space:nowrap;
+background-image:url('/style/Crystal/32/html-menu-treeview/folder_yellow.png');
 background-repeat:no-repeat;
 cursor:pointer;
 font-size:24px;
 vertical-align:top;
 }
 td.lastMinusNode32 {
+white-space:nowrap;
 background-image:url('/style/Crystal/32/html-menu-treeview/lastMinusNode.gif');
 background-repeat:no-repeat;
 cursor:pointer;
 height:32px;
 }
 td.lastNode32 {
+white-space:nowrap;
 background-image:url('/style/Crystal/32/html-menu-treeview/lastNode.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -353,18 +390,21 @@ height:32px;
 vertical-align:top;
 }
 td.lastPlusNode32 {
+white-space:nowrap;
 background-image:url('/style/Crystal/32/html-menu-treeview/lastPlusNode.gif');
 background-repeat:no-repeat;
 cursor:pointer;
 height:32px;
 }
 td.minusNode32 {
+white-space:nowrap;
 background-image:url('/style/Crystal/32/html-menu-treeview/minusNode.gif');
 background-repeat:no-repeat;
 cursor:pointer;
 height:32px;
 }
 td.node32 {
+white-space:nowrap;
 background-image:url('/style/Crystal/32/html-menu-treeview/node.gif');
 background-repeat:no-repeat;
 cursor:pointer;
@@ -374,12 +414,14 @@ height:32px;
 vertical-align:top;
 }
 td.plusNode32 {
+white-space:nowrap;
 background-image:url('/style/Crystal/32/html-menu-treeview/plusNode.gif');
 background-repeat:no-repeat;
 cursor:pointer;
 height:32px;
 }
 td.submenuDeco32 {
+white-space:nowrap;
 background-image:url('/style/Crystal/32/html-menu-treeview/vertLine.gif');
 background-repeat:repeat-y;
 height:32px;

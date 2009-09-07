@@ -1,21 +1,18 @@
 a.treeviewLink16 {
 color:#000;
 cursor:pointer;
-font-size:16px;
 height:22px;
 vertical-align:top;
 }
 a.treeviewLink16:hover {
 color:blue;
 cursor:pointer;
-font-size:16px;
 height:22px;
 vertical-align:top;
 }
 td.caption16 {
 color:#000;
 font-family:verdana, sans-serif;
-font-size:16px;
 height:24px;
 }
 td.captionBorder16 {
@@ -23,7 +20,6 @@ border-bottom:1px;
 border-bottom-style:dashed;
 color:#000;
 font-family:verdana, sans-serif;
-font-size:16px;
 height:24px;
 vertical-align:top;
 }
@@ -50,7 +46,6 @@ vertical-align:top;
 td.columnsFolder16 {
 color:#000;
 font-family:verdana, sans-serif;
-font-size:16px;
 height:22px;
 vertical-align:top;
 }
@@ -59,14 +54,12 @@ border-left:1px;
 border-left-style:dashed;
 color:#000;
 font-family:verdana, sans-serif;
-font-size:16px;
 height:22px;
 vertical-align:top;
 }
 td.columnsLastNode16 {
 color:#000;
 font-family:verdana, sans-serif;
-font-size:16px;
 height:22px;
 vertical-align:top;
 }
@@ -75,14 +68,12 @@ border-left:1px;
 border-left-style:dashed;
 color:#000;
 font-family:verdana, sans-serif;
-font-size:16px;
 height:22px;
 vertical-align:top;
 }
 td.columnsNode16 {
 color:#000;
 font-family:verdana, sans-serif;
-font-size:16px;
 height:22px;
 vertical-align:top;
 }
@@ -90,7 +81,6 @@ td.folder16 {
 background-image:url('/style/simple/16/html-menu-treeview/folderOpen.gif');
 background-repeat:no-repeat;
 cursor:pointer;
-font-size:16px;
 height:22px;
 vertical-align:top;
 }
@@ -98,7 +88,6 @@ td.folderClosed16 {
 background-image:url('/style/simple/16/html-menu-treeview/folderClosed.gif');
 background-repeat:no-repeat;
 cursor:pointer;
-font-size:16px;
 height:22px;
 vertical-align:top;
 }
@@ -112,7 +101,6 @@ td.lastNode16 {
 background-image:url('/style/simple/16/html-menu-treeview/lastNode.gif');
 background-repeat:no-repeat;
 cursor:pointer;
-font-size:16px;
 height:22px;
 vertical-align:top;
 }
@@ -133,7 +121,6 @@ td.node16 {
 background-image:url('/style/simple/16/html-menu-treeview/node.gif');
 background-repeat:no-repeat;
 cursor:pointer;
-font-size:16px;
 height:22px;
 vertical-align:top;
 }

@@ -1,5 +1,11 @@
 Revision history for Perl extension treeview.
-HTML::Menu::TreeView version 1.05
+HTML::Menu::TreeView version 1.06
+1.06
+       Cvs moved to http://lindnerei.svn.sourceforge.net/viewvc/lindnerei/treeview/
+       Start fix icons, Use transparent pngs instead of gif.
+       Internet 6 support droped.
+       Drag & drop example edit.
+       Deutsche Dokumentation
 1.05
        Sorting, German translation, Trover (columns)  and rights fixed.
 1.03

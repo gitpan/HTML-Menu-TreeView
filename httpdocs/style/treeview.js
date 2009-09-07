@@ -96,6 +96,3 @@ function trUnder(id){
           node2.className = '';
      }
 }
-
-
-

@@ -17,26 +17,26 @@ my $class = Module::Build->subclass(class => "Module::Build::Custom", code => <<
        &replacePath('blib/lib/HTML/Menu/TreeView.pm');
        }
 
-       sub change {
-       my $d = shift;
-       chomp($d);
-       opendir(IN, $d) or die "Install failed: $d $!:$/";
-       my @files = readdir(IN);
-       closedir(IN);
-       for(my $i = 0 ; $i <= $#files ; $i++) {
-              unless ($files[$i] =~ /^\./) {
-              my $c = "$d/$files[$i]";
-              my $e = $c;
-              $e =~ s/^$dir(.*)/$1/;
-              unless (-d $c) {
-                     copy($c, "$release/$e") or die "Install failed: $!$c  $release/$e/$files[$i]";
-              } else {
-                     mkpath("$release/$e") unless (-d "$release/$e");
-                     &change("$d/$files[$i]") unless $files[$i] =~ /^\./;
+              sub change {
+                    my $d = shift;
+                    chomp($d);
+                    opendir(IN, $d) or die "Install failed: $d $!:$/";
+                    my @files = readdir(IN);
+                    closedir(IN);
+                    for(my $i = 0 ; $i <= $#files ; $i++) {
+                              unless ($files[$i] =~ /^\./) {
+                              my $c = "$d/$files[$i]";
+                              my $e = $c;
+                              $e =~ s/^$dir(.*)/$1/;
+                              unless (-d $c) {
+                                   copy($c, "$release/$e") or die "copy failed: $! $/ $c  $/ $release/$e";
+                              } else {
+                                   mkpath("$release/$e") unless (-d "$release/$e");
+                                   &change("$d/$files[$i]") unless $files[$i] =~ /^\./;
+                              }
+                              }
+                    }
               }
-              }
-       }
-       }
 
        sub replacePath {
        my $f = shift;
@@ -52,7 +52,24 @@ my $class = Module::Build->subclass(class => "Module::Build::Custom", code => <<
        truncate(EDIT, tell(EDIT));
        close(EDIT);
        }
-
+       sub ACTION_install_examples {
+                    my $self = shift;
+                    my $prefix = defined $inctance->{phash}{runtime_params}{disk}{prefix} ? $inctance->{phash}{runtime_params}{disk}{prefix}.'/' : '';
+                    $release = "$prefix$self->{properties}{cgi}";
+                    use Cwd;
+                    my $cwd = cwd;
+                    my $dir     = $cwd.'/examples';
+                    opendir(IN, $dir) or die $!;
+                    my @files = readdir(IN);
+                    closedir(IN);
+                    for(my $i = 0 ; $i <= $#files ; $i++) {
+                              unless ($files[$i] =~ /^\./) {
+                                my $c = "$dir/$files[$i]";
+                                copy($c, "$release/$files[$i]") or die $!;
+                                chmod 0755 ,  "$release/$files[$i]"
+                              }
+                    }
+       }
 SUBCLASS
 my $inctance = $class->new(
     get_options => {skip => {store => \$skip},},
@@ -73,11 +90,16 @@ my $inctance = $class->new(
 eval 'use HTML::Menu::TreeView qw(documentRoot)';
 $inctance->{properties}{htd} = documentRoot() unless $@;
 $inctance->{properties}{htd} = $inctance->args('htd') if defined $inctance->args('htd');
+$inctance->{properties}{cgi} = '/srv/www/cgi-bin' unless $@;
+$inctance->{properties}{htd} = $inctance->args('cgi') if defined $inctance->args('cgi');
+
 
 unless ($skip) {
     $inctance->{properties}{htd} = Module::Build->prompt("Where is your Document root ?", $inctance->{properties}{htd});
+    $inctance->{properties}{cgi} = Module::Build->prompt("Where is your cgi-bin Directory ?", $inctance->{properties}{cgi});
 } else {
     print "Document root: $inctance->{properties}{htd}$/";
+    print "cgi-bin Directory : $inctance->{properties}{cgi}$/";
 }
 $inctance->{properties}{install_path}{rhtml} = $inctance->{properties}{htd};
 $inctance->create_build_script;
