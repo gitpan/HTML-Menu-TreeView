@@ -4,6 +4,14 @@ cursor:pointer;
 height:22px;
 vertical-align:top;
 }
+a.dropzone22{
+color:#000;
+cursor:pointer;
+font-family:verdana,sans-serif;
+height:22px;
+vertical-align:top;
+background-color:red;
+}
 a.treeviewLink22:hover {
 color:blue;
 cursor:pointer;
@@ -11,7 +19,6 @@ height:22px;
 vertical-align:top;
 }
 table.treeview22 {
-background-color:#FFF;
 color:#000;
 white-space:nowrap;
 }

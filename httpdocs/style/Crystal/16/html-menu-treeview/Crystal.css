@@ -12,12 +12,24 @@ font-family:verdana,sans-serif;
 height:22px;
 vertical-align:top;
 }
+table.treeview16 {
+color:#000;
+white-space:nowrap;
+}
 td.caption16 {
 color:#000;
 font-family:verdana, sans-serif;
 height:24px;
 vertical-align:top;
 white-space:nowrap;
+}
+a.dropzone16{
+color:#000;
+cursor:pointer;
+font-family:verdana,sans-serif;
+height:22px;
+vertical-align:top;
+background-color:red;
 }
 td.captionBorder16 {
 border-bottom:1px;

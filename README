@@ -7,6 +7,7 @@ To install this module type the following:
    make test
    make install
    make clean
+   make install_examples
 
 UNINSTALLATION
 
@@ -20,7 +21,7 @@ if you want run the examples you need CGI.pm.
 
 COPYRIGHT AND LICENCE
 
-Copyright (C) 2008 by Hr. Dirk Lindner
+Copyright (C) 2009 by Hr. Dirk Lindner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public License

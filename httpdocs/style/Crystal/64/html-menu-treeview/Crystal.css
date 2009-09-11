@@ -1,3 +1,12 @@
+a.dropzone64{
+color:#000;
+cursor:pointer;
+font-family:verdana,sans-serif;
+font-size:48px;
+height:64px;
+vertical-align:top;
+background-color:red;
+}
 a.treeviewLink64 {
 color:#000;
 cursor:pointer;
