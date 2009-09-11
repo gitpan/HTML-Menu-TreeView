@@ -1,4 +1,6 @@
-Revision history for Perl extension HTML::Menu::TreeView version 1.07
+Revision history for Perl extension HTML::Menu::TreeView version 1.08
+1.08
+        - delete one unnessesary file.
 1.07
        -Drag & drop example edit.pl
        -new css class dropzone

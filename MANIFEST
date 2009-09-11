@@ -28,7 +28,6 @@ examples/selectSource.pl
 examples/showsource.pm
 examples/tree.pl
 examples/Treenavi.pl
-httpdocs/style/Crystal/128/crystal.pl
 httpdocs/style/Crystal/128/html-menu-treeview/clasicLastMinusNode.gif
 httpdocs/style/Crystal/128/html-menu-treeview/clasicLastPlusNode.gif
 httpdocs/style/Crystal/128/html-menu-treeview/clasicMinusNode.gif

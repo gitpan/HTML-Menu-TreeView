@@ -4,7 +4,7 @@ use warnings;
 require Exporter;
 use 5.00600;
 use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView %openArrays @caption $columns $clasic $ffirst $sort $border $orderby $size $style $orderbyColumn $prefix $bTrOver $desc %anker %ankerG $lang);
-$HTML::Menu::TreeView::VERSION = '1.07';
+$HTML::Menu::TreeView::VERSION = '1.08';
 @ISA                           = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK =
   qw(border Tree css columns jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style Style documentRoot loadTree saveTree  %anker %ankerG sortTree orderBy orderByColumn prefix setModern border TrOver desc language);
@@ -186,6 +186,10 @@ border columns orderByColumn orderBy
 HTML::Menu::TreeView is a Modul to build an Html TreeView.
 
 =head1 Changes
+
+1.08
+
+delete one unnessesary file.
 
 1.07
 
