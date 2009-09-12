@@ -124,6 +124,7 @@ $VAR1 = [
                          'text'    => 'Select',
                          'subtree' => [
                                        {
+                                        'target'  => 'rightFrame',
                                         'text'    => 'Source',
                                         'href'    => 'selectSource.pl',
                                         'subtree' => [],

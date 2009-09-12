@@ -17,11 +17,6 @@ my $TreeView = new HTML::Menu::TreeView();
 my $q        = new CGI;
 $tree[1]{subtree} = [
                      {
-                      text   => 'treeview.tigris.org',
-                      href   => 'http://treeview.tigris.org',
-                      target => '_parent',
-                     },
-                     {
                       text    => 'Examples',
                       subtree => [
                                   {
@@ -31,11 +26,14 @@ $tree[1]{subtree} = [
                       ],
                      },
   ]
-  if( $q->param('open') );
-print $q->header,
-  $q->start_html(
-                  -title  => 'OO',
-                  -script => $TreeView->jscript() . $TreeView->preload(),
-                  -style  => {-code => $TreeView->css()}
-  ),
-  $TreeView->Tree( \@tree ), $q->end_html;
+  if ($q->param('open'));
+
+print($q->header
+        . $q->start_html(
+                         -title  => 'OO',
+                         -script => $TreeView->jscript() . $TreeView->preload(),
+                         -style  => {-code => $TreeView->css()}
+        )
+        . $TreeView->Tree(\@tree)
+        . $q->end_html
+);

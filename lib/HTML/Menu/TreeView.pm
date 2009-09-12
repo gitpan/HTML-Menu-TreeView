@@ -3,17 +3,20 @@ use strict;
 use warnings;
 require Exporter;
 use 5.00600;
-use vars qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView %openArrays @caption $columns $clasic $ffirst $sort $border $orderby $size $style $orderbyColumn $prefix $bTrOver $desc %anker %ankerG $lang);
-$HTML::Menu::TreeView::VERSION = '1.08';
+use vars
+  qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView %openArrays @caption $columns $clasic $ffirst $sort $border $orderby $size $style $orderbyColumn $prefix $bTrOver $desc %anker %ankerG $lang);
+$HTML::Menu::TreeView::VERSION = '1.09';
 @ISA                           = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK =
   qw(border Tree css columns jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style Style documentRoot loadTree saveTree  %anker %ankerG sortTree orderBy orderByColumn prefix setModern border TrOver desc language);
 %HTML::Menu::TreeView::EXPORT_TAGS = (
-                                       'all'       => [qw(Tree css jscript clasic columns preload help folderFirst size documentRoot loadTree saveTree sortTree orderBy prefix Style orderByColumn border TrOver desc language)],
-                                       'recommend' => [qw(Tree css jscript clasic preload folderFirst help size Style documentRoot loadTree saveTree sortTree prefix desc)],
-                                       'standart'  => [qw(Tree css jscript preload size Style documentRoot clasic)],
-                                       'backward'  => [qw(setDocumentRoot getDocumentRoot setSize setClasic setStyle style setModern)],
-                                       'columns'   => [qw(border columns orderByColumn orderBy)],
+    'all' => [
+        qw(Tree css jscript clasic columns preload help folderFirst size documentRoot loadTree saveTree sortTree orderBy prefix Style orderByColumn border TrOver desc language)
+    ],
+    'recommend' => [qw(Tree css jscript clasic preload folderFirst help size Style documentRoot loadTree saveTree sortTree prefix desc)],
+    'standart'  => [qw(Tree css jscript preload size Style documentRoot clasic)],
+    'backward'  => [qw(setDocumentRoot getDocumentRoot setSize setClasic setStyle style setModern)],
+    'columns'   => [qw(border columns orderByColumn orderBy)],
 );
 $DefaultClass = 'HTML::Menu::TreeView' unless defined $HTML::Menu::TreeView::DefaultClass;
 our $id       = 'a';
@@ -22,72 +25,72 @@ our $saveFile = './TreeViewDump.pl';
 $lang  = 'en';
 $style = 'Crystal';
 $size  = 16;
-( $clasic, $ffirst, $sort, $border, $columns, $desc, $bTrOver ) = (0) x 7;
+($clasic, $ffirst, $sort, $border, $columns, $desc, $bTrOver) = (0) x 7;
 $orderby = 'text';
 $prefix  = '';
 %anker = (
-           name        => 'The name of the Element',
-           href        => 'URI for linked resource',
-           accesskey   => 'accessibility key character',
-           charset     => 'char encoding of linked resource',
-           class       => 'class name or set of class names to an element.',
-           coords      => 'for use with client-side image maps',
-           dir         => 'the base direction of directionally neutral text',
-           hreflang    => 'language code',
-           lang        => 'the base language of an elements attribute values and text content.',
-           onblur      => 'the element lost the focus',
-           ondblclick  => 'event occurs when the pointing device button is double clicked ',
-           onclick     => 'event occurs when the pointing device button is clicked over an element',
-           onfocus     => 'the element got the focus',
-           onkeydown   => 'event occurs when a key is pressed down over an element.',
-           onkeypress  => 'event occurs when a key is pressed and released over an element.',
-           onkeyup     => 'event occurs when a key is released over an element.',
-           onmousedown => 'event occurs when the pointing device button is pressed over an element.',
-           onmousemove => 'event occurs when the pointing device is moved while it is over an element.',
-           onmouseout  => 'event occurs when the pointing device is moved away from an element.',
-           onmouseover => 'event occurs when the pointing device is moved onto an element.',
-           onmouseup   => 'event occurs when the pointing device button is released over an element.',
-           rel         => 'forward link types',
-           rev         => 'reverse link types',
-           shape       => 'for use with client-side image maps',
-           style       => 'specifies style information for the current element.',
-           tabindex    => 'position in tabbing order',
-           target      => 'target frame information',
-           type        => 'advisory content type ',
-           title       => 'element title',
-           id          => 'This attribute assigns a name to an element. This name must be unique in a document.',
+          name        => 'The name of the Element',
+          href        => 'URI for linked resource',
+          accesskey   => 'accessibility key character',
+          charset     => 'char encoding of linked resource',
+          class       => 'class name or set of class names to an element.',
+          coords      => 'for use with client-side image maps',
+          dir         => 'the base direction of directionally neutral text',
+          hreflang    => 'language code',
+          lang        => 'the base language of an elements attribute values and text content.',
+          onblur      => 'the element lost the focus',
+          ondblclick  => 'event occurs when the pointing device button is double clicked ',
+          onclick     => 'event occurs when the pointing device button is clicked over an element',
+          onfocus     => 'the element got the focus',
+          onkeydown   => 'event occurs when a key is pressed down over an element.',
+          onkeypress  => 'event occurs when a key is pressed and released over an element.',
+          onkeyup     => 'event occurs when a key is released over an element.',
+          onmousedown => 'event occurs when the pointing device button is pressed over an element.',
+          onmousemove => 'event occurs when the pointing device is moved while it is over an element.',
+          onmouseout  => 'event occurs when the pointing device is moved away from an element.',
+          onmouseover => 'event occurs when the pointing device is moved onto an element.',
+          onmouseup   => 'event occurs when the pointing device button is released over an element.',
+          rel         => 'forward link types',
+          rev         => 'reverse link types',
+          shape       => 'for use with client-side image maps',
+          style       => 'specifies style information for the current element.',
+          tabindex    => 'position in tabbing order',
+          target      => 'target frame information',
+          type        => 'advisory content type ',
+          title       => 'element title',
+          id          => 'This attribute assigns a name to an element. This name must be unique in a document.',
 );
 %ankerG = (
-            name        => 'Name des Ankers',
-            href        => 'Adresse die aufgerufen wird',
-            accesskey   => 'Zugriffstaste',
-            charset     => 'Zeichenkodierung',
-            class       => 'Klassen Name',
-            coords      => 'Imagemaps',
-            dir         => 'Leserichtung',
-            hreflang    => 'Basissprache des Ziels',
-            lang        => 'Basissprache des Inhaltes',
-            onblur      => 'Anker verliert den Fokus',
-            ondblclick  => 'Maus wird Doppelgeklickt',
-            onclick     => 'Maus wird geklickt',
-            onfocus     => 'Anker erhaelt den Fokus',
-            onkeydown   => 'Eine taste wird gedrueckt.',
-            onkeypress  => 'Eine taste wird gedrueckt',
-            onkeyup     => 'Eine taste wird los gelassen',
-            onmousedown => 'Maus wird gedrückt',
-            onmousemove => 'Maus wird bewegt',
-            onmouseout  => 'Maus verlässt den Anker',
-            onmouseover => 'Maus betritt den Anker',
-            onmouseup   => 'Maus wird losgelassen',
-            rel         => 'forward link types',
-            rev         => 'reverse link types',
-            shape       => 'Imagemaps',
-            style       => 'Formatierungs Informationen',
-            tabindex    => 'Tabstopp position',
-            target      => 'Ziel Frame Angabe',
-            type        => 'content-type',
-            title       => 'Titel',
-            id          => 'Identifikator. Muss einmalig im Dokument sein',
+           name        => 'Name des Ankers',
+           href        => 'Adresse die aufgerufen wird',
+           accesskey   => 'Zugriffstaste',
+           charset     => 'Zeichenkodierung',
+           class       => 'Klassen Name',
+           coords      => 'Imagemaps',
+           dir         => 'Leserichtung',
+           hreflang    => 'Basissprache des Ziels',
+           lang        => 'Basissprache des Inhaltes',
+           onblur      => 'Anker verliert den Fokus',
+           ondblclick  => 'Maus wird Doppelgeklickt',
+           onclick     => 'Maus wird geklickt',
+           onfocus     => 'Anker erhaelt den Fokus',
+           onkeydown   => 'Eine taste wird gedrueckt.',
+           onkeypress  => 'Eine taste wird gedrueckt',
+           onkeyup     => 'Eine taste wird los gelassen',
+           onmousedown => 'Maus wird gedrückt',
+           onmousemove => 'Maus wird bewegt',
+           onmouseout  => 'Maus verlässt den Anker',
+           onmouseover => 'Maus betritt den Anker',
+           onmouseup   => 'Maus wird losgelassen',
+           rel         => 'forward link types',
+           rev         => 'reverse link types',
+           shape       => 'Imagemaps',
+           style       => 'Formatierungs Informationen',
+           tabindex    => 'Tabstopp position',
+           target      => 'Ziel Frame Angabe',
+           type        => 'content-type',
+           title       => 'Titel',
+           id          => 'Identifikator. Muss einmalig im Dokument sein',
 );
 
 =head1 NAME
@@ -187,6 +190,10 @@ HTML::Menu::TreeView is a Modul to build an Html TreeView.
 
 =head1 Changes
 
+1.09
+
+Overwrought
+
 1.08
 
 delete one unnessesary file.
@@ -227,12 +234,13 @@ and then call Tree without arguments.
 
 =cut
 
-sub new {
-    my ( $class, @initializer ) = @_;
+sub new
+{
+    my ($class, @initializer) = @_;
     my $self = {tree => undef,};
     bless $self, ref $class || $class || $DefaultClass;
-    $style    = $initializer[1] if( defined $initializer[1] );
-    @TreeView = $initializer[0] if(@initializer);
+    $style    = $initializer[1] if (defined $initializer[1]);
+    @TreeView = $initializer[0] if (@initializer);
     return $self;
 }
 
@@ -252,14 +260,16 @@ for example.
 
 =cut
 
-sub css {
-    my ( $self, @p ) = getSelf(@_);
+sub css
+{
+    my ($self, @p) = getSelf(@_);
     use Fcntl qw(:flock);
     use Symbol;
-    $self->documentRoot( $p[0] ) if( defined $p[0] );
+    $self->documentRoot($p[0]) if (defined $p[0]);
     my $fh   = gensym;
     my $file = "$path/style/$style/$size/html-menu-treeview/$style.css";
-    open $fh, $file or warn "HTML::Menu::TreeView::css $/ no style '$style.css' $style.css found $/  in  $path/style/html-menu-treeview/$style/ $/ $! $/";
+    open $fh, $file
+      or warn "HTML::Menu::TreeView::css $/ no style '$style.css' $style.css found $/  in  $path/style/html-menu-treeview/$style/ $/ $! $/";
     seek $fh, 0, 0;
     my @lines = <$fh>;
     close $fh;
@@ -280,11 +290,12 @@ default: this variable is set during make.
 
 =cut
 
-sub documentRoot {
-    my ( $self, @p ) = getSelf(@_);
-    if( defined $p[0] ) {
-        if( -e $p[0] ) {$path = $p[0];}
-        else {warn "HTML::Menu::TreeView::documentRoot $/ Document Root don't exits: $/ $! $/";}
+sub documentRoot
+{
+    my ($self, @p) = getSelf(@_);
+    if (defined $p[0]) {
+        if (-e $p[0]) {$path = $p[0];}
+        else          {warn "HTML::Menu::TreeView::documentRoot $/ Document Root don't exits: $/ $! $/";}
     } else {
         return $path;
     }
@@ -302,11 +313,12 @@ you can set the Document Root if you pass a parameter
 
 =cut
 
-sub jscript {
-    my ( $self, @p ) = getSelf(@_);
+sub jscript
+{
+    my ($self, @p) = getSelf(@_);
     use Fcntl qw(:flock);
     use Symbol;
-    $self->documentRoot( $p[0] ) if( defined $p[0] );
+    $self->documentRoot($p[0]) if (defined $p[0]);
     my $fh   = gensym;
     my $file = "$path/style/treeview.js";
     open $fh, $file or warn "HTML::Menu::TreeView::jscript $/ $! $/";
@@ -334,11 +346,12 @@ you can set the DocumentRoot if you pass a parameter
 
 =cut
 
-sub preload {
-    my ( $self, @p ) = getSelf(@_);
+sub preload
+{
+    my ($self, @p) = getSelf(@_);
     use Fcntl qw(:flock);
     use Symbol;
-    $self->documentRoot( $p[0] ) if( defined $p[0] );
+    $self->documentRoot($p[0]) if (defined $p[0]);
     my $fh   = gensym;
     my $file = "$path/style/$style/$size/html-menu-treeview/preload.js";
     open $fh, $file or warn "HTML::Menu::TreeView::preload $/ $! $/";
@@ -364,10 +377,11 @@ set or get the size.
 
 =cut
 
-sub size {
-    my ( $self, @p ) = getSelf(@_);
-    if( defined $p[0] && $p[0] =~ /(16|22|32|48|64|128)/ ) {$size = $1;}
-    else {return $size;}
+sub size
+{
+    my ($self, @p) = getSelf(@_);
+    if (defined $p[0] && $p[0] =~ /(16|22|32|48|64|128)/) {$size = $1;}
+    else                                                  {return $size;}
 }
 
 =head2 Style
@@ -382,11 +396,12 @@ Crystal = Crystal style (default).
 
 =cut
 
-sub Style {
-    my ( $self, @p ) = getSelf(@_);
-    if( defined $p[0] ) {
-        if( -e $path . '/style/' . $p[0] ) {$style = $p[0];}
-        else {warn "HTML::Menu::TreeView::Style $/ $path/style/$p[0] not found $/ $! $/";}
+sub Style
+{
+    my ($self, @p) = getSelf(@_);
+    if (defined $p[0]) {
+        if (-e $path . '/style/' . $p[0]) {$style = $p[0];}
+        else                              {warn "HTML::Menu::TreeView::Style $/ $path/style/$p[0] not found $/ $! $/";}
     } else {
         return $style;
     }
@@ -400,36 +415,38 @@ Returns the html part of the Treeview without javasript and css.
 
 =cut
 
-sub Tree {
-    my ( $self, @p ) = getSelf(@_);
-    $style = $p[1] if( defined $p[1] );
+sub Tree
+{
+    my ($self, @p) = getSelf(@_);
+    $style = $p[1] if (defined $p[1]);
     @TreeView = @p ? @p : @TreeView;
-    $self->initTree(@TreeView) if(@TreeView);
+    $self->initTree(@TreeView) if (@TreeView);
     my $r;
-    if( defined $self->{subtree} ) {
+    if (defined $self->{subtree}) {
         $r .= qq(<script type="text/javascript">\n//<!-- \nwindow.folders = new Array();\n);
-        foreach my $key ( keys %{$self->{js}} ) {
+        foreach my $key (keys %{$self->{js}}) {
             $r .= "folders['$key']= new Array(";
-            for( my $i = 0 ; $i < @{$self->{js}{$key}} ; $i++ ) {
+            for (my $i = 0; $i < @{$self->{js}{$key}}; $i++) {
                 $r .= '"' . $self->{js}{$key}[$i] . '"';
-                $r .= ',' if( $i+ 1 != @{$self->{js}{$key}} );
+                $r .= ',' if ($i + 1 != @{$self->{js}{$key}});
             }
             $r .= ");\n";
         }
         $r .= "//-->\n</script>";
     }
-    $r .= qq(<table border="0" cellpadding="0" cellspacing="0" summary="Tree"><tr><td><table cellpadding="0" cellspacing="0"  align="left" border="0" summary="Tree" width="100%" class="treeview$size"><colgroup><col width="$size"/></colgroup>);
-    if( defined @caption ) {
+    $r .=
+qq(<table border="0" cellpadding="0" cellspacing="0" summary="Tree"><tr><td><table cellpadding="0" cellspacing="0"  align="left" border="0" summary="Tree" width="100%" class="treeview$size"><colgroup><col width="$size"/></colgroup>);
+    if (defined @caption) {
         my $class = $border ? "captionBorder$size" : "caption$size";
         $r .= qq(<tr><td class="$class"></td><td class="$class">$caption[0]</td></tr>);
     }
     $r .= $self->{tree} . '</table></td>';
-    if( defined $self->{subtree} ) {
+    if (defined $self->{subtree}) {
         $r .= '<td><table align="left" border="0" cellpadding="0" cellspacing="0" summary="subTree" width="100%" >';
-        if( defined @caption ) {
+        if (defined @caption) {
             my $class = $border ? "captionBorder$size" : "caption$size";
             $r .= '<tr>';
-            for( my $i = 1 ; $i <= $#caption ; $i++ ) {$r .= qq(<td class="$class">$caption[$i]</td>);}
+            for (my $i = 1; $i <= $#caption; $i++) {$r .= qq(<td class="$class">$caption[$i]</td>);}
             $r .= '</tr>';
         }
         undef @caption;
@@ -455,10 +472,11 @@ return the status in void context.
 
 =cut
 
-sub clasic {
-    my ( $self, @p ) = getSelf(@_);
-    if( defined $p[0] && $p[0] =~ /(0|1)/ ) {$clasic = $1;}
-    else {return $clasic;}
+sub clasic
+{
+    my ($self, @p) = getSelf(@_);
+    if (defined $p[0] && $p[0] =~ /(0|1)/) {$clasic = $1;}
+    else                                   {return $clasic;}
 }
 
 =head2 columns
@@ -477,11 +495,12 @@ or set the captions for the columns
 
 =cut
 
-sub columns {
-    my ( $self, @p ) = getSelf(@_);
-    if( defined $p[0] && $p[0] =~ /(\d+)/ && $#p== 0 ) {$columns = $1;}
-    elsif ( $#p > 0 ) {
-        $columns = $#p+ 1;
+sub columns
+{
+    my ($self, @p) = getSelf(@_);
+    if (defined $p[0] && $p[0] =~ /(\d+)/ && $#p == 0) {$columns = $1;}
+    elsif ($#p > 0) {
+        $columns = $#p + 1;
         @caption = @p;
     } else {
         return $columns;
@@ -504,10 +523,11 @@ return the status in void context.
 
 =cut
 
-sub border {
-    my ( $self, @p ) = getSelf(@_);
-    if( defined $p[0] && $p[0] =~ /(0|1)/ ) {$border = $1;}
-    else {return $border;}
+sub border
+{
+    my ($self, @p) = getSelf(@_);
+    if (defined $p[0] && $p[0] =~ /(0|1)/) {$border = $1;}
+    else                                   {return $border;}
 }
 
 =head2 desc
@@ -528,10 +548,11 @@ return the status in void context.
 
 =cut
 
-sub desc {
-    my ( $self, @p ) = getSelf(@_);
-    if( defined $p[0] && $p[0] =~ /(0|1)/ ) {$desc = $1;}
-    else {return $desc;}
+sub desc
+{
+    my ($self, @p) = getSelf(@_);
+    if (defined $p[0] && $p[0] =~ /(0|1)/) {$desc = $1;}
+    else                                   {return $desc;}
 }
 
 =head2 sortTree
@@ -554,10 +575,11 @@ return the status in void context.
 
 =cut
 
-sub sortTree {
-    my ( $self, @p ) = getSelf(@_);
-    if( defined $p[0] && $p[0] =~ /(0|1)/ ) {$sort = $1;}
-    else {return $sort;}
+sub sortTree
+{
+    my ($self, @p) = getSelf(@_);
+    if (defined $p[0] && $p[0] =~ /(0|1)/) {$sort = $1;}
+    else                                   {return $sort;}
 }
 
 =head2 orderBy
@@ -566,8 +588,9 @@ set the attribute which is used by sortTree and folderFirst.
 
 =cut
 
-sub orderBy {
-    my ( $self, @p ) = getSelf(@_);
+sub orderBy
+{
+    my ($self, @p) = getSelf(@_);
     $orderby = $p[0];
 }
 
@@ -581,11 +604,12 @@ sort the TreeView by Column
 
 =cut
 
-sub orderByColumn {
-    my ( $self, @p ) = getSelf(@_);
-    if( defined $p[0] && $p[0] =~ /(\d+)/ ) {$orderbyColumn = $1;}
-    elsif ( $p[0]== -1 ) {$orderbyColumn = undef;}
-    else {return $orderbyColumn;}
+sub orderByColumn
+{
+    my ($self, @p) = getSelf(@_);
+    if (defined $p[0] && $p[0] =~ /(\d+)/) {$orderbyColumn = $1;}
+    elsif ($p[0] == -1) {$orderbyColumn = undef;}
+    else                {return $orderbyColumn;}
 }
 
 =head2 folderFirst
@@ -608,10 +632,11 @@ return the status of this property in void context.
 
 =cut
 
-sub folderFirst {
-    my ( $self, @p ) = getSelf(@_);
-    if( defined $p[0] && $p[0] =~ /(0|1)/ ) {$ffirst = $1;}
-    else {return $ffirst;}
+sub folderFirst
+{
+    my ($self, @p) = getSelf(@_);
+    if (defined $p[0] && $p[0] =~ /(0|1)/) {$ffirst = $1;}
+    else                                   {return $ffirst;}
 }
 
 =head2 prefix
@@ -628,10 +653,11 @@ return the prefix in void context.
 
 =cut
 
-sub prefix {
-    my ( $self, @p ) = getSelf(@_);
-    if( defined $p[0] ) {$prefix = $p[0];}
-    else {return $prefix;}
+sub prefix
+{
+    my ($self, @p) = getSelf(@_);
+    if (defined $p[0]) {$prefix = $p[0];}
+    else               {return $prefix;}
 }
 
 =head2 TrOver
@@ -642,10 +668,11 @@ tr.trOver{}
 
 =cut
 
-sub TrOver {
-    my ( $self, @p ) = getSelf(@_);
-    if( defined $p[0] ) {$bTrOver = $p[0];}
-    else {return $bTrOver;}
+sub TrOver
+{
+    my ($self, @p) = getSelf(@_);
+    if (defined $p[0]) {$bTrOver = $p[0];}
+    else               {return $bTrOver;}
 }
 
 =head2 saveTree
@@ -656,8 +683,9 @@ default: ./TreeViewDump.pl
 
 =cut
 
-sub saveTree {
-    my ( $self, @p ) = getSelf(@_);
+sub saveTree
+{
+    my ($self, @p) = getSelf(@_);
     my $saveAs = defined $p[0] ? $p[0] : $saveFile;
     @TreeView = defined $p[1] ? $p[1] : @TreeView;
     use Data::Dumper;
@@ -668,7 +696,7 @@ sub saveTree {
     my $fh = gensym();
     my $rsas = $saveAs =~ /^(\S+)$/ ? $1 : 0;
 
-    if($rsas) {
+    if ($rsas) {
         open $fh, ">$rsas.bak" or warn "HTML::Menu::TreeView::saveTree $/ $! $/ $rsas $/";
         flock $fh, 2;
         seek $fh, 0, 0;
@@ -676,7 +704,7 @@ sub saveTree {
         print $fh $content;
         close $fh;
     }
-    if( -e "$rsas.bak" ) {
+    if (-e "$rsas.bak") {
         rename "$rsas.bak", $rsas or warn "HTML::Menu::TreeView::saveTree $/ $! $/";
         do $rsas;
     }
@@ -690,10 +718,11 @@ default: ./TreeViewDump.pl
 
 =cut
 
-sub loadTree {
-    my ( $self, @p ) = getSelf(@_);
-    my $do = ( defined $p[0] ) ? $p[0] : $saveFile;
-    do $do if( -e $do );
+sub loadTree
+{
+    my ($self, @p) = getSelf(@_);
+    my $do = (defined $p[0]) ? $p[0] : $saveFile;
+    do $do if (-e $do);
 }
 
 =head2 help
@@ -720,14 +749,15 @@ if you want german help try
 
 =cut
 
-sub help {
-    my ( $self, @p ) = getSelf(@_);
-    if( defined $p[0] ) {
-        if( $lang eq 'de' ) {return ( defined $ankerG{$p[0]} ) ? $ankerG{$p[0]} : "Unbekanntes Attribute !$/";}
-        else {return ( defined $ankerG{$p[0]} ) ? $anker{$p[0]} : "Unknown attribute !$/";}
+sub help
+{
+    my ($self, @p) = getSelf(@_);
+    if (defined $p[0]) {
+        if   ($lang eq 'de') {return (defined $ankerG{$p[0]}) ? $ankerG{$p[0]} : "Unbekanntes Attribute !$/";}
+        else                 {return (defined $ankerG{$p[0]}) ? $anker{$p[0]}  : "Unknown attribute !$/";}
     } else {
-        if( $lang eq 'de' ) {return \%ankerG;}
-        else {return \%anker;}
+        if   ($lang eq 'de') {return \%ankerG;}
+        else                 {return \%anker;}
     }
 }
 
@@ -945,9 +975,10 @@ default: this property is set during make
 
 =cut
 
-sub setDocumentRoot {
-    my ( $self, @p ) = getSelf(@_);
-    $self->documentRoot( $p[0] );
+sub setDocumentRoot
+{
+    my ($self, @p) = getSelf(@_);
+    $self->documentRoot($p[0]);
 }
 
 =head2 setModern
@@ -974,9 +1005,10 @@ only for Crystal styles
 
 =cut
 
-sub setSize {
-    my ( $self, @p ) = getSelf(@_);
-    $self->size( $p[0] );
+sub setSize
+{
+    my ($self, @p) = getSelf(@_);
+    $self->size($p[0]);
 }
 
 =head2 setStyle
@@ -993,9 +1025,10 @@ Crystal = Crystal style
 
 =cut
 
-sub setStyle {
-    my ( $self, @p ) = getSelf(@_);
-    $self->Style( $p[0] );
+sub setStyle
+{
+    my ($self, @p) = getSelf(@_);
+    $self->Style($p[0]);
 }
 
 =head2 style
@@ -1010,9 +1043,10 @@ Crystal = Crystal style (default).
 
 =cut
 
-sub style {
-    my ( $self, @p ) = getSelf(@_);
-    return $self->Style( $p[0] );
+sub style
+{
+    my ($self, @p) = getSelf(@_);
+    return $self->Style($p[0]);
 }
 
 =head2 language
@@ -1027,8 +1061,9 @@ Crystal = Crystal style (default).
 
 =cut
 
-sub language {
-    my ( $self, @p ) = getSelf(@_);
+sub language
+{
+    my ($self, @p) = getSelf(@_);
     $lang = $p[0];
 }
 
@@ -1040,34 +1075,35 @@ construct the TreeView called by Tree, new or recursive by appendFolder.
 
 =cut
 
-sub initTree {
-    my ( $self, @p ) = getSelf(@_);
+sub initTree
+{
+    my ($self, @p) = getSelf(@_);
     my $tree = $p[0];
     return if ref $tree ne "ARRAY";
-  SWITCH: {
-        if($ffirst) {
+    SWITCH: {
+        if ($ffirst) {
             my @tr = sort {&_ffolderFirst} @$tree;
             @tr = reverse @tr if $desc;
             $tree = \@tr;
             last SWITCH;
         }
-        if($sort) {
+        if ($sort) {
             my @tr = sort {
                 return -1 unless $a || $b;
                 return -1 if ref $a ne "HASH";
                 return +1 if ref $b ne "HASH";
-                return lc( $a->{$orderby} ) cmp lc( $b->{$orderby} )
+                return lc($a->{$orderby}) cmp lc($b->{$orderby})
             } @$tree;
             @tr = reverse @tr if $desc;
             $tree = \@tr;
             last SWITCH;
         }
-        if( defined $orderbyColumn && $orderbyColumn >= 0 ) {
+        if (defined $orderbyColumn && $orderbyColumn >= 0) {
             my @tr = sort {
                 return -1 unless $a || $b;
                 return -1 if ref $a ne "HASH";
                 return +1 if ref $b ne "HASH";
-                return lc( $a->{columns}[$orderbyColumn] ) cmp lc( $b->{columns}[$orderbyColumn] )
+                return lc($a->{columns}[$orderbyColumn]) cmp lc($b->{columns}[$orderbyColumn])
             } @$tree;
             @tr = reverse @tr if $desc;
             $tree = \@tr;
@@ -1075,19 +1111,19 @@ sub initTree {
         }
     }
     my $length = @$tree;
-    for( my $i = 0 ; $i < @$tree ; $i++ ) {
+    for (my $i = 0; $i < @$tree; $i++) {
         next if ref @$tree[$i] ne "HASH";
         $length--;
-        if( defined @$tree[$i] ) {
-            if( defined @{@$tree[$i]->{subtree}} ) {
-                if( $length > 0 ) {$self->appendFolder( @$tree[$i], \@{@$tree[$i]->{subtree}} );}
-                elsif ( $length eq 0 ) {$self->appendLastFolder( @$tree[$i], \@{@$tree[$i]->{subtree}} );}
-            } elsif ( defined @$tree[$i]->{empty} ) {
-                if( $length > 0 ) {$self->appendEmptyFolder( @$tree[$i] );}
-                elsif ( $length eq 0 ) {$self->appendLastEmptyFolder( @$tree[$i] );}
+        if (defined @$tree[$i]) {
+            if (defined @{@$tree[$i]->{subtree}}) {
+                if ($length > 0) {$self->appendFolder(@$tree[$i], \@{@$tree[$i]->{subtree}});}
+                elsif ($length eq 0) {$self->appendLastFolder(@$tree[$i], \@{@$tree[$i]->{subtree}});}
+            } elsif (defined @$tree[$i]->{empty}) {
+                if ($length > 0) {$self->appendEmptyFolder(@$tree[$i]);}
+                elsif ($length eq 0) {$self->appendLastEmptyFolder(@$tree[$i]);}
             } else {
-                if( $length > 0 ) {$self->appendNode( @$tree[$i] );}
-                elsif ( $length eq 0 ) {$self->appendLastNode( @$tree[$i] );}
+                if ($length > 0) {$self->appendNode(@$tree[$i]);}
+                elsif ($length eq 0) {$self->appendLastNode(@$tree[$i]);}
             }
         }
     }
@@ -1098,22 +1134,23 @@ this function is used within initTree for sorting the TreeView if folderFirst(1)
 
 =cut
 
-    sub _ffolderFirst {
+    sub _ffolderFirst
+    {
         no warnings;
-      SWITCH: {
+        SWITCH: {
             return -1 if ref $a ne "HASH";
             return +1 if ref $b ne "HASH";
-            if( defined @{$a->{subtree}} and defined @{$b->{subtree}} ) {
-                return lc( $a->{$orderby} ) cmp lc( $b->{$orderby} );
+            if (defined @{$a->{subtree}} and defined @{$b->{subtree}}) {
+                return lc($a->{$orderby}) cmp lc($b->{$orderby});
                 last SWITCH;
-            } elsif ( defined @{$a->{subtree}} ) {
+            } elsif (defined @{$a->{subtree}}) {
                 return -1;
                 last SWITCH;
-            } elsif ( defined @{$b->{subtree}} ) {
+            } elsif (defined @{$b->{subtree}}) {
                 return +1;
                 last SWITCH;
             } else {
-                return $sort ? ( lc( $a->{$orderby} ) cmp lc( $b->{$orderby} ) ) : -1;
+                return $sort ? (lc($a->{$orderby}) cmp lc($b->{$orderby})) : -1;
             }
         }
     }
@@ -1133,9 +1170,12 @@ my ($self, @p) = getSelf(@_);
 
 =cut
 
-sub getSelf {
-    return @_ if defined( $_[0] ) && ( !ref( $_[0] ) ) && ( $_[0] eq 'HTML::Menu::TreeView' );
-    return ( defined( $_[0] ) && ( ref( $_[0] ) eq 'HTML::Menu::TreeView' || UNIVERSAL::isa( $_[0], 'HTML::Menu::TreeView' ) ) ) ? @_ : ( $HTML::Menu::TreeView::DefaultClass->new, @_ );
+sub getSelf
+{
+    return @_ if defined($_[0]) && (!ref($_[0])) && ($_[0] eq 'HTML::Menu::TreeView');
+    return (defined($_[0]) && (ref($_[0]) eq 'HTML::Menu::TreeView' || UNIVERSAL::isa($_[0], 'HTML::Menu::TreeView')))
+      ? @_
+      : ($HTML::Menu::TreeView::DefaultClass->new, @_);
 }
 
 =head2 appendFolder
@@ -1144,48 +1184,51 @@ called by initTree(), append a Folder to the treeView()
 
 =cut
 
-sub appendFolder {
+sub appendFolder
+{
     my $self    = shift;
     my $node    = shift;
     my $subtree = shift;
     ++$id;
-    my ( $tmpref, $ty );
-    if( $columns > 0 ) {
+    my ($tmpref, $ty);
+    if ($columns > 0) {
         $ty = $id;
-        foreach my $key ( keys %openArrays ) {push @{$openArrays{$key}}, $id;}
+        foreach my $key (keys %openArrays) {push @{$openArrays{$key}}, $id;}
         $tmpref = \@{$openArrays{$id}};
     }
-    $node->{onclick} = defined $node->{onclick} ? $node->{onclick} : defined $node->{href} ? '' : qq(ocFolder('$id');displayTree('$id');hideArray('$id');ocNode('$id.node','$size'););
+    $node->{onclick} =
+        defined $node->{onclick} ? $node->{onclick}
+      : defined $node->{href}    ? ''
+      :                            qq(ocFolder('$id');displayTree('$id');hideArray('$id');ocNode('$id.node','$size'););
     my $onclick = qq(ocFolder('$id');displayTree('$id');hideArray('$id');ocNode('$id.node','$size'););
     $node->{class} = defined $node->{class} ? $node->{class} : "treeviewLink$size";
     my $FolderClass = defined $node->{folderclass} ? $node->{folderclass} . $size : "folder$size";
     $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
     my $tt;
-    foreach my $key ( keys %{$node} ) {$tt .= $key . '="' . $node->{$key} . '" ' if( $anker{$key} && $node->{$key} );}
-    my $st = $node->{style} = ( ( $columns > 0 or defined $node->{addition} ) and not defined $node->{style} ) ? 'style="white-space:nowrap;"' : '';
+    foreach my $key (keys %{$node}) {$tt .= $key . '="' . $node->{$key} . '" ' if ($anker{$key} && $node->{$key});}
+    my $st = $node->{style} = (($columns > 0 or defined $node->{addition}) and not defined $node->{style}) ? 'style="white-space:nowrap;"' : '';
     my $addon =
       defined $node->{addition}
       ? qq(<table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendFolder" width="100%"><tr><td $st>&#160;<a $tt>$node->{text}</a>&#160;</td><td $st>$node->{addition}</td></tr></table>)
       : "&#160;<a $tt >$node->{text}</a>&#160;";
     my $minusnode = $clasic ? "clasicMinusNode$size" : "minusNode$size";
-    $self->{tree} .=
-      ( $bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tree$id">) : '<tr>' )
+    $self->{tree} .= ($bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tree$id">) : '<tr>')
       . qq(<td id="$id.node" class="$minusnode"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td align="left" class="$FolderClass" id="$id.folder" ><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr><tr id="$id"><td class="submenuDeco$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" alt=""/></td><td><table align="left" border="0" cellpadding="0" cellspacing="0"   summary="appendFolder" width="100%"><colgroup><col width="$size"/></colgroup>);
 
-    if( $columns > 0 ) {
+    if ($columns > 0) {
         my $class = $border ? "columnsFolderBorder$size" : "columnsFolder$size";
-        $self->{subtree} .= ( $bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tr$id">) : qq(<tr id="tr$id">) );
-        for( my $i = 0 ; $i < $columns ; $i++ ) {
-            if( defined $node->{columns}[$i] ) {
+        $self->{subtree} .= ($bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tr$id">) : qq(<tr id="tr$id">));
+        for (my $i = 0; $i < $columns; $i++) {
+            if (defined $node->{columns}[$i]) {
                 my $txt = $node->{columns}[$i];
                 $self->{subtree} .= qq(<td class="$class">$txt</td>);
             }
         }
         $self->{subtree} .= '</tr>';
     }
-    $self->initTree( \@$subtree );
-    if( $columns > 0 ) {
-        for( my $i = 0 ; $i < @$tmpref ; $i++ ) {$self->{js}{$ty}[$i] = $$tmpref[$i];}
+    $self->initTree(\@$subtree);
+    if ($columns > 0) {
+        for (my $i = 0; $i < @$tmpref; $i++) {$self->{js}{$ty}[$i] = $$tmpref[$i];}
         undef @$tmpref;
     }
     $self->{tree} .= '</table></td></tr>';
@@ -1199,49 +1242,52 @@ called by initTree() if the last item of the (sub)Tree is a folder.
 
 =cut
 
-sub appendLastFolder {
+sub appendLastFolder
+{
     my $self    = shift;
     my $node    = shift;
     my $subtree = shift;
     $id++;
     my $tmpref;
     my $ty;
-    if( $columns > 0 ) {
+    if ($columns > 0) {
         $ty = $id;
-        foreach my $key ( keys %openArrays ) {push @{$openArrays{$key}}, $id;}
+        foreach my $key (keys %openArrays) {push @{$openArrays{$key}}, $id;}
         $tmpref = \@{$openArrays{$id}};
     }
-    $node->{onclick} = defined $node->{onclick} ? $node->{onclick} : defined $node->{href} ? "" : qq(ocpNode('$id.node','$size');ocFolder('$id');displayTree('$id');hideArray('$id'););
-    my $onclick = qq(ocFolder('$id');displayTree('$id');hideArray('$id');ocNode('$id.node','$size'););
+    $node->{onclick} =
+        defined $node->{onclick} ? $node->{onclick}
+      : defined $node->{href}    ? ""
+      :                            qq(ocpNode('$id.node','$size');ocFolder('$id');displayTree('$id');hideArray('$id'););
+    my $onclick = qq(ocFolder('$id');displayTree('$id');hideArray('$id');ocpNode('$id.node','$size'););
     $node->{class} = defined $node->{class} ? $node->{class} : "treeviewLink$size";
     my $FolderClass = defined $node->{FolderClass} ? $node->{FolderClass} . $size : "folder$size";
     $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
     my $tt;
-    foreach my $key ( keys %{$node} ) {$tt .= $key . '="' . $node->{$key} . '" ' if( $anker{$key} && $node->{$key} );}
-    my $st = $node->{style} = ( ( $columns > 0 or defined $node->{addition} ) and not defined $node->{style} ) ? 'style="white-space:nowrap;"' : '';
+    foreach my $key (keys %{$node}) {$tt .= $key . '="' . $node->{$key} . '" ' if ($anker{$key} && $node->{$key});}
+    my $st = $node->{style} = (($columns > 0 or defined $node->{addition}) and not defined $node->{style}) ? 'style="white-space:nowrap;"' : '';
     my $addon =
       defined $node->{addition}
       ? qq(<table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendLastFolder"  width="100%"><tr><td $st>&#160;<a $tt >$node->{text}</a>&#160;</td><td $st>$node->{addition}</td></tr></table>)
       : "&#160;<a $tt>$node->{text}</a>&#160;";
     my $lastminusnode = $clasic ? "clasicLastMinusNode$size" : "lastMinusNode$size";
-    $self->{tree} .=
-      ( $bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tree$id">) : '<tr>' )
+    $self->{tree} .= ($bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tree$id">) : '<tr>')
       . qq(<td id="$id.node" class="$lastminusnode" onclick="$onclick"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" /></td><td align="left" class="$FolderClass" id="$id.folder"><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendLastFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" alt="" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr><tr id="$id"><td><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt=""/></td><td><table align="left" width="100%" cellpadding="0" cellspacing="0" border="0" summary="appendLastFolder"><colgroup><col width="$size"/></colgroup>);
 
-    if( $columns > 0 ) {
+    if ($columns > 0) {
         my $class = $border ? "columnsFolderBorder$size" : "columnsFolder$size";
-        $self->{subtree} .= ( $bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tr$id">) : qq(<tr id="tr$id">) );
-        for( my $i = 0 ; $i < $columns ; $i++ ) {
-            if( defined $node->{columns}[$i] ) {
+        $self->{subtree} .= ($bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tr$id">) : qq(<tr id="tr$id">));
+        for (my $i = 0; $i < $columns; $i++) {
+            if (defined $node->{columns}[$i]) {
                 my $txt = $node->{columns}[$i];
                 $self->{subtree} .= qq(<td class="$class">$txt</td>);
             }
         }
         $self->{subtree} .= '</tr>';
     }
-    $self->initTree( \@$subtree );
-    if( $columns > 0 ) {
-        for( my $i = 0 ; $i < @$tmpref ; $i++ ) {$self->{js}{$ty}[$i] = $$tmpref[$i];}
+    $self->initTree(\@$subtree);
+    if ($columns > 0) {
+        for (my $i = 0; $i < @$tmpref; $i++) {$self->{js}{$ty}[$i] = $$tmpref[$i];}
         undef @$tmpref;
     }
     $self->{tree} .= '</table></td></tr>';
@@ -1253,14 +1299,15 @@ called by initTree(), append a empty Folder.
 
 =cut
 
-sub appendEmptyFolder {
+sub appendEmptyFolder
+{
     my $self = shift;
     my $node = shift;
     ++$id;
-    my ( $tmpref, $ty );
-    if( $columns > 0 ) {
+    my ($tmpref, $ty);
+    if ($columns > 0) {
         $ty = $id;
-        foreach my $key ( keys %openArrays ) {push @{$openArrays{$key}}, $id;}
+        foreach my $key (keys %openArrays) {push @{$openArrays{$key}}, $id;}
         $tmpref = \@{$openArrays{$id}};
     }
     my $onclick = qq(location.href='$node->{href}');
@@ -1268,28 +1315,27 @@ sub appendEmptyFolder {
     my $FolderClass = defined $node->{folderclass} ? $node->{folderclass} . "Closed$size" : "folderClosed$size";
     $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
     my $tt;
-    foreach my $key ( keys %{$node} ) {$tt .= $key . '="' . $node->{$key} . '" ' if( $anker{$key} && $node->{$key} );}
-    my $st = $node->{style} = ( ( $columns > 0 or defined $node->{addition} ) and not defined $node->{style} ) ? 'style="white-space:nowrap;"' : '';
+    foreach my $key (keys %{$node}) {$tt .= $key . '="' . $node->{$key} . '" ' if ($anker{$key} && $node->{$key});}
+    my $st = $node->{style} = (($columns > 0 or defined $node->{addition}) and not defined $node->{style}) ? 'style="white-space:nowrap;"' : '';
     my $addon =
       defined $node->{addition}
       ? qq(<table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendEmptyFolder" width="100%"><tr><td $st>&#160;<a $tt>$node->{text}</a>&#160;</td><td $st>$node->{addition}</td></tr></table>)
       : "&#160;<a $tt >$node->{text}</a>&#160;";
     my $plusnode = $clasic ? "clasicPlusNode$size" : "plusNode$size";
-    $self->{tree} .=
-      ( $bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tree$id">) : '<tr>' )
+    $self->{tree} .= ($bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tree$id">) : '<tr>')
       . qq(<td id="$id.node" class="$plusnode"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td align="left" class="$FolderClass" id="$id.folder"><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr>);
 
-    if( $columns > 0 ) {
+    if ($columns > 0) {
         my $class = $border ? "columnsFolderBorder$size" : "columnsFolder$size";
-        $self->{subtree} .= ( $bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tr$id">) : qq(<tr id="tr$id">) );
-        for( my $i = 0 ; $i < $columns ; $i++ ) {
-            if( defined $node->{columns}[$i] ) {
+        $self->{subtree} .= ($bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tr$id">) : qq(<tr id="tr$id">));
+        for (my $i = 0; $i < $columns; $i++) {
+            if (defined $node->{columns}[$i]) {
                 my $txt = $node->{columns}[$i];
                 $self->{subtree} .= qq(<td class="$class">$txt</td>);
             }
         }
         $self->{subtree} .= '</tr>';
-        for( my $i = 0 ; $i < @$tmpref ; $i++ ) {$self->{js}{$ty}[$i] = $$tmpref[$i];}
+        for (my $i = 0; $i < @$tmpref; $i++) {$self->{js}{$ty}[$i] = $$tmpref[$i];}
         undef @$tmpref;
     }
 }
@@ -1302,15 +1348,16 @@ called by initTree() if the last item of the (sub)Tree is a folder.
 
 =cut
 
-sub appendLastEmptyFolder {
+sub appendLastEmptyFolder
+{
     my $self = shift;
     my $node = shift;
     $id++;
     my $tmpref;
     my $ty;
-    if( $columns > 0 ) {
+    if ($columns > 0) {
         $ty = $id;
-        foreach my $key ( keys %openArrays ) {push @{$openArrays{$key}}, $id;}
+        foreach my $key (keys %openArrays) {push @{$openArrays{$key}}, $id;}
         $tmpref = \@{$openArrays{$id}};
     }
     my $onclick = qq(location.href='$node->{href}');
@@ -1318,28 +1365,27 @@ sub appendLastEmptyFolder {
     my $FolderClass = defined $node->{folderclass} ? $node->{folderclass} . "Closed$size" : "folderClosed$size";
     $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
     my $tt;
-    foreach my $key ( keys %{$node} ) {$tt .= $key . '="' . $node->{$key} . '" ' if( $anker{$key} && $node->{$key} );}
-    my $st = $node->{style} = ( ( $columns > 0 or defined $node->{addition} ) and not defined $node->{style} ) ? 'style="white-space:nowrap;"' : '';
+    foreach my $key (keys %{$node}) {$tt .= $key . '="' . $node->{$key} . '" ' if ($anker{$key} && $node->{$key});}
+    my $st = $node->{style} = (($columns > 0 or defined $node->{addition}) and not defined $node->{style}) ? 'style="white-space:nowrap;"' : '';
     my $addon =
       defined $node->{addition}
       ? qq(<table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendLastFolder"  width="100%"><tr><td $st>&#160;<a $tt >$node->{text}</a>&#160;</td><td $st>$node->{addition}</td></tr></table>)
       : "&#160;<a $tt>$node->{text}</a>&#160;";
     my $lastpusnode = $clasic ? "clasicLastPlusNode$size" : "lastPlusNode$size";
-    $self->{tree} .=
-      ( $bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tree$id">) : '<tr>' )
+    $self->{tree} .= ($bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tree$id">) : '<tr>')
       . qq(<td id="$id.node" class="$lastpusnode" onclick="$onclick"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" /></td><td align="left" class="$FolderClass" id="$id.folder"><table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendLastFolder" width="100%"><tr><td $st valign="top" width="$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" alt="" onclick="$onclick"/></td><td $st align="left">$addon</td></tr></table></td></tr>);
 
-    if( $columns > 0 ) {
+    if ($columns > 0) {
         my $class = $border ? "columnsFolderBorder$size" : "columnsFolder$size";
-        $self->{subtree} .= ( $bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tr$id">) : qq(<tr id="tr$id">) );
-        for( my $i = 0 ; $i < $columns ; $i++ ) {
-            if( defined $node->{columns}[$i] ) {
+        $self->{subtree} .= ($bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tr$id">) : qq(<tr id="tr$id">));
+        for (my $i = 0; $i < $columns; $i++) {
+            if (defined $node->{columns}[$i]) {
                 my $txt = $node->{columns}[$i];
                 $self->{subtree} .= qq(<td class="$class">$txt</td>);
             }
         }
         $self->{subtree} .= '</tr>';
-        for( my $i = 0 ; $i < @$tmpref ; $i++ ) {$self->{js}{$ty}[$i] = $$tmpref[$i];}
+        for (my $i = 0; $i < @$tmpref; $i++) {$self->{js}{$ty}[$i] = $$tmpref[$i];}
         undef @$tmpref;
     }
 }
@@ -1352,32 +1398,32 @@ called by initTree() if the current item of the (sub)Tree is a node.
 
 =cut
 
-sub appendNode {
+sub appendNode
+{
     my $self = shift;
     my $node = shift;
-    $node->{image} = defined $node->{image} ? $node->{image} : 'link.gif';
+    $node->{image} = defined $node->{image} ? $node->{image} : 'link_overlay.png';
     $node->{class} = defined $node->{class} ? $node->{class} : "treeviewLink$size";
     $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
     $id++;
-    if( $columns > 0 ) {
-        foreach my $key ( keys %openArrays ) {push @{$openArrays{$key}}, $id;}
+    if ($columns > 0) {
+        foreach my $key (keys %openArrays) {push @{$openArrays{$key}}, $id;}
     }
     my $tt;
-    foreach my $key ( keys %{$node} ) {$tt .= $key . '="' . $node->{$key} . '" ' if( $anker{$key} && $node->{$key} );}
-    my $st = $node->{style} = ( ( $columns > 0 or defined $node->{addition} ) and not defined $node->{style} ) ? 'style="white-space:nowrap;"' : '';
+    foreach my $key (keys %{$node}) {$tt .= $key . '="' . $node->{$key} . '" ' if ($anker{$key} && $node->{$key});}
+    my $st = $node->{style} = (($columns > 0 or defined $node->{addition}) and not defined $node->{style}) ? 'style="white-space:nowrap;"' : '';
     my $addon =
       defined $node->{addition}
       ? qq(<table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendNode" width="100%"><tr><td $st>&#160;<a $tt >$node->{text}</a>&#160;</td><td $st>$node->{addition}</td></tr></table>)
       : "&#160;<a $tt>$node->{text}</a>";
-    my $paddingLeft = $size+ 2 . "px";
-    $self->{tree} .=
-      ( $bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tree$id">) : '<tr>' )
+    my $paddingLeft = $size + 2 . "px";
+    $self->{tree} .= ($bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tree$id">) : '<tr>')
       . qq(<td class="node$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt="" align="middle"/></td><td align="left"  style="background-image:url('$prefix/style/$style/$size/mimetypes/$node->{image}');background-repeat:no-repeat;cursor:pointer;padding-left:$paddingLeft">$addon</td></tr>);
-    if( $columns > 0 ) {
-        $self->{subtree} .= ( $bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tr$id">) : qq(<tr id="tr$id">) );
+    if ($columns > 0) {
+        $self->{subtree} .= ($bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tr$id">) : qq(<tr id="tr$id">));
         my $class = $border ? "columnsNodeBorder$size" : "columnsNode$size";
-        for( my $i = 0 ; $i < $columns ; $i++ ) {
-            if( defined $node->{columns}[$i] ) {
+        for (my $i = 0; $i < $columns; $i++) {
+            if (defined $node->{columns}[$i]) {
                 my $txt = $node->{columns}[$i];
                 $self->{subtree} .= qq(<td class="$class">$txt</td>);
             }
@@ -1394,32 +1440,32 @@ called by initTree() if the last item of the current (sub)Tree is a node.
 
 =cut
 
-sub appendLastNode {
+sub appendLastNode
+{
     my $self = shift;
     my $node = shift;
-    $node->{image} = defined $node->{image} ? $node->{image} : 'link.gif';
+    $node->{image} = defined $node->{image} ? $node->{image} : 'link_overlay.png';
     $node->{class} = defined $node->{class} ? $node->{class} : "treeviewLink$size";
     $node->{title} = defined $node->{title} ? $node->{title} : $node->{text};
     $id++;
-    if( $columns > 0 ) {
-        foreach my $key ( keys %openArrays ) {push @{$openArrays{$key}}, $id;}
+    if ($columns > 0) {
+        foreach my $key (keys %openArrays) {push @{$openArrays{$key}}, $id;}
     }
     my $tt;
-    foreach my $key ( keys %{$node} ) {$tt .= $key . '="' . $node->{$key} . '" ' if( $anker{$key} && $node->{$key} );}
-    my $st = $node->{style} = ( ( $columns > 0 or defined $node->{addition} ) and not defined $node->{style} ) ? 'style="white-space:nowrap;"' : '';
+    foreach my $key (keys %{$node}) {$tt .= $key . '="' . $node->{$key} . '" ' if ($anker{$key} && $node->{$key});}
+    my $st = $node->{style} = (($columns > 0 or defined $node->{addition}) and not defined $node->{style}) ? 'style="white-space:nowrap;"' : '';
     my $addon =
       defined $node->{addition}
       ? qq(<table align="left" border="0" cellpadding="0" cellspacing="0" summary="appendLastNode" width="100%"><tr><td $st><a $tt>$node->{text}</a></td><td $st>$node->{addition}</td></tr></table>)
       : "&#160;<a $tt>$node->{text}</a>";
-    my $paddingLeft = $size+ 2 . "px";
-    $self->{tree} .=
-      ( $bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tree$id">) : '<tr>' )
+    my $paddingLeft = $size + 2 . "px";
+    $self->{tree} .= ($bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tree$id">) : '<tr>')
       . qq(<td class="lastNode$size"><img src="$prefix/style/$style/$size/html-menu-treeview/spacer.gif" border="0" width="$size" height="$size" alt=""/></td><td align="left"  style="background-image:url('$prefix/style/$style/$size/mimetypes/$node->{image}');background-repeat:no-repeat;cursor:pointer;padding-left:$paddingLeft;">$addon</td></tr>);
-    if( $columns > 0 ) {
+    if ($columns > 0) {
         my $class = $border ? "columnsLastNodeBorder$size" : "columnsLastNode$size";
-        $self->{subtree} .= ( $bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tr$id">) : qq(<tr id="tr$id">) );
-        for( my $i = 0 ; $i < $columns ; $i++ ) {
-            if( defined $node->{columns}[$i] ) {
+        $self->{subtree} .= ($bTrOver ? qq(<tr onmouseover = "trOver('$id');" onmouseout="trUnder('$id');" id="tr$id">) : qq(<tr id="tr$id">));
+        for (my $i = 0; $i < $columns; $i++) {
+            if (defined $node->{columns}[$i]) {
                 my $txt = $node->{columns}[$i];
                 $self->{subtree} .= qq(<td class="$class">$txt</td>);
             }

@@ -61,7 +61,7 @@ my $class = Module::Build->subclass(class => "Module::Build::Custom", code => <<
         my $cwd = cwd;
         my $dir = $cwd . '/examples';
         opendir( DIR, $dir ) or die $!;
-        my @files = grep {/.*.pl$/} readdir(DIR);
+        my @files = grep {/.*.p(l|m)$/} readdir(DIR);
         closedir(DIR);
 
         for( my $i = 0 ; $i <= $#files ; $i++ ) {
@@ -101,8 +101,8 @@ $inctance->{properties}{htd} = "/srv/www/htdocs";
 eval 'use HTML::Menu::TreeView qw(documentRoot)';
 $inctance->{properties}{htd} = documentRoot() unless $@;
 $inctance->{properties}{htd} = $inctance->args('htd') if defined $inctance->args('htd');
-$inctance->{properties}{cgi} = '/srv/www/cgi-bin' unless $@;
-$inctance->{properties}{htd} = $inctance->args('cgi') if defined $inctance->args('cgi');
+$inctance->{properties}{cgi} = '/srv/www/cgi-bin';
+$inctance->{properties}{cgi} = $inctance->args('cgi') if defined $inctance->args('cgi');
 
 
 unless ($skip) {

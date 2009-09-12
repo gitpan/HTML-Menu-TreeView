@@ -7,7 +7,7 @@ To install this module type the following:
    make test
    make install
    make clean
-   make install_examples
+   make install_examples #open /index.html in your browser
 
 UNINSTALLATION
 

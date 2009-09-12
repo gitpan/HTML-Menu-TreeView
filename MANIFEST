@@ -1,6 +1,7 @@
 Build.PL
 Changes
 examples/columns.pl
+examples/columnsSource.pl
 examples/crystal.pl
 examples/crystalSource.pl
 examples/edit.pl
@@ -9,16 +10,10 @@ examples/fo.pl
 examples/folderFirst.pl
 examples/folderSource.pl
 examples/foSource.pl
-examples/html/down.png
-examples/html/edit.png
-examples/html/editdelete.png
-examples/html/favicon.ico
-examples/html/filenew.png
 examples/html/html-menu-treeview.html
 examples/html/index.html
 examples/html/minus.png
 examples/html/plus.png
-examples/html/up.png
 examples/oo.pl
 examples/ooSource.pl
 examples/open.pl
@@ -117,7 +112,6 @@ httpdocs/style/Crystal/128/mimetypes/kmultiple.png
 httpdocs/style/Crystal/128/mimetypes/koffice.png
 httpdocs/style/Crystal/128/mimetypes/krita_kra.png
 httpdocs/style/Crystal/128/mimetypes/l.png
-httpdocs/style/Crystal/128/mimetypes/link.gif
 httpdocs/style/Crystal/128/mimetypes/link_overlay.png
 httpdocs/style/Crystal/128/mimetypes/log.png
 httpdocs/style/Crystal/128/mimetypes/make.png
@@ -267,7 +261,7 @@ httpdocs/style/Crystal/16/mimetypes/html.png
 httpdocs/style/Crystal/16/mimetypes/image.png
 httpdocs/style/Crystal/16/mimetypes/info.png
 httpdocs/style/Crystal/16/mimetypes/java.png
-httpdocs/style/Crystal/16/mimetypes/link.gif
+httpdocs/style/Crystal/16/mimetypes/link_overlay.png
 httpdocs/style/Crystal/16/mimetypes/log.png
 httpdocs/style/Crystal/16/mimetypes/man.png
 httpdocs/style/Crystal/16/mimetypes/message.png
@@ -351,7 +345,6 @@ httpdocs/style/Crystal/22/mimetypes/f.png
 httpdocs/style/Crystal/22/mimetypes/file_locked.png
 httpdocs/style/Crystal/22/mimetypes/file_temporary.png
 httpdocs/style/Crystal/22/mimetypes/filenew.png
-httpdocs/style/Crystal/22/mimetypes/folder_home.png
 httpdocs/style/Crystal/22/mimetypes/font_bitmap.png
 httpdocs/style/Crystal/22/mimetypes/font_truetype.png
 httpdocs/style/Crystal/22/mimetypes/font_type1.png
@@ -376,7 +369,6 @@ httpdocs/style/Crystal/22/mimetypes/kspread_ksp.png
 httpdocs/style/Crystal/22/mimetypes/kugar_kud.png
 httpdocs/style/Crystal/22/mimetypes/kword_kwd.png
 httpdocs/style/Crystal/22/mimetypes/l.png
-httpdocs/style/Crystal/22/mimetypes/link.gif
 httpdocs/style/Crystal/22/mimetypes/link_overlay.png
 httpdocs/style/Crystal/22/mimetypes/log.png
 httpdocs/style/Crystal/22/mimetypes/make.png
@@ -529,7 +521,7 @@ httpdocs/style/Crystal/32/mimetypes/kspread_ksp.png
 httpdocs/style/Crystal/32/mimetypes/kugar_kud.png
 httpdocs/style/Crystal/32/mimetypes/kword_kwd.png
 httpdocs/style/Crystal/32/mimetypes/l.png
-httpdocs/style/Crystal/32/mimetypes/link.gif
+httpdocs/style/Crystal/32/mimetypes/link_overlay.png
 httpdocs/style/Crystal/32/mimetypes/log.png
 httpdocs/style/Crystal/32/mimetypes/make.png
 httpdocs/style/Crystal/32/mimetypes/man.png
@@ -550,7 +542,6 @@ httpdocs/style/Crystal/32/mimetypes/ps.png
 httpdocs/style/Crystal/32/mimetypes/py.png
 httpdocs/style/Crystal/32/mimetypes/quicktime.png
 httpdocs/style/Crystal/32/mimetypes/readme.png
-httpdocs/style/Crystal/32/mimetypes/recycled.png
 httpdocs/style/Crystal/32/mimetypes/resource.png
 httpdocs/style/Crystal/32/mimetypes/rpm.png
 httpdocs/style/Crystal/32/mimetypes/rtf.png
@@ -577,6 +568,7 @@ httpdocs/style/Crystal/32/mimetypes/vectorgfx.png
 httpdocs/style/Crystal/32/mimetypes/video.png
 httpdocs/style/Crystal/32/mimetypes/widget_doc.png
 httpdocs/style/Crystal/32/mimetypes/wordprocessing.png
+httpdocs/style/Crystal/32/mimetypes/www.png
 httpdocs/style/Crystal/32/mimetypes/xls.png
 httpdocs/style/Crystal/32/mimetypes/y.png
 httpdocs/style/Crystal/32/mimetypes/zip.png
@@ -632,7 +624,6 @@ httpdocs/style/Crystal/48/html-menu-treeview/node.gif
 httpdocs/style/Crystal/48/html-menu-treeview/plusNode.gif
 httpdocs/style/Crystal/48/html-menu-treeview/preload.js
 httpdocs/style/Crystal/48/html-menu-treeview/spacer.gif
-httpdocs/style/Crystal/48/html-menu-treeview/test.png
 httpdocs/style/Crystal/48/html-menu-treeview/vertLine.gif
 httpdocs/style/Crystal/48/mimetypes/applix.png
 httpdocs/style/Crystal/48/mimetypes/ascii.png
@@ -661,8 +652,6 @@ httpdocs/style/Crystal/48/mimetypes/exec_wine.png
 httpdocs/style/Crystal/48/mimetypes/f.png
 httpdocs/style/Crystal/48/mimetypes/file_broken.png
 httpdocs/style/Crystal/48/mimetypes/filenew.png
-httpdocs/style/Crystal/48/mimetypes/folder_home.png
-httpdocs/style/Crystal/48/mimetypes/folder_home2.png
 httpdocs/style/Crystal/48/mimetypes/folder_inbox.png
 httpdocs/style/Crystal/48/mimetypes/folder_outbox.png
 httpdocs/style/Crystal/48/mimetypes/font_bitmap.png
@@ -691,7 +680,6 @@ httpdocs/style/Crystal/48/mimetypes/kspread_ksp.png
 httpdocs/style/Crystal/48/mimetypes/kugar_kud.png
 httpdocs/style/Crystal/48/mimetypes/kword_kwd.png
 httpdocs/style/Crystal/48/mimetypes/l.png
-httpdocs/style/Crystal/48/mimetypes/link.gif
 httpdocs/style/Crystal/48/mimetypes/link_overlay.png
 httpdocs/style/Crystal/48/mimetypes/lock_overlay.png
 httpdocs/style/Crystal/48/mimetypes/log.png
@@ -776,7 +764,6 @@ httpdocs/style/Crystal/64/html-menu-treeview/folder_locked_open.png
 httpdocs/style/Crystal/64/html-menu-treeview/folder_man.png
 httpdocs/style/Crystal/64/html-menu-treeview/folder_man_open.png
 httpdocs/style/Crystal/64/html-menu-treeview/folder_open.png
-httpdocs/style/Crystal/64/html-menu-treeview/folder_open_open.png
 httpdocs/style/Crystal/64/html-menu-treeview/folder_orange.png
 httpdocs/style/Crystal/64/html-menu-treeview/folder_orange_open.png
 httpdocs/style/Crystal/64/html-menu-treeview/folder_print.png
@@ -827,7 +814,6 @@ httpdocs/style/Crystal/64/mimetypes/exec.png
 httpdocs/style/Crystal/64/mimetypes/exec_wine.png
 httpdocs/style/Crystal/64/mimetypes/f.png
 httpdocs/style/Crystal/64/mimetypes/file_broken.png
-httpdocs/style/Crystal/64/mimetypes/folder_home.png
 httpdocs/style/Crystal/64/mimetypes/font_bitmap.png
 httpdocs/style/Crystal/64/mimetypes/font_truetype.png
 httpdocs/style/Crystal/64/mimetypes/font_type1.png
@@ -851,7 +837,6 @@ httpdocs/style/Crystal/64/mimetypes/kspread_ksp.png
 httpdocs/style/Crystal/64/mimetypes/kugar_kud.png
 httpdocs/style/Crystal/64/mimetypes/kword_kwd.png
 httpdocs/style/Crystal/64/mimetypes/l.png
-httpdocs/style/Crystal/64/mimetypes/link.gif
 httpdocs/style/Crystal/64/mimetypes/link_overlay.png
 httpdocs/style/Crystal/64/mimetypes/log.png
 httpdocs/style/Crystal/64/mimetypes/make.png
@@ -921,6 +906,7 @@ httpdocs/style/simple/16/html-menu-treeview/simple.css
 httpdocs/style/simple/16/html-menu-treeview/spacer.gif
 httpdocs/style/simple/16/html-menu-treeview/vertLine.gif
 httpdocs/style/simple/16/mimetypes/link.gif
+httpdocs/style/simple/16/mimetypes/link_overlay.png
 httpdocs/style/treeview.js
 lib/HTML/Menu/TreeView.pm
 LICENSE

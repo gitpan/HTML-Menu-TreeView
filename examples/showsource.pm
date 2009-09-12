@@ -8,7 +8,8 @@ use vars qw($color_Keys $formatter $perldoc_Keys @EXPORT @ISA );
 @showsource::EXPORT = qw(showSource path);
 use Syntax::Highlight::Perl ':FULL';    # or ':FULL'
 
-sub showSource {
+sub showSource
+{
 
     $color_Keys = {
                    'Variable_Scalar'   => 'red',
@@ -32,24 +33,25 @@ sub showSource {
     };
     $formatter = new Syntax::Highlight::Perl;
     $formatter->define_substitution(
-                                     '<' => '&lt;',
-                                     '>' => '&gt;',
-                                     '&' => '&amp;',
+                                    '<' => '&lt;',
+                                    '>' => '&gt;',
+                                    '&' => '&amp;',
     );    # HTML escapes.
 
-    while( my ( $type, $style ) = each %{$color_Keys} ) {
-        $formatter->set_format( $type, [qq|<span style="color:$style;">|, '</span>'] );
+    while (my ($type, $style) = each %{$color_Keys}) {
+        $formatter->set_format($type, [qq|<span style="color:$style;">|, '</span>']);
     }
     $perldoc_Keys = {
                      'Builtin_Operator' => 'blue',
                      'Builtin_Function' => 'blue',
                      'Keyword'          => 'blue',
     };
-    while( my ( $type, $style ) = each %{$perldoc_Keys} ) {
-        $formatter->set_format( $type, [qq|<a onclick="window.open('http://perldoc.perl.org/search.html?q='+this.innerHTML)" style="color:$style">|, "</a>"] );
+    while (my ($type, $style) = each %{$perldoc_Keys}) {
+        $formatter->set_format($type,
+                               [qq|<a onclick="window.open('http://perldoc.perl.org/search.html?q='+this.innerHTML)" style="color:$style">|, "</a>"]);
     }
 
-    my ( $file, $out ) = @_;
+    my ($file, $out) = @_;
     use Fcntl qw(:flock);
     use Symbol;
     my $fh = gensym;
