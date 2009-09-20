@@ -39,7 +39,7 @@ my $js  = $TreeView->jscript();
 my $js2 = jscript();
 ok(length($js2) eq length($js));
 Style("Crystal");
-ok($TreeView->style() eq "Crystal");
+ok($TreeView->Style() eq "Crystal");
 ok(documentRoot() eq "$path/httpdocs");
 ok(length($TreeView->css()) > 0);
 TrOver(1);

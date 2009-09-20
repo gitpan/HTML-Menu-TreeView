@@ -5,7 +5,7 @@ require Exporter;
 use 5.00600;
 use vars
   qw($DefaultClass %EXPORT_TAGS @EXPORT_OK @ISA %anker @TreeView %openArrays @caption $columns $clasic $ffirst $sort $border $orderby $size $style $orderbyColumn $prefix $bTrOver $desc %anker %ankerG $lang);
-$HTML::Menu::TreeView::VERSION = '1.09';
+$HTML::Menu::TreeView::VERSION = '1.10';
 @ISA                           = qw(Exporter);
 @HTML::Menu::TreeView::EXPORT_OK =
   qw(border Tree css columns jscript setStyle setDocumentRoot getDocumentRoot setSize setClasic clasic preload help folderFirst size style Style documentRoot loadTree saveTree  %anker %ankerG sortTree orderBy orderByColumn prefix setModern border TrOver desc language);
@@ -160,7 +160,7 @@ HTML::Menu::TreeView - Create a HTML TreeView from scratch
      print Tree(\@tree,"Crystal");
 
 
-=head3 function sets
+=head2 function sets
 
 Here is a list of the function sets you can import:
 
@@ -190,7 +190,7 @@ HTML::Menu::TreeView is a Modul to build an Html TreeView.
 
 =head1 Changes
 
-1.09
+1.10
 
 Overwrought
 

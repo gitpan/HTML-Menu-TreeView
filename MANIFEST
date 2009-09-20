@@ -10,6 +10,7 @@ examples/fo.pl
 examples/folderFirst.pl
 examples/folderSource.pl
 examples/foSource.pl
+examples/html/favicon.ico
 examples/html/html-menu-treeview.html
 examples/html/index.html
 examples/html/minus.png

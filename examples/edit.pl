@@ -4,7 +4,7 @@ use CGI qw(-compile :all :cgi-lib -private_tempfiles);
 use CGI::Carp qw(fatalsToBrowser);
 use lib qw(..);
 use HTML::Menu::TreeView qw(:all);
-use vars qw(@tree $m_sContent %tempNode $tN $rid);
+use vars qw(@tree $m_sContent %tempNode $tN $m_nRid);
 my $action   = param('action') ? param('action') : "editable";
 my $dump     = "./tree.pl";
 my $down     = 0;
@@ -73,17 +73,21 @@ function disableDropZone(id){
 document.getElementById(id).className = "treeviewLink"+size;
 }
 function confirmMove(){
-dragobjekt.style.position ="";
-dropenabled = false;
-if(dropzone && dragobjekt.id != dropzone){
-var url = "$ENV{SCRIPT_NAME}?action=MoveTreeViewEntry&from="+document.getElementById(dropid).id+"&to="+document.getElementById(dropzone).id;
-var move = confirm("hierher verschieben ?");
-if(move)
-location.href =url;
-}
-dragobjekt.className = "treeviewLink"+size;
-dragobjekt = null;
-m_bOver = true;
+
+  if(dropzone && dragobjekt.id != dropzone){
+  var url = "$ENV{SCRIPT_NAME}?action=MoveTreeViewEntry&dump=$m_sPdmp&from="+document.getElementById(dropid).id+"&to="+document.getElementById(dropzone).id+"#"+document.getElementById(dropzone).id;
+        var move = confirm("hierher verschieben ?");
+        if(move){
+          location.href =url;
+        }else{
+          dragobjekt.style.position ="";
+          dropenabled = false;
+          dragobjekt.className = "treeviewlink";
+          dragobjekt = null;
+        }
+   }
+
+  m_bOver = true;
 }
 function getElementPosition(id){
 var node = document.getElementById(id);
@@ -354,8 +358,8 @@ document.body.style.cursor = "default";
 <table align="center" class="mainborder" cellpadding="0"  cellspacing="0" summary="mainLayout" ><tr><td align="left">'
 );
 
-my $p_rid = param('rid');
-$p_rid =~ s/^a(.*)/$1/;
+my $m_nPrid = param('rid');
+$m_nPrid =~ s/^a(.*)/$1/;
 
 SWITCH: {
     if ($action eq 'newEntry') {
@@ -404,7 +408,7 @@ print "$m_sContent</td></tr></table>", end_html;
 sub saveTreeviewEntry
 {
     &load();
-    &saveEntry(\@tree, $p_rid);
+    &saveEntry(\@tree, $m_nPrid);
     &updateTree(\@tree);
     TrOver(1);
     $m_sContent .= br();
@@ -421,7 +425,7 @@ sub saveTreeviewEntry
 sub addTreeviewEntry
 {
     &load();
-    &addEntry(\@tree, $p_rid);
+    &addEntry(\@tree, $m_nPrid);
     &updateTree(\@tree);
     TrOver(1);
     $m_sContent .= br();
@@ -457,13 +461,13 @@ sub editTreeviewEntry
 {
     &load();
 
-    &editEntry(\@tree, $p_rid);
+    &editEntry(\@tree, $m_nPrid);
 }
 
 sub deleteTreeviewEntry
 {
     &load();
-    &deleteEntry(\@tree, $p_rid);
+    &deleteEntry(\@tree, $m_nPrid);
     &updateTree(\@tree);
     TrOver(1);
     $m_sContent .= br();
@@ -480,7 +484,7 @@ sub deleteTreeviewEntry
 sub upEntry
 {
     &load();
-    &sortUp(\@tree, $p_rid);
+    &sortUp(\@tree, $m_nPrid);
     &updateTree(\@tree);
     TrOver(1);
     $m_sContent .= br();
@@ -556,7 +560,7 @@ sub downEntry
 {
     &load();
     $down = 1;
-    &sortUp(\@tree, $p_rid);
+    &sortUp(\@tree, $m_nPrid);
     &updateTree(\@tree);
     TrOver(1);
     $m_sContent .= table(
@@ -572,7 +576,7 @@ sub downEntry
 sub newEntry
 {
     $m_sContent .=
-qq(<b>New Entry</b><form action="$ENV{SCRIPT_NAME}"><br/><table align="center" class="mainborder" cellpadding="2"  cellspacing="2" summary="mainLayolut"><tr><td>Text:</td><td><input type="text" value="" name="text"></td></tr><tr><td>Folder</td><td><input type="checkbox" name="folder" /></td></tr>);
+qq(<b>New Entry</b><form action="$ENV{SCRIPT_NAME}#a$m_nPrid"><br/><table align="center" class="mainborder" cellpadding="2"  cellspacing="2" summary="mainLayolut"><tr><td>Text:</td><td><input type="text" value="" name="text"></td></tr><tr><td>Folder</td><td><input type="checkbox" name="folder" /></td></tr>);
     my $node = help();
     foreach my $key (sort(keys %{$node})) {
         $m_sContent .= qq(<tr><td></td><td>$node->{$key}</td></tr><tr><td>$key :</td><td><input type="text" value="" name="$key"/><br/></td></tr>)
@@ -580,7 +584,7 @@ qq(<b>New Entry</b><form action="$ENV{SCRIPT_NAME}"><br/><table align="center" c
     }
     $m_sContent .=
         '<tr><td><input type="hidden" name="action" value="addTreeviewEntry"/><input type="hidden" name="rid" value="a' 
-      . $p_rid
+      . $m_nPrid
       . '"></td><td><input type="submit"/></td></tr></table></form>';
 }
 
@@ -642,7 +646,8 @@ sub editEntry
               . @$t[$i]->{text}
               . '</b><form action="'
               . $href
-              . '"><table align=" center " class=" mainborder " cellpadding="0"  cellspacing="0" summary="mainLayolut">';
+              . "#a$m_nPrid"
+              . '><table align=" center " class=" mainborder " cellpadding="0"  cellspacing="0" summary="mainLayolut">';
             language('de') if $ENV{HTTP_ACCEPT_LANGUAGE} =~ /^de.*/;
             my $node = help();
             foreach my $key (sort(keys %{@$t[$i]})) {
@@ -707,13 +712,14 @@ sub updateTree
         if (defined @$t[$i]) {
             @$t[$i]->{onmouseup}   = "confirmMove()";
             @$t[$i]->{id}          = @$t[$i]->{id};
+            @$t[$i]->{name}        = @$t[$i]->{rid};
             @$t[$i]->{onmousedown} = "prepareMove('" . @$t[$i]->{id} . "')";
             @$t[$i]->{onmousemove} = "enableDropZone('" . @$t[$i]->{id} . "')";
             @$t[$i]->{onmouseout}  = "disableDropZone('" . @$t[$i]->{id} . "')";
 
             @$t[$i]->{addition} = qq(<table border="0" cellpadding="0" cellspacing="0" align="right" summary="layout"><tr>
 <td><a class="treeviewLink$size" target="_blank" title="@$t[$i]->{text}" href="@$t[$i]->{href}"><img src="/style/$m_sStyle/$size/mimetypes/www.png" border="0" alt=""/></a></td>
-<td ><a class="treeviewLink$size" href="$ENV{SCRIPT_NAME}?action=editTreeviewEntry&amp;rid=@$t[$i]->{id}"><img src="/style/$m_sStyle/$size/mimetypes/edit.png" border="0" alt="edit"/></a></td><td><a class="treeviewLink$size" href="$ENV{SCRIPT_NAME}?action=deleteTreeviewEntry&amp;rid=@$t[$i]->{id}"><img src="/style/$m_sStyle/$size/mimetypes/editdelete.png" border="0" alt="delete"/></a></td><td><a class="treeviewLink$size" href="$ENV{SCRIPT_NAME}?action=upEntry&amp;rid=@$t[$i]->{id}"><img src="/style/$m_sStyle/$size/mimetypes/up.png" border="0" alt="up"/></a></td><td><a class="treeviewLink$size" href="$ENV{SCRIPT_NAME}?action=downEntry&amp;rid=@$t[$i]->{id}"><img src="/style/$m_sStyle/$size/mimetypes/down.png" border="0" alt="down"/></a></td><td><a class="treeviewLink$size" href="$ENV{SCRIPT_NAME}?action=newEntry&amp;rid=@$t[$i]->{id}"><img src="/style/$m_sStyle/$size/mimetypes/filenew.png" border="0" alt="new"/></a></td></tr></table>);
+<td ><a class="treeviewLink$size" href="$ENV{SCRIPT_NAME}?action=editTreeviewEntry&amp;rid=@$t[$i]->{id}"><img src="/style/$m_sStyle/$size/mimetypes/edit.png" border="0" alt="edit"/></a></td><td><a class="treeviewLink$size" href="$ENV{SCRIPT_NAME}?action=deleteTreeviewEntry&amp;rid=@$t[$i]->{id}"><img src="/style/$m_sStyle/$size/mimetypes/editdelete.png" border="0" alt="delete"/></a></td><td><a class="treeviewLink$size" href="$ENV{SCRIPT_NAME}?action=upEntry&amp;rid=@$t[$i]->{id}#@$t[$i]->{id}"><img src="/style/$m_sStyle/$size/mimetypes/up.png" border="0" alt="up"/></a></td><td><a class="treeviewLink$size" href="$ENV{SCRIPT_NAME}?action=downEntry&amp;rid=@$t[$i]->{id}#@$t[$i]->{id}"><img src="/style/$m_sStyle/$size/mimetypes/down.png" border="0" alt="down"/></a></td><td><a class="treeviewLink$size" href="$ENV{SCRIPT_NAME}?action=newEntry&amp;rid=@$t[$i]->{id}"><img src="/style/$m_sStyle/$size/mimetypes/filenew.png" border="0" alt="new"/></a></td></tr></table>);
             @$t[$i]->{href} = '';
             updateTree(\@{@$t[$i]->{subtree}}) if (defined @{@$t[$i]->{subtree}});
         }
@@ -723,17 +729,17 @@ sub updateTree
 sub rid
 {
     no warnings;
-    $rid = 0;
+    $m_nRid = 0;
     &getRid(\@tree);
 
     sub getRid
     {
         my $t = shift;
         for (my $i = 0; $i < @$t; $i++) {
-            $rid++;
+            $m_nRid++;
             next unless ref @$t[$i] eq "HASH";
-            @$t[$i]->{rid} = $rid;
-            @$t[$i]->{id}  = "a$rid";
+            @$t[$i]->{rid} = $m_nRid;
+            @$t[$i]->{id}  = "a$m_nRid";
             getRid(\@{@$t[$i]->{subtree}}) if (defined @{@$t[$i]->{subtree}});
         }
     }
