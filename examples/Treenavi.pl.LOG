@@ -1,0 +1,40 @@
+perltidy version 20071205 log file on a linux system, OLD_PERL_VERSION=5.010000
+Found Configuration File >>> /home/linse/.perltidyrc 
+Configuration and command line parameters for this run:
+-w -b -log -se -l=250 -nwls=== + - / * -pt=2 -sbt=2 -bt=2 -bbt=2 -nolq -ola -i=4 -lp -ce -nbol -cab=0 -dcsc -bbs -bbb -l=78 -i=4 -ci=4 -se -vt=2 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs
+To find error messages search for 'WARNING' with your editor
+Indentation will be with 4 spaces
+Line 1 implies starting-indentation-level = 0
+The nesting depths in the table below are at the start of the lines.
+The indicated output line numbers are not always exact.
+ci = levels of continuation indentation; bk = 1 if in BLOCK, 0 if not.
+
+in:out indent c b  nesting   code + messages; (messages begin with >>>)
+lines  levels i k            (code begins with one '.' per indent level)
+------  ----- - - --------   -------------------------------------------
+L17:17   i0:0 0 1            >>>old indentation is unclear, using 6  spaces
+L33:30   i0:0 1 1            >>>Line length exceeded by 83 characters
+L37:35   i3:1 0 0 (          >>>Start indentation disagreement: input=3; output=1
+L41:35   i0:0 1 1            >>>Line length exceeded by 247 characters
+L43:43   i0:0 0 1            >>>End indentation disagreement from input line 37
+L48:48   i0:1 0 1 {          >>>Start indentation disagreement: input=0; output=1
+L50:48   i1:1 1 1 {          .: qq(<option value="$1">$1</option ....
+L52:52   i0:0 0 1 {          >>>End indentation disagreement from input line 48
+L52:52   i0:0 0 1 {          >>>Start multi-line quote or pattern ending in )
+L54:54   i0:0 0 1            >>>End of multi-line quote or pattern
+L56:55   i0:0 1 1            >>>Line length exceeded by 364 characters
+L58:58   i0:0 0 1            sub openTree {
+L59:59   i0:1 0 1 {          >>>Start indentation disagreement: input=0; output=1
+L62:62   i0:1 0 1 {          >>>Line length exceeded by 51 characters
+L81:81   i0:0 0 1 {          >>>End indentation disagreement from input line 59
+First indentation disagreement seen at input line 37
+Last indentation disagreement seen at input line 80
+
+1 long lines were outdented:
+  First at output line 61
+  use -noll to prevent outdenting, -l=n to increase line length
+
+4 output lines exceeded 78 characters:
+ First at line 32 by 83 characters
+ Maximum at line 55 by 364 characters
+ Last at line 61 by 51 characters

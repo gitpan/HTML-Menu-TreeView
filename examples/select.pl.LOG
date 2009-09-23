@@ -1,0 +1,35 @@
+perltidy version 20071205 log file on a linux system, OLD_PERL_VERSION=5.010000
+Found Configuration File >>> /home/linse/.perltidyrc 
+Configuration and command line parameters for this run:
+-w -b -log -se -l=250 -nwls=== + - / * -pt=2 -sbt=2 -bt=2 -bbt=2 -nolq -ola -i=4 -lp -ce -nbol -cab=0 -dcsc -bbs -bbb -l=78 -i=4 -ci=4 -se -vt=2 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs
+To find error messages search for 'WARNING' with your editor
+Indentation will be with 4 spaces
+Line 1 implies starting-indentation-level = 0
+The nesting depths in the table below are at the start of the lines.
+The indicated output line numbers are not always exact.
+ci = levels of continuation indentation; bk = 1 if in BLOCK, 0 if not.
+
+in:out indent c b  nesting   code + messages; (messages begin with >>>)
+lines  levels i k            (code begins with one '.' per indent level)
+------  ----- - - --------   -------------------------------------------
+L6:6     i0:0 0 1            >>>Guessing old indentation was 8  spaces
+L9:6     i4:3 0 0 ({(        >>>Start indentation disagreement: input=4; output=3
+L12:6    i1:1 0 0 ({         >>>End indentation disagreement from input line 9
+L16:6    i4:3 0 0 ({(        >>>Start indentation disagreement: input=4; output=3
+L19:6    i1:1 0 0 ({         >>>End indentation disagreement from input line 16
+L23:22   i0:1 0 0 (          >>>Start indentation disagreement: input=0; output=1
+L24:22   i2:2 0 0 ((         >>>End indentation disagreement from input line 23
+L27:22   i0:1 0 0 (          >>>Start indentation disagreement: input=0; output=1
+L28:22   i2:2 0 0 ((         >>>End indentation disagreement from input line 27
+L30:22   i0:1 0 0 (          >>>Start indentation disagreement: input=0; output=1
+L33:22   i2:2 0 0 ((         >>>End indentation disagreement from input line 30
+L35:22   i0:1 0 0 (          >>>Start indentation disagreement: input=0; output=1
+L37:37   i0:0 0 1            >>>End indentation disagreement from input line 35
+L37:37   i0:0 0 1            >>>No further tabbing disagreements will be noted
+L43:42   i0:0 0 1            >>>Last line
+
+First indentation disagreement seen at input line 9
+Last indentation disagreement seen at input line 41
+
+No lines exceeded 78 characters
+  Maximum output line length was 78 at line 24

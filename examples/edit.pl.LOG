@@ -1,0 +1,82 @@
+perltidy version 20071205 log file on a linux system, OLD_PERL_VERSION=5.010000
+Found Configuration File >>> /home/linse/.perltidyrc 
+Configuration and command line parameters for this run:
+-w -b -log -se -l=250 -nwls=== + - / * -pt=2 -sbt=2 -bt=2 -bbt=2 -nolq -ola -i=4 -lp -ce -nbol -cab=0 -dcsc -bbs -bbb -l=78 -i=4 -ci=4 -se -vt=2 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs
+To find error messages search for 'WARNING' with your editor
+Indentation will be with 4 spaces
+Line 1 implies starting-indentation-level = 0
+The nesting depths in the table below are at the start of the lines.
+The indicated output line numbers are not always exact.
+ci = levels of continuation indentation; bk = 1 if in BLOCK, 0 if not.
+
+in:out indent c b  nesting   code + messages; (messages begin with >>>)
+lines  levels i k            (code begins with one '.' per indent level)
+------  ----- - - --------   -------------------------------------------
+L15:15   i0:0 0 1            >>>Start multi-line quote or pattern ending in |
+L50:50   i0:0 1 1            if(dragobjekt){
+L70:70   i0:0 1 1            >>>Line length exceeded by 8 characters
+L78:78   i0:0 1 1            >>>Line length exceeded by 116 characters
+L100:100 i0:0 1 1            }
+L112:112 i0:0 1 1            >>>End of multi-line quote or pattern
+L115:115 i0:0 0 1            >>>Guessing old indentation was 4  spaces
+L122:120 i2:3 0 0 {({        >>>Start indentation disagreement: input=2; output=3
+L148:120 i2:2 0 0 {({        >>>End indentation disagreement from input line 122
+L150:120 i2:3 0 0 {({        ...'subtree' => [ {  'target'  => ' ....
+L150:120 i2:3 0 0 {({        >>>Start indentation disagreement: input=2; output=3
+L200:120 i11:7 0 0 {({[{[{    .......'rid'     => 13
+L250:120 i7:5 0 0 {({[{      .....'href'    => 'columns.pl',
+L265:120 i2:2 0 0 {({        >>>End indentation disagreement from input line 150
+L267:120 i2:3 0 0 {({        >>>Start indentation disagreement: input=2; output=3
+L271:120 i2:2 0 0 {({        >>>End indentation disagreement from input line 267
+L272:120 i1:1 1 1 {(         >>>Line length exceeded by 10 characters
+L276:275 i4:1 0 0 (          >>>Start indentation disagreement: input=4; output=1
+L300:300 i0:0 0 1            print(
+L300:300 i0:0 0 1            >>>End indentation disagreement from input line 276
+L303:300 i4:2 0 0 ((         >>>Start indentation disagreement: input=4; output=2
+L306:300 i1:1 0 0 (          >>>End indentation disagreement from input line 303
+L306:300 i1:1 0 0 (          >>>Start multi-line quote or pattern ending in '
+L317:317 i0:1 1 0 (          >>>End of multi-line quote or pattern
+L318:318 i0:1 1 0 (          >>>Line length exceeded by 40 characters
+L350:350 i1:1 0 1 {{         .}
+L368:368 i0:0 0 1            sub saveTreeviewEntry {
+L375:374 i7:3 0 0 {({        >>>Start indentation disagreement: input=7; output=3
+L379:379 i1:1 0 1 {          >>>End indentation disagreement from input line 375
+L379:379 i1:1 0 1 {          >>>No further tabbing disagreements will be noted
+L382:382 i0:0 0 1            sub addTreeviewEntry {
+L396:396 i0:0 0 1            sub editTreeview {
+L411:411 i0:0 0 1            sub editTreeviewEntry {
+L417:417 i0:0 0 1            sub deleteTreeviewEntry {
+L431:431 i0:0 0 1            sub upEntry {
+L445:445 i0:0 0 1            sub MoveTreeViewEntry {
+L465:465 i0:0 0 1            sub moveEntry {
+L482:482 i0:0 0 1            sub getEntry {
+L495:494 i1:1 0 1 {{         >>>(No else block)
+L498:498 i0:0 0 1            sub downEntry {
+L512:512 i0:0 0 1            sub newEntry {
+L514:513 i2:1 1 1 {          >>>Line length exceeded by 239 characters
+L519:517 i3:2 1 1 {{         >>>Line length exceeded by 57 characters
+L527:527 i0:0 0 1            sub addEntry {
+L556:555 i1:1 0 1 {{         >>>(No else block)
+L559:559 i0:0 0 1            sub saveEntry {
+L582:581 i1:1 0 1 {{         >>>(No else block)
+L585:585 i0:0 0 1            sub editEntry {
+L625:624 i1:1 0 1 {{         >>>(No else block)
+L628:628 i0:0 0 1            sub sortUp {
+L647:647 i0:0 0 1            sub deleteEntry {
+L657:656 i1:1 0 1 {{         >>>(No else block)
+L660:660 i0:0 0 1            sub updateTree {
+L673:673 i3:3 0 1 {{{        >>>Start multi-line quote or pattern ending in )
+L675:675 i0:3 1 1 {{{        >>>End of multi-line quote or pattern
+L684:684 i0:0 0 1            sub rid {
+L689:689 i1:1 0 1 {          .sub getRid {
+L702:702 i0:0 0 1            sub load {
+L708:707 i0:0 0 1            >>>Last line
+
+First indentation disagreement seen at input line 122
+Last indentation disagreement seen at input line 610
+
+14 output lines exceeded 78 characters:
+ First at line 70 by 8 characters
+ Maximum at line 676 by 897 characters
+ Last at line 676 by 897 characters
+Suggest including 'use warnings;'

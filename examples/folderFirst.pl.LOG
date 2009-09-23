@@ -1,0 +1,36 @@
+perltidy version 20071205 log file on a linux system, OLD_PERL_VERSION=5.010000
+Found Configuration File >>> /home/linse/.perltidyrc 
+Configuration and command line parameters for this run:
+-w -b -log -se -l=250 -nwls=== + - / * -pt=2 -sbt=2 -bt=2 -bbt=2 -nolq -ola -i=4 -lp -ce -nbol -cab=0 -dcsc -bbs -bbb -l=78 -i=4 -ci=4 -se -vt=2 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs
+To find error messages search for 'WARNING' with your editor
+Indentation will be with 4 spaces
+Line 1 implies starting-indentation-level = 0
+The nesting depths in the table below are at the start of the lines.
+The indicated output line numbers are not always exact.
+ci = levels of continuation indentation; bk = 1 if in BLOCK, 0 if not.
+
+in:out indent c b  nesting   code + messages; (messages begin with >>>)
+lines  levels i k            (code begins with one '.' per indent level)
+------  ----- - - --------   -------------------------------------------
+L16:16   i0:0 0 1            >>>Guessing old indentation was 4  spaces
+L18:16   i1:2 0 0 ({         >>>Start indentation disagreement: input=1; output=2
+L19:16   i1:1 0 0 ({         >>>End indentation disagreement from input line 18
+L21:16   i1:2 0 0 ({         >>>Start indentation disagreement: input=1; output=2
+L22:16   i1:1 0 0 ({         >>>End indentation disagreement from input line 21
+L24:16   i1:2 0 0 ({         >>>Start indentation disagreement: input=1; output=2
+L30:16   i1:1 0 0 ({         >>>End indentation disagreement from input line 24
+L32:16   i1:2 0 0 ({         >>>Start indentation disagreement: input=1; output=2
+L33:16   i3:3 0 0 ({[        >>>End indentation disagreement from input line 32
+L34:16   i3:4 0 0 ({[{       >>>Start indentation disagreement: input=3; output=4
+L35:16   i3:3 0 0 ({[{       >>>End indentation disagreement from input line 34
+L37:16   i3:4 0 0 ({[{       >>>Start indentation disagreement: input=3; output=4
+L38:16   i3:3 0 0 ({[{       >>>End indentation disagreement from input line 37
+L38:16   i3:3 0 0 ({[{       >>>No further tabbing disagreements will be noted
+L50:16   i4:4 0 0 ({[{       ....href   => 'http://search.cpan.o ....
+L82:74   i0:0 1 1 (          >>>Last line
+
+First indentation disagreement seen at input line 18
+Last indentation disagreement seen at input line 78
+
+No lines exceeded 78 characters
+  Maximum output line length was 78 at line 18
