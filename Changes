@@ -1,4 +1,6 @@
-Revision history for Perl extension HTML::Menu::TreeView version 1.11
+Revision history for Perl extension HTML::Menu::TreeView version 1.12
+1.12
+        -some fixes (German umlaute help())
 1.11
        - edit.pl fixed
 1.10
